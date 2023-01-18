@@ -1,0 +1,73 @@
+﻿@model SWProject.Models.DomainModel.LocalVariable
+
+@{
+    ViewBag.Title = "ایجاد متغییر";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("SubmitAddLocal", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", id = "addLocalform" }))
+{
+    @Html.ValidationSummary()
+    @Html.HiddenFor(Model => Model.Id)
+    <div class="row">
+        <div class="col-md-12">
+            <div class="content-box-header">
+                <div class="panel-title" style="direction:rtl;text-align:right;float:right;">@ViewBag.Title</div>
+            </div>
+            <div class="content-box-large">
+                <div class="panel-body" style="min-height:525px;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="content-box-large">
+                                <div class="panel-body">
+                                    <fieldset>
+                                        <div class="form-group">
+                                            @Html.LabelFor(Model => Model.Title)
+                                            @Html.TextBoxFor(Model => Model.Title, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(Model => Model.Title)
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(Model => Model.Value)
+                                            @Html.TextBoxFor(Model => Model.Value, new { @class = "form-control" })
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(Model => Model.Type)
+                                            @{
+                                                List<SelectListItem> listItems = new List<SelectListItem>();
+                                                listItems.Add(new SelectListItem
+                                                {
+                                                    Text = "متغییر درون سایت",
+                                                    Value = "0"
+                                                });
+                                            }
+
+                                            @Html.DropDownListFor(model => model.Type, listItems, "---نوع متغییر را انتخاب کنید---", new { @class = "form-control" })
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(Model => Model.IsNecessary)
+                                            @Html.CheckBoxFor(Model => Model.IsNecessary, new { @class = "checkbox", @checked = true })
+                                        </div>
+                                    </fieldset>
+                                    <div>
+                                        <input type="submit" class="btn btn-success btn-large" value="ثبت" id="addlocal" style="font-size:18px;min-width:100px;" />
+                                        <a href="@Url.Action("Locals","Admin")" class="btn btn-default"><i class="glyphicon glyphicon-arrow-right"></i>&nbsp; بازگشت &nbsp;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+                                                }
+@section Scripts{
+    <script src="@Url.Content("~/Scripts/AjaxForm/jquery.form.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+    $(function () {
+    });
+    </script>
+}

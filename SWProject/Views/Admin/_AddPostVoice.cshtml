@@ -1,0 +1,170 @@
+﻿@model SWProject.ViewModels.Admin.MediaPostViewModel
+
+@{
+
+    ViewBag.Title = "ایجاد پست";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="content-box-large box-with-header" style="text-align:right;min-height:525px;">
+    <div class="content-box-header">
+        <div class="panel-title" style="direction:rtl;text-align:right;float:right;">@ViewBag.Title</div>
+    </div>
+    <div class="content-box-large">
+        <div class="panel-body">
+            @using (Html.BeginForm("SubmitAddVoiceMediaPost", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", id = "addVoiceMediaPostform" }))
+            {
+                @Html.ValidationSummary()
+
+                @Html.HiddenFor(Model => Model.mediaType)
+                @Html.HiddenFor(Model => Model.media.FilePath, new { @id = "fpath" })
+
+                <fieldset>
+                    <div class="form-group">
+                        @Html.LabelFor(Model => Model.post.Title)
+                        @Html.TextBoxFor(Model => Model.post.Title, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(Model => Model.post.Title)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(Model => Model.post.ProfilePicId)
+                        @Html.Upload("ProfilePicId", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(Model => Model.post.CategoryId)
+                        @{
+                            List<SelectListItem> listItems = new List<SelectListItem>();
+                            var cats = SWProject.Helpers.Admin.Utilities.GetCategories().Select(p => new { p.HierarchyId, p.Title }).Distinct();
+                            foreach (var item in cats)
+                            {
+                                listItems.Add(new SelectListItem
+                                {
+                                    Text = item.Title,
+                                    Value = item.HierarchyId.ToString()
+
+                                });
+                            }
+                        }
+
+                        @Html.DropDownListFor(model => model.post.CategoryId, listItems, "---سر گروه را انتخاب کنید---", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(Model => Model.post.IsIndex)
+                        @Html.CheckBoxFor(Model => Model.post.IsIndex, new { @class = "checkbox", @checked = false })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(Model => Model.post.Enable)
+                        @Html.CheckBoxFor(Model => Model.post.Enable, new { @class = "checkbox", @checked = true })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("فایل صوتی")
+                        @Html.Upload("Voices", new { @class = "form-control", @onchange = "uploadFile()" })
+                        <progress id="progressBar" value="0" max="100" style="width:300px;"></progress>
+                        <h3 id="status"></h3>
+                        <p id="loaded_n_total"></p>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(Model => Model.media.Caption)
+                        @Html.TextBoxFor(Model => Model.media.Caption, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(Model => Model.media.Caption)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(Model => Model.media.Introduction)
+                        @Html.TextAreaFor(Model => Model.media.Introduction, new { @class = "form-control", @id = "ckeditor_full" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(Model => Model.media.Description)
+                        @Html.TextAreaFor(Model => Model.media.Description, new { @class = "form-control", @id = "ckeditor_full2" })
+                        @Html.ValidationMessageFor(Model => Model.media.Description)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(Model => Model.media.Keywords)
+                        @Html.TextBoxFor(Model => Model.media.Keywords, new { @class = "form-control", @id = "txtKeywords" })
+                        @Html.ValidationMessageFor(Model => Model.media.Keywords)
+                    </div>
+                </fieldset>
+                <div>
+                    <input type="submit" class="btn btn-success btn-large" value="ثبت" id="addpost" style="font-size:18px;min-width:100px;" />
+                    <a href="@Url.Action("AddPost","Admin")" class="btn btn-default"><i class="glyphicon glyphicon-arrow-right"></i>&nbsp; بازگشت &nbsp;</a>
+                </div>
+
+                            }
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(function () {
+            CKEDITOR.replace('ckeditor_full');
+            CKEDITOR.replace('ckeditor_full2');
+            var ckeditor = CKEDITOR.replace('ckeditor_full');
+            CKFinder.setupCKEditor(ckeditor);
+            var ckeditor2 = CKEDITOR.replace('ckeditor_full2');
+            CKFinder.setupCKEditor(ckeditor2);
+            $("#txtKeywords").keypress(function (event) {
+                if (event.keyCode == 13) {
+                    event.preventDefault();
+                }
+            }).tagsinput();
+        });
+
+        function _(el) {
+            return document.getElementById(el);
+        }
+
+        function uploadFile() {
+            var file = _("Voices").files[0];
+            // alert(file.name+" | "+file.size+" | "+file.type);
+            var formdata = new FormData();
+            formdata.append("Voices", file);
+            var ajax = new XMLHttpRequest();
+            ajax.upload.addEventListener("progress", progressHandler, false);
+            ajax.addEventListener("load", completeHandler, false);
+            ajax.addEventListener("error", errorHandler, false);
+            ajax.addEventListener("abort", abortHandler, false);
+            ajax.open("POST", "/swp/Admin/UploadVoice");
+            //use file_upload_parser.php from above url
+            ajax.send(formdata);
+        }
+
+        function progressHandler(event) {
+            _("loaded_n_total").innerHTML = "حجم فایل آپلود شده : " + (event.loaded / 1024);
+            var percent = (event.loaded / event.total) * 100;
+            _("progressBar").value = Math.round(percent);
+            _("status").innerHTML = Math.round(percent) + "% در حال بارگذاری ... لطفا صبر کنید";
+        }
+
+        function completeHandler(event) {
+
+            _("fpath").setAttribute('value', event.target.responseText);
+            _("status").innerHTML = "فایل شما با موفقیت ثبت شد.لطفا ادامه مراحل را انجام دهید";
+            _("progressBar").value = 0; //wil clear progress bar after successful upload
+        }
+
+        function errorHandler(event) {
+            _("status").innerHTML = "مشکل در آپلود";
+        }
+
+        function abortHandler(event) {
+            _("status").innerHTML = "آپلود متوقف شد";
+        }
+    </script>
+
+
+    <script src="@Url.Content("~/Scripts/AjaxForm/jquery.form.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")"></script>
+    <script src="@Url.Content("~/Content/BackTemplate/bootstrap/js/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/TagsInput/bootstrap-tagsinput.min.js")"></script>
+
+<script src="@Url.Content("~/Content/BackTemplate/vendors/ckeditor/ckeditor.js")"></script>
+<script src="@Url.Content("~/Content/BackTemplate/vendors/ckeditor/adapters/jquery.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery-1.10.2.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery-ui.js")"></script>
+
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@section styles
+    {
+<link href="@Url.Content("~/Scripts/jquery-ui.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Scripts/TagsInput/bootstrap-tagsinput.css")" rel="stylesheet" />
+}

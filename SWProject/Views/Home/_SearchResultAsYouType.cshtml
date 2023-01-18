@@ -1,0 +1,27 @@
+﻿@model IEnumerable<SWProject.Models.DomainModel.Post>
+
+
+
+        @foreach (var postresult1 in Model)
+        {
+            <div class="single-blog-post post-style-2 d-flex align-items-center widget-post col-lg-3" style="background-color:azure;">
+                <!-- Post Thumbnail -->
+                <div class="post-thumbnail">
+                    @if (postresult1.ProfilePicId != null)
+                    {
+                        <img style="height:150px !important;width:200px !important;float:right;margin-top:10px;" src="@SWProject.Helpers.Front.Utilities.ToBase64ImageString(postresult1.Img_DataFiles.FileBody)" alt="">
+                    }
+                    @if (postresult1.ProfilePicId == null)
+                    {
+                        <img style="height:150px !important;width:200px !important;float:right;margin-top:10px;" src="@Url.Content("~/Content/FrontTemplate/img/no-image-icon.png")" />
+                    }
+                </div>
+                <!-- Post Content -->
+                <div class="post-content">
+                    <a href="#" class="headline">
+                        <h5 class="mb-0">@postresult1.Title</h5>
+                    </a>
+                </div>
+            </div>
+
+        }

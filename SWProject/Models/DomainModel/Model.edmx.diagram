@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c6782ce0ea4141578c63fd08fea532b8" Name="Diagram1">
+        <EntityTypeShape EntityType="SwpDbModel.Img_DataFiles" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SwpDbModel.User" Width="1.5" PointX="0.75" PointY="5.875" />
+        <EntityTypeShape EntityType="SwpDbModel.LocalVariable" Width="1.5" PointX="5.375" PointY="6.75" />
+        <EntityTypeShape EntityType="SwpDbModel.Paper_DataFiles" Width="1.5" PointX="7.5" PointY="10.5" />
+        <EntityTypeShape EntityType="SwpDbModel.Post" Width="1.5" PointX="8" PointY="3.375" />
+        <AssociationConnector Association="SwpDbModel.FK_Posts_Img_DataFiles" />
+        <AssociationConnector Association="SwpDbModel.FK_Paper_DataFiles_Posts" />
+        <AssociationConnector Association="SwpDbModel.FK_Posts_Users" />
+        <EntityTypeShape EntityType="SwpDbModel.Media_DataFiles" Width="1.5" PointX="10.25" PointY="4.625" />
+        <AssociationConnector Association="SwpDbModel.FK_Media_DataFiles_Posts" />
+        <AssociationConnector Association="SwpDbModel.FK_Media_DataFiles_Users" />
+        <EntityTypeShape EntityType="SwpDbModel.Category" Width="1.5" PointX="3" PointY="1" />
+        <AssociationConnector Association="SwpDbModel.FK_Categories_Img_DataFiles" />
+        <EntityTypeShape EntityType="SwpDbModel.tmp_PagesStatLogs" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SwpDbModel.Log" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="SwpDbModel.Doubt" Width="1.5" PointX="3" PointY="6.25" />
+        <AssociationConnector Association="SwpDbModel.FK_Doubts_Users" />
+        <EntityTypeShape EntityType="SwpDbModel.File_DataFiles" Width="1.5" PointX="8" PointY="0.75" />
+        <AssociationConnector Association="SwpDbModel.FK_File_DataFiles_Img_DataFiles" />
+        <AssociationConnector Association="SwpDbModel.FK_File_DataFiles_Users" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,108 @@
+﻿@model IEnumerable<SWProject.Models.DomainModel.Post>
+
+
+@{
+    ViewBag.Title = "SearchResult";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="rtop" id="rrtop"></div>
+<div class="ltop" id="lltop"></div>
+<div class="mtop col-8" id="mmtop"></div>
+<div id="contentcolumns" class="col-12 col-lg-12">
+    <div class="col-12 col-lg-1" style="margin-top:0;" id="rrtop2">
+        <div class="col-lg-12 col-md-12 col-sm-12" id="rihgtbordered"></div>
+    </div>
+    <div class="col-12 col-lg-10" id="mmtop2">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-centered" style="padding:50px;" id="middleColumn">
+            <div class="main-content-wrapper section-padding-100" style="margin-top:300px;">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <!-- ============= Post Content Area ============= -->
+                        <div class="col-12 col-lg-8 col-md-10 col-sm-12">
+                            <div class="single-blog-content mb-100">
+                                <!-- Post Meta -->
+                                <div class="post-meta">
+                                    <p style="text-align:right;">نتیجه جستجو</p>
+                                </div>
+                                <!-- Post Content -->
+                                <div class="post-content">
+                                    @foreach (var postresult1 in Model)
+                                    {
+                                        <div class="single-blog-post post-style-2 d-flex align-items-center widget-post">
+                                            <!-- Post Thumbnail -->
+                                            <div class="post-thumbnail" style="text-align:right;word-wrap:break-word;">
+                                                <img src="@SWProject.Helpers.Front.Utilities.ToBase64ImageString(postresult1.Img_DataFiles.FileBody)" alt="">
+                                            </div>
+                                            <!-- Post Content -->
+                                            <div class="post-content" style="text-align:right;word-wrap:break-word;">
+                                                <a href="#" class="headline">
+                                                    <h5 class="mb-0">@postresult1.Title</h5>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                    }
+                                    <!-- Post Meta -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ========== Sidebar Area ========== -->
+                        @*<div class="col-12 col-md-8 col-lg-4">
+                        <div class="post-sidebar-area mb-100">
+                            <!-- Widget Area -->
+                            <!-- Widget Area -->
+                            <div class="sidebar-widget-area">
+                                <h5 class="title">دسته بندی</h5>
+                                <div class="widget-content">
+                                    @foreach (var item2 in SWProject.Helpers.Front.Utilities.Categories())
+                                    {
+
+                                        <div class="single-blog-post post-style-2 d-flex align-items-center widget-post">
+                                            <!-- Post Thumbnail -->
+                                            <div class="post-thumbnail">
+                                                <img src="@Url.Content("~/Content/FrontTemplate/img/blog-img/b12.jpg")" alt="">
+                                            </div>
+                                            <!-- Post Content -->
+                                            <div class="post-content">
+                                                <a href="@Url.Action("categories","Home",new { Category = item2.Title })" class="headline">
+                                                    <h5 class="mb-0">@item2.Title</h5>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                    }
+                                </div>
+                            </div>
+                            <!-- Widget Area -->
+                            <div class="sidebar-widget-area">
+                                <h5 class="title">Stay Connected</h5>
+                                <div class="widget-content">
+                                    <div class="social-area d-flex justify-content-between">
+                                        <a href="#"><i class="fa fa-facebook"></i></a>
+                                        <a href="#"><i class="fa fa-twitter"></i></a>
+                                        <a href="#"><i class="fa fa-pinterest"></i></a>
+                                        <a href="#"><i class="fa fa-vimeo"></i></a>
+                                        <a href="#"><i class="fa fa-instagram"></i></a>
+                                        <a href="#"><i class="fa fa-google"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Widget Area -->
+                        </div>
+                    </div>*@
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col-12 col-lg-1" id="lltop2">
+        <div class="col-lg-12 col-md-12 col-sm-12" id="leftbordered"></div>
+    </div>
+
+</div>

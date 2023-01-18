@@ -1,0 +1,56 @@
+﻿@model IEnumerable<SWProject.Models.DomainModel.Post>
+
+
+<div class="world-catagory-area">
+    <div class="tab-content">
+        <div class="col-12 col-lg-12 bordered">
+
+            <div class="title" style="text-align:right;font-size:18px;font-weight:700;">
+                <h5>مقاله</h5>
+                <hr />
+            </div>
+            @foreach (var tcps2 in Model)
+            {
+                <div class="single-blog-post post-style-4 d-flex align-items-center wow fadeInUpBig" data-wow-delay="0.2s">
+                    <!-- Post Thumbnail -->
+                    <div class="post-thumbnail">
+                        @if (tcps2.ProfilePicId != null)
+                        {
+                            <img style="height:150px !important;width:200px !important;float:right;margin-top:10px;" src="@SWProject.Helpers.Front.Utilities.ToBase64ImageString(tcps2.Img_DataFiles.FileBody)" alt="">
+                        }
+                        @if (tcps2.ProfilePicId == null)
+                        {
+                            <img style="height:150px !important;width:200px !important;float:right;margin-top:10px;" src="@Url.Content("~/Content/FrontTemplate/img/no-image-icon.png")" />
+                        }
+                    </div>
+                    <!-- Post Content -->
+                    <div class="post-content">
+                        @if (tcps2.Type == 3)
+                        {
+                            <a href="/paper?title=@tcps2.Paper_DataFiles.Where(p => p.PostId == tcps2.Id).First().Title" class="headline">
+                                <h5>@tcps2.Title</h5>
+                            </a>
+                        }
+                        @if (tcps2.Type == 2)
+                        {
+                            <a href="/video?filename=@tcps2.Media_DataFiles.Where(p => p.PostId == tcps2.Id).First().FileName" class="headline">
+                                <h5>@tcps2.Title</h5>
+                            </a>
+                        }
+                        @if (tcps2.Type == 1)
+                        {
+                            <a href="/audio?filename=@tcps2.Media_DataFiles.Where(p => p.PostId == tcps2.Id).First().FileName" class="headline">
+                                <h5>@tcps2.Title</h5>
+                            </a>
+                        }
+                        <!-- Post Meta -->
+                        <div class="post-meta">
+                            @*<p><a href="#" class="post-author">@tcps2.User.Name</a> on <a href="#" class="post-date">@tcps2.CreationDate</a></p>*@
+                        </div>
+                    </div>
+                </div>
+            }
+            <a href="@Url.Content("~/Categories?Name=papers")" class="btn btn-primary" style="text-align:right;margin:15px;">< &nbsp; ادامه</a>
+        </div>
+    </div>
+</div>

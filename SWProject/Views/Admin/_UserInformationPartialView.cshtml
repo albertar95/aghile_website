@@ -1,0 +1,38 @@
+﻿@model SWProject.Models.DomainModel.User
+
+
+<div class="col-md-6" id="userinfo">
+    <div class="content-box-header">
+        <div class="panel-title" style="text-align:right;">جزییات کاربر</div>
+    </div>
+    <div class="content-box-large box-with-header" style="text-align:right;min-height:525px;">
+        <div class="title" style="font-size:18px;">
+            @Html.DisplayNameFor(model => model.ProfilePicId)
+        </div>
+        <div class="form-control" style="height:100px;">
+            
+            @if (Model.ProfilePicId != null)
+            { 
+            <img src="@SWProject.Helpers.Front.Utilities.ToBase64ImageString(SWProject.Helpers.Admin.Utilities.FetchImage(Model.ProfilePicId.ToString()))" style="height:75px;width:125px;" />
+            }
+            @if (Model.ProfilePicId == null)
+            {
+                <h3>بدون عکس</h3>
+            }
+              
+            
+        </div>
+        <div class="title" style="font-size:18px;">
+            @Html.DisplayNameFor(model => model.Name)
+        </div>
+        <div class="form-control">
+            @Html.DisplayFor(model => model.Name, new { @class = "text-right" })
+        </div>
+        <div class="title" style="font-size:18px;">
+            @Html.DisplayNameFor(model => model.Tel)
+        </div>
+        <div class="form-control">
+            @Html.DisplayFor(model => model.Tel, new { @class = "text-right" })
+        </div>
+    </div>
+    </div>

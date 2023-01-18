@@ -1,0 +1,129 @@
+﻿
+@{
+    ViewBag.Title = "ContactUs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<div class="rtop" id="rrtop"></div>
+<div class="ltop" id="lltop"></div>
+<div class="mtop col-8" id="mmtop"></div>
+<div id="contentcolumns" class="col-12 col-lg-12">
+    <div class="col-12 col-lg-1" style="margin-top:0;" id="rrtop2">
+        <div class="col-lg-12 col-md-12 col-sm-12" id="rihgtbordered"></div>
+    </div>
+    <div class="col-12 col-lg-10" id="mmtop2">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-centered" style="padding:50px;" id="middleColumn">
+            <section class="contact-area section-padding-100" style="margin-top:300px;">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <!-- Contact Form Area -->
+                        <div class="col-12 col-md-10 col-lg-8 col-md-12 col-sm-12">
+                            <div class="contact-form" style="direction:rtl;text-align:right;">
+                                <h5 style="margin-bottom:100px;">جهت ارتباط با مدیریت پیغام خود را ثبت کنید</h5>
+                                <!-- Contact Form -->
+                                <form action="#" method="post">
+                                    <div class="row">
+                                        <div class="col-12 col-md-6">
+                                            <div class="group">
+                                                <input style="text-align:right;" type="text" name="name" id="name" required>
+                                                <span class="highlight"></span>
+                                                <span class="bar"></span>
+                                                <label style="right:0;">نام</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="group">
+                                                <input type="email" style="text-align:right;" name="email" id="email" required>
+                                                <span class="highlight"></span>
+                                                <span class="bar"></span>
+                                                <label style="right:0;">ایمیل</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12" style="margin-top:50px;">
+                                            <div class="group">
+                                                <textarea style="text-align:right;width:100%;" name="message" id="message" required></textarea>
+                                                <span class="highlight"></span>
+                                                <span class="bar"></span>
+                                                <label style="right:0;">پیغام شما</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <button type="submit" class="btn world-btn">ارسال <i class="fa fa-envelope"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+    </div>
+    <div class="col-12 col-lg-1" id="lltop2">
+        <div class="col-lg-12 col-md-12 col-sm-12" id="leftbordered"></div>
+    </div>
+
+</div>
+
+
+        @section scripts
+    {
+            @Scripts.Render("~/bundles/jqueryval")
+            <script src="@Url.Content("~/Scripts/jquery-1.7.1.js")"></script>
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+            <script type="text/javascript">
+                $(function () {
+                    $(".navbar-nav li").removeClass("active");
+                    $("#licontact").addClass("active");
+                    $(".world-btn").click(function (e) {
+                        e.preventDefault();
+
+                        $.ajax(
+                            {
+                                url: '@Url.Action("SendMessage","Home")',
+                                type: 'post',
+                                datatype: 'json',
+                                data: { Name: $('#name').val(), Email: $('#email').val(), Message: $('#message').val() },
+                                success: function (result) {
+                                    if (result.isDone) {
+                                        swal({
+                                            title: "پیام",
+                                            text: result.Message,
+                                            icon: "success",
+                                            buttons: ["باشه"],
+                                        })
+                                        setTimeout(function () {
+                                            window.location.reload();
+                                        }, 2500);
+                                    } else {
+                                        swal({
+                                            title: "پیام",
+                                            text: result.Message,
+                                            icon: "danger",
+                                            buttons: ["باشه"],
+                                        })
+                                        setTimeout(function () {
+                                            window.location.reload();
+                                        }, 2500);
+
+                                    }
+                                },
+                                error: function () {
+                                    alert('error');
+                                }
+                            });
+                    });
+                });
+            </script>
+        }
+        @section styles
+    {
+            <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
+            <meta name="description" content="" /> <!--fill this-->
+            <meta name="keywords" content="" /> <!--fill this-->
+        }

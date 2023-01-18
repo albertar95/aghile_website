@@ -1,0 +1,31 @@
+﻿@model SWProject.Models.DomainModel.LocalVariable
+
+
+<div class="col-md-6" id="userinfo">
+    <div class="content-box-header">
+        <div class="panel-title" style="text-align:right;">جزییات پیام کاربر</div>
+    </div>
+    <div class="content-box-large box-with-header" style="text-align:right;min-height:525px;">        
+        <div class="title" style="font-size:18px;">
+            زمان پیام
+        </div>
+            <input type="text" class="text-right form-control" value="@SWProject.Helpers.Admin.Utilities.ToPersianCalender(Model.CreationDate)" />
+        <div class="title" style="font-size:18px;">
+            @Html.DisplayNameFor(model => model.Title)
+        </div>
+        <div class="form-control">
+            @Html.DisplayFor(model => model.Title, new { @class = "text-right" })
+        </div>
+        <div class="title" style="font-size:18px;">
+            ایمیل
+        </div>
+            <input type="text" class ="text-right form-control" value="@Model.Value.Split(',','1').First().ToString()" />
+        <div class="title" style="font-size:18px;">
+            پیام
+        </div>
+            <textarea  class="text-right form-control"  >
+                @Model.Value.Split(',', '2').Skip(1).First().ToString()
+            </textarea>
+    </div>
+</div>
+

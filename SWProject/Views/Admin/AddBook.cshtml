@@ -1,0 +1,130 @@
+﻿@model SWProject.Models.DomainModel.File_DataFiles
+
+@{
+    ViewBag.Title = "ایجاد فایل متنی";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-box-large box-with-header" style="text-align:right;min-height:525px;">
+    <div class="content-box-header">
+        <div class="panel-title" style="direction:rtl;text-align:right;float:right;">@ViewBag.Title</div>
+    </div>
+    <div class="content-box-large">
+        <div class="panel-body">
+            @using (Html.BeginForm("SubmitAddBook", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", id = "addBook" }))
+            {
+                @Html.ValidationSummary()
+
+                @Html.HiddenFor(Model => Model.Id)
+                @Html.HiddenFor(Model => Model.FilePath, new { @id = "fpath" })
+                <fieldset>
+                    <div class="form-group">
+                        @Html.LabelFor(Model => Model.Caption)
+                        @Html.TextBoxFor(Model => Model.Caption, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(Model => Model.Caption)
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("نمایه کتاب")
+                        @Html.Upload("profilepic", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("فایل متنی")
+                        @Html.Upload("Fwords", new { @class = "form-control", @onchange = "uploadFile()" })
+                        <progress id="progressBar" value="0" max="100" style="width:300px;"></progress>
+                        <h3 id="status"></h3>
+                        <p id="loaded_n_total"></p>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(Model => Model.Description)
+                        @Html.TextAreaFor(Model => Model.Description, new { @class = "form-control", @id = "ckeditor_full" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(Model => Model.Keywords)
+                        @Html.TextBoxFor(Model => Model.Keywords, new { @class = "form-control", @id = "txtKeywords" })
+                    </div>
+                </fieldset>
+                <div>
+                    <input type="submit" class="btn btn-success btn-large" value="ثبت" id="addfile" style="font-size:18px;min-width:100px;" />
+                    <a href="@Url.Action("Books","Admin")" class="btn btn-default"><i class="glyphicon glyphicon-arrow-right"></i>&nbsp; بازگشت &nbsp;</a>
+                </div>
+
+                            }
+
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(function () {
+            var ckeditor = CKEDITOR.replace('ckeditor_full');
+            CKFinder.setupCKEditor(ckeditor);
+            $("#txtKeywords").keypress(function (event) {
+                if (event.keyCode == 13) {
+                    event.preventDefault();
+                }
+            }).tagsinput();
+        });
+
+        function _(el) {
+            return document.getElementById(el);
+        }
+
+        function uploadFile() {
+            var file = _("Fwords").files[0];
+            // alert(file.name+" | "+file.size+" | "+file.type);
+            var formdata = new FormData();
+            formdata.append("Fwords", file);
+            var ajax = new XMLHttpRequest();
+            ajax.upload.addEventListener("progress", progressHandler, false);
+            ajax.addEventListener("load", completeHandler, false);
+            ajax.addEventListener("error", errorHandler, false);
+            ajax.addEventListener("abort", abortHandler, false);
+            ajax.open("POST", "/swp/Admin/UploadBook");
+            //use file_upload_parser.php from above url
+            ajax.send(formdata);
+        }
+
+        function progressHandler(event) {
+            _("loaded_n_total").innerHTML = "حجم فایل آپلود شده : " + (event.loaded / 1024);
+            var percent = (event.loaded / event.total) * 100;
+            _("progressBar").value = Math.round(percent);
+            _("status").innerHTML = Math.round(percent) + "% در حال بارگذاری ... لطفا صبر کنید";
+        }
+
+        function completeHandler(event) {
+
+            _("fpath").setAttribute('value', event.target.responseText);
+            _("status").innerHTML = "فایل شما با موفقیت ثبت شد.لطفا ادامه مراحل را انجام دهید";
+            _("progressBar").value = 0; //wil clear progress bar after successful upload
+        }
+
+        function errorHandler(event) {
+            _("status").innerHTML = "مشکل در آپلود";
+        }
+
+        function abortHandler(event) {
+            _("status").innerHTML = "آپلود متوقف شد";
+        }
+    </script>
+
+
+    <script src="@Url.Content("~/Scripts/AjaxForm/jquery.form.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")"></script>
+    <script src="@Url.Content("~/Content/BackTemplate/bootstrap/js/bootstrap.min.js")"></script>
+<script src="@Url.Content("~/Content/BackTemplate/vendors/ckeditor/ckeditor.js")"></script>
+<script src="@Url.Content("~/Content/BackTemplate/vendors/ckeditor/adapters/jquery.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery-1.10.2.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery-ui.js")"></script>
+    <script src="@Url.Content("~/Scripts/TagsInput/bootstrap-tagsinput.min.js")"></script>
+
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@section styles
+    {
+<link href="@Url.Content("~/Scripts/jquery-ui.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Scripts/TagsInput/bootstrap-tagsinput.css")" rel="stylesheet" />
+}
+
+

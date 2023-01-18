@@ -1,0 +1,861 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SwpDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ProfilePicId" Type="uniqueidentifier" />
+          <Property Name="HasParent" Type="bit" Nullable="false" />
+          <Property Name="HierarchyId" Type="int" Nullable="false" />
+          <Property Name="HierarchyParent" Type="int" />
+          <Property Name="Introduction" Type="nvarchar(max)" />
+          <Property Name="TimeStamp" Type="datetime" />
+          <Property Name="Enable" Type="bit" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Keyword" Type="nvarchar(max)" />
+          <Property Name="Priority" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="Doubts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" />
+          <Property Name="Question" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Answer" Type="ntext" Nullable="false" />
+          <Property Name="TimeStamp" Type="datetime" Nullable="false" />
+          <Property Name="Enable" Type="bit" Nullable="false" />
+          <Property Name="IsExterior" Type="bit" Nullable="false" />
+          <Property Name="ExteriorId" Type="uniqueidentifier" />
+          <Property Name="Type" Type="bit" />
+        </EntityType>
+        <EntityType Name="File_DataFiles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="FilePath" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="FileExtention" Type="nvarchar" MaxLength="20" />
+          <Property Name="Size" Type="int" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Caption" Type="nvarchar(max)" />
+          <Property Name="Keywords" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="TimeStamp" Type="datetime" Nullable="false" />
+          <Property Name="ImgId" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Img_DataFiles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="250" />
+          <Property Name="FileBody" Type="varbinary(max)" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FileExtention" Type="nvarchar" MaxLength="20" />
+          <Property Name="Size" Type="int" />
+        </EntityType>
+        <EntityType Name="LocalVariables">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Type" Type="tinyint" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="IsNecessary" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Logs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TimeStamp" Type="datetime" Nullable="false" />
+          <Property Name="Ip" Type="nvarchar" MaxLength="20" />
+          <Property Name="Browser" Type="nvarchar" MaxLength="20" />
+          <Property Name="VirtualPath" Type="nvarchar" MaxLength="500" />
+          <Property Name="UserAgent" Type="nvarchar" MaxLength="1000" />
+          <Property Name="UrlRefferer" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Url" Type="nvarchar" MaxLength="1000" />
+          <Property Name="RequestType" Type="nvarchar" MaxLength="20" />
+          <Property Name="ResponseStatus" Type="nvarchar" MaxLength="20" />
+          <Property Name="Type" Type="bit" />
+        </EntityType>
+        <EntityType Name="Media_DataFiles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="FilePath" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="FileExtention" Type="nvarchar" MaxLength="20" />
+          <Property Name="Size" Type="int" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Caption" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Introduction" Type="ntext" />
+          <Property Name="Keywords" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="PostId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Paper_DataFiles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Summary" Type="nvarchar(max)" />
+          <Property Name="Introduction" Type="ntext" />
+          <Property Name="Body" Type="ntext" Nullable="false" />
+          <Property Name="Authors" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Conclution" Type="ntext" />
+          <Property Name="Keywords" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Source" Type="nvarchar(max)" />
+          <Property Name="PostId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Posts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Type" Type="tinyint" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="ProfilePicId" Type="uniqueidentifier" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="Enable" Type="bit" Nullable="false" />
+          <Property Name="OnlineDate" Type="datetime" />
+          <Property Name="VisitCount" Type="int" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsIndex" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tmp_PagesStatLogs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Url" Type="nvarchar" MaxLength="50" />
+          <Property Name="count" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tel" Type="nvarchar" MaxLength="50" />
+          <Property Name="Grade" Type="tinyint" Nullable="false" />
+          <Property Name="ProfilePicId" Type="uniqueidentifier" />
+          <Property Name="Enable" Type="bit" Nullable="false" />
+          <Property Name="LastLoginDate" Type="datetime" />
+          <Property Name="WrongPasswordCount" Type="tinyint" />
+        </EntityType>
+        <Association Name="FK_Categories_Img_DataFiles">
+          <End Role="Img_DataFiles" Type="Self.Img_DataFiles" Multiplicity="0..1" />
+          <End Role="Categories" Type="Self.Categories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Img_DataFiles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Categories">
+              <PropertyRef Name="ProfilePicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doubts_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Doubts" Type="Self.Doubts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Doubts">
+              <PropertyRef Name="ExteriorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_File_DataFiles_Img_DataFiles">
+          <End Role="Img_DataFiles" Type="Self.Img_DataFiles" Multiplicity="0..1" />
+          <End Role="File_DataFiles" Type="Self.File_DataFiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Img_DataFiles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="File_DataFiles">
+              <PropertyRef Name="ImgId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_File_DataFiles_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="File_DataFiles" Type="Self.File_DataFiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="File_DataFiles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Media_DataFiles_Posts">
+          <End Role="Posts" Type="Self.Posts" Multiplicity="1" />
+          <End Role="Media_DataFiles" Type="Self.Media_DataFiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Media_DataFiles">
+              <PropertyRef Name="PostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Media_DataFiles_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Media_DataFiles" Type="Self.Media_DataFiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Media_DataFiles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paper_DataFiles_Posts">
+          <End Role="Posts" Type="Self.Posts" Multiplicity="1" />
+          <End Role="Paper_DataFiles" Type="Self.Paper_DataFiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Paper_DataFiles">
+              <PropertyRef Name="PostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Posts_Img_DataFiles">
+          <End Role="Img_DataFiles" Type="Self.Img_DataFiles" Multiplicity="0..1" />
+          <End Role="Posts" Type="Self.Posts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Img_DataFiles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Posts">
+              <PropertyRef Name="ProfilePicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Posts_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Posts" Type="Self.Posts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Posts">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SwpDbModelStoreContainer">
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Doubts" EntityType="Self.Doubts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="File_DataFiles" EntityType="Self.File_DataFiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Img_DataFiles" EntityType="Self.Img_DataFiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LocalVariables" EntityType="Self.LocalVariables" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Logs" EntityType="Self.Logs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Media_DataFiles" EntityType="Self.Media_DataFiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paper_DataFiles" EntityType="Self.Paper_DataFiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tmp_PagesStatLogs" EntityType="Self.tmp_PagesStatLogs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Categories_Img_DataFiles" Association="Self.FK_Categories_Img_DataFiles">
+            <End Role="Img_DataFiles" EntitySet="Img_DataFiles" />
+            <End Role="Categories" EntitySet="Categories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doubts_Users" Association="Self.FK_Doubts_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Doubts" EntitySet="Doubts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_File_DataFiles_Img_DataFiles" Association="Self.FK_File_DataFiles_Img_DataFiles">
+            <End Role="Img_DataFiles" EntitySet="Img_DataFiles" />
+            <End Role="File_DataFiles" EntitySet="File_DataFiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_File_DataFiles_Users" Association="Self.FK_File_DataFiles_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="File_DataFiles" EntitySet="File_DataFiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Media_DataFiles_Posts" Association="Self.FK_Media_DataFiles_Posts">
+            <End Role="Posts" EntitySet="Posts" />
+            <End Role="Media_DataFiles" EntitySet="Media_DataFiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Media_DataFiles_Users" Association="Self.FK_Media_DataFiles_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Media_DataFiles" EntitySet="Media_DataFiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paper_DataFiles_Posts" Association="Self.FK_Paper_DataFiles_Posts">
+            <End Role="Posts" EntitySet="Posts" />
+            <End Role="Paper_DataFiles" EntitySet="Paper_DataFiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Posts_Img_DataFiles" Association="Self.FK_Posts_Img_DataFiles">
+            <End Role="Img_DataFiles" EntitySet="Img_DataFiles" />
+            <End Role="Posts" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Posts_Users" Association="Self.FK_Posts_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Posts" EntitySet="Posts" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SwpDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Img_DataFiles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="FileName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="FileBody" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="FileExtention" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Size" Type="Int32" />
+          <NavigationProperty Name="Posts" Relationship="SwpDbModel.FK_Posts_Img_DataFiles" FromRole="Img_DataFiles" ToRole="Post" />
+          <NavigationProperty Name="Categories" Relationship="SwpDbModel.FK_Categories_Img_DataFiles" FromRole="Img_DataFiles" ToRole="Category" />
+          <NavigationProperty Name="File_DataFiles" Relationship="SwpDbModel.FK_File_DataFiles_Img_DataFiles" FromRole="Img_DataFiles" ToRole="File_DataFiles" />
+        </EntityType>
+        <EntityContainer Name="SwpEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Img_DataFiles" EntityType="Self.Img_DataFiles" />
+          <EntitySet Name="Users" EntityType="SwpDbModel.User" />
+          <EntitySet Name="LocalVariables" EntityType="SwpDbModel.LocalVariable" />
+          <EntitySet Name="Paper_DataFiles" EntityType="SwpDbModel.Paper_DataFiles" />
+          <EntitySet Name="Posts" EntityType="SwpDbModel.Post" />
+          <AssociationSet Name="FK_Posts_Img_DataFiles" Association="SwpDbModel.FK_Posts_Img_DataFiles">
+            <End Role="Img_DataFiles" EntitySet="Img_DataFiles" />
+            <End Role="Post" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paper_DataFiles_Posts" Association="SwpDbModel.FK_Paper_DataFiles_Posts">
+            <End Role="Post" EntitySet="Posts" />
+            <End Role="Paper_DataFiles" EntitySet="Paper_DataFiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Posts_Users" Association="SwpDbModel.FK_Posts_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Post" EntitySet="Posts" />
+          </AssociationSet>
+          <EntitySet Name="Media_DataFiles" EntityType="SwpDbModel.Media_DataFiles" />
+          <AssociationSet Name="FK_Media_DataFiles_Posts" Association="SwpDbModel.FK_Media_DataFiles_Posts">
+            <End Role="Post" EntitySet="Posts" />
+            <End Role="Media_DataFiles" EntitySet="Media_DataFiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Media_DataFiles_Users" Association="SwpDbModel.FK_Media_DataFiles_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Media_DataFiles" EntitySet="Media_DataFiles" />
+          </AssociationSet>
+          <EntitySet Name="Categories" EntityType="SwpDbModel.Category" />
+          <AssociationSet Name="FK_Categories_Img_DataFiles" Association="SwpDbModel.FK_Categories_Img_DataFiles">
+            <End Role="Img_DataFiles" EntitySet="Img_DataFiles" />
+            <End Role="Category" EntitySet="Categories" />
+          </AssociationSet>
+          <EntitySet Name="tmp_PagesStatLogs" EntityType="SwpDbModel.tmp_PagesStatLogs" />
+          <EntitySet Name="Logs" EntityType="SwpDbModel.Log" />
+          <EntitySet Name="Doubts" EntityType="SwpDbModel.Doubt" />
+          <AssociationSet Name="FK_Doubts_Users" Association="SwpDbModel.FK_Doubts_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Doubt" EntitySet="Doubts" />
+          </AssociationSet>
+          <EntitySet Name="File_DataFiles" EntityType="SwpDbModel.File_DataFiles" />
+          <AssociationSet Name="FK_File_DataFiles_Img_DataFiles" Association="SwpDbModel.FK_File_DataFiles_Img_DataFiles">
+            <End Role="Img_DataFiles" EntitySet="Img_DataFiles" />
+            <End Role="File_DataFiles" EntitySet="File_DataFiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_File_DataFiles_Users" Association="SwpDbModel.FK_File_DataFiles_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="File_DataFiles" EntitySet="File_DataFiles" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Grade" Type="Byte" Nullable="false" />
+          <Property Name="ProfilePicId" Type="Guid" />
+          <Property Name="Enable" Type="Boolean" Nullable="false" />
+          <Property Name="LastLoginDate" Type="DateTime" Precision="3" />
+          <Property Name="WrongPasswordCount" Type="Byte" />
+          <NavigationProperty Name="Posts" Relationship="SwpDbModel.FK_Posts_Users" FromRole="User" ToRole="Post" />
+          <NavigationProperty Name="Media_DataFiles" Relationship="SwpDbModel.FK_Media_DataFiles_Users" FromRole="User" ToRole="Media_DataFiles" />
+          <NavigationProperty Name="Doubts" Relationship="SwpDbModel.FK_Doubts_Users" FromRole="User" ToRole="Doubt" />
+          <NavigationProperty Name="File_DataFiles" Relationship="SwpDbModel.FK_File_DataFiles_Users" FromRole="User" ToRole="File_DataFiles" />
+        </EntityType>
+        <EntityType Name="LocalVariable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Type" Type="Byte" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsNecessary" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Paper_DataFiles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Introduction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Body" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Authors" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Conclution" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Keywords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Source" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PostId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Post" Relationship="SwpDbModel.FK_Paper_DataFiles_Posts" FromRole="Paper_DataFiles" ToRole="Post" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Byte" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="ProfilePicId" Type="Guid" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="Enable" Type="Boolean" Nullable="false" />
+          <Property Name="OnlineDate" Type="DateTime" Precision="3" />
+          <Property Name="VisitCount" Type="Int32" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="IsIndex" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Img_DataFiles" Relationship="SwpDbModel.FK_Posts_Img_DataFiles" FromRole="Post" ToRole="Img_DataFiles" />
+          <NavigationProperty Name="Paper_DataFiles" Relationship="SwpDbModel.FK_Paper_DataFiles_Posts" FromRole="Post" ToRole="Paper_DataFiles" />
+          <NavigationProperty Name="User" Relationship="SwpDbModel.FK_Posts_Users" FromRole="Post" ToRole="User" />
+          <NavigationProperty Name="Media_DataFiles" Relationship="SwpDbModel.FK_Media_DataFiles_Posts" FromRole="Post" ToRole="Media_DataFiles" />
+        </EntityType>
+        <Association Name="FK_Posts_Img_DataFiles">
+          <End Type="SwpDbModel.Img_DataFiles" Role="Img_DataFiles" Multiplicity="0..1" />
+          <End Type="SwpDbModel.Post" Role="Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Img_DataFiles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="ProfilePicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paper_DataFiles_Posts">
+          <End Type="SwpDbModel.Post" Role="Post" Multiplicity="1" />
+          <End Type="SwpDbModel.Paper_DataFiles" Role="Paper_DataFiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Paper_DataFiles">
+              <PropertyRef Name="PostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Posts_Users">
+          <End Type="SwpDbModel.User" Role="User" Multiplicity="1" />
+          <End Type="SwpDbModel.Post" Role="Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Media_DataFiles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="FilePath" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="FileExtention" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Size" Type="Int32" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="Caption" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Introduction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Keywords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PostId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Post" Relationship="SwpDbModel.FK_Media_DataFiles_Posts" FromRole="Media_DataFiles" ToRole="Post" />
+          <NavigationProperty Name="User" Relationship="SwpDbModel.FK_Media_DataFiles_Users" FromRole="Media_DataFiles" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Media_DataFiles_Posts">
+          <End Type="SwpDbModel.Post" Role="Post" Multiplicity="1" />
+          <End Type="SwpDbModel.Media_DataFiles" Role="Media_DataFiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Media_DataFiles">
+              <PropertyRef Name="PostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Media_DataFiles_Users">
+          <End Type="SwpDbModel.User" Role="User" Multiplicity="1" />
+          <End Type="SwpDbModel.Media_DataFiles" Role="Media_DataFiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Media_DataFiles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ProfilePicId" Type="Guid" />
+          <Property Name="HasParent" Type="Boolean" Nullable="false" />
+          <Property Name="HierarchyId" Type="Int32" Nullable="false" />
+          <Property Name="HierarchyParent" Type="Int32" />
+          <Property Name="Introduction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TimeStamp" Type="DateTime" Precision="3" />
+          <Property Name="Enable" Type="Boolean" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Keyword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Priority" Type="Byte" />
+          <NavigationProperty Name="Img_DataFiles" Relationship="SwpDbModel.FK_Categories_Img_DataFiles" FromRole="Category" ToRole="Img_DataFiles" />
+        </EntityType>
+        <Association Name="FK_Categories_Img_DataFiles">
+          <End Type="SwpDbModel.Img_DataFiles" Role="Img_DataFiles" Multiplicity="0..1" />
+          <End Type="SwpDbModel.Category" Role="Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Img_DataFiles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Category">
+              <PropertyRef Name="ProfilePicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tmp_PagesStatLogs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Url" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="count" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Ip" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Browser" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="VirtualPath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="UserAgent" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="UrlRefferer" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Url" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="RequestType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ResponseStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Doubt">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Question" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Answer" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Enable" Type="Boolean" Nullable="false" />
+          <Property Name="IsExterior" Type="Boolean" Nullable="false" />
+          <Property Name="ExteriorId" Type="Guid" />
+          <Property Name="Type" Type="Boolean" />
+          <NavigationProperty Name="User" Relationship="SwpDbModel.FK_Doubts_Users" FromRole="Doubt" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Doubts_Users">
+          <End Type="SwpDbModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="SwpDbModel.Doubt" Role="Doubt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Doubt">
+              <PropertyRef Name="ExteriorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="File_DataFiles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="FilePath" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="FileExtention" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Size" Type="Int32" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="Caption" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Keywords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ImgId" Type="Guid" />
+          <NavigationProperty Name="Img_DataFiles" Relationship="SwpDbModel.FK_File_DataFiles_Img_DataFiles" FromRole="File_DataFiles" ToRole="Img_DataFiles" />
+          <NavigationProperty Name="User" Relationship="SwpDbModel.FK_File_DataFiles_Users" FromRole="File_DataFiles" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_File_DataFiles_Img_DataFiles">
+          <End Type="SwpDbModel.Img_DataFiles" Role="Img_DataFiles" Multiplicity="0..1" />
+          <End Type="SwpDbModel.File_DataFiles" Role="File_DataFiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Img_DataFiles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="File_DataFiles">
+              <PropertyRef Name="ImgId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_File_DataFiles_Users">
+          <End Type="SwpDbModel.User" Role="User" Multiplicity="1" />
+          <End Type="SwpDbModel.File_DataFiles" Role="File_DataFiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="File_DataFiles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SwpDbModelStoreContainer" CdmEntityContainer="SwpEntities">
+          <EntitySetMapping Name="Img_DataFiles">
+            <EntityTypeMapping TypeName="SwpDbModel.Img_DataFiles">
+              <MappingFragment StoreEntitySet="Img_DataFiles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="FileBody" ColumnName="FileBody" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="FileExtention" ColumnName="FileExtention" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="SwpDbModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="WrongPasswordCount" ColumnName="WrongPasswordCount" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+                <ScalarProperty Name="ProfilePicId" ColumnName="ProfilePicId" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LocalVariables">
+            <EntityTypeMapping TypeName="SwpDbModel.LocalVariable">
+              <MappingFragment StoreEntitySet="LocalVariables">
+                <ScalarProperty Name="IsNecessary" ColumnName="IsNecessary" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Paper_DataFiles">
+            <EntityTypeMapping TypeName="SwpDbModel.Paper_DataFiles">
+              <MappingFragment StoreEntitySet="Paper_DataFiles">
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Keywords" ColumnName="Keywords" />
+                <ScalarProperty Name="Conclution" ColumnName="Conclution" />
+                <ScalarProperty Name="Authors" ColumnName="Authors" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Introduction" ColumnName="Introduction" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Posts">
+            <EntityTypeMapping TypeName="SwpDbModel.Post">
+              <MappingFragment StoreEntitySet="Posts">
+                <ScalarProperty Name="IsIndex" ColumnName="IsIndex" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="VisitCount" ColumnName="VisitCount" />
+                <ScalarProperty Name="OnlineDate" ColumnName="OnlineDate" />
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ProfilePicId" ColumnName="ProfilePicId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Media_DataFiles">
+            <EntityTypeMapping TypeName="SwpDbModel.Media_DataFiles">
+              <MappingFragment StoreEntitySet="Media_DataFiles">
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Keywords" ColumnName="Keywords" />
+                <ScalarProperty Name="Introduction" ColumnName="Introduction" />
+                <ScalarProperty Name="Caption" ColumnName="Caption" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="FileExtention" ColumnName="FileExtention" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="SwpDbModel.Category">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="Keyword" ColumnName="Keyword" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="Introduction" ColumnName="Introduction" />
+                <ScalarProperty Name="HierarchyParent" ColumnName="HierarchyParent" />
+                <ScalarProperty Name="HierarchyId" ColumnName="HierarchyId" />
+                <ScalarProperty Name="HasParent" ColumnName="HasParent" />
+                <ScalarProperty Name="ProfilePicId" ColumnName="ProfilePicId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tmp_PagesStatLogs">
+            <EntityTypeMapping TypeName="SwpDbModel.tmp_PagesStatLogs">
+              <MappingFragment StoreEntitySet="tmp_PagesStatLogs">
+                <ScalarProperty Name="count" ColumnName="count" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logs">
+            <EntityTypeMapping TypeName="SwpDbModel.Log">
+              <MappingFragment StoreEntitySet="Logs">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ResponseStatus" ColumnName="ResponseStatus" />
+                <ScalarProperty Name="RequestType" ColumnName="RequestType" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="UrlRefferer" ColumnName="UrlRefferer" />
+                <ScalarProperty Name="UserAgent" ColumnName="UserAgent" />
+                <ScalarProperty Name="VirtualPath" ColumnName="VirtualPath" />
+                <ScalarProperty Name="Browser" ColumnName="Browser" />
+                <ScalarProperty Name="Ip" ColumnName="Ip" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doubts">
+            <EntityTypeMapping TypeName="SwpDbModel.Doubt">
+              <MappingFragment StoreEntitySet="Doubts">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ExteriorId" ColumnName="ExteriorId" />
+                <ScalarProperty Name="IsExterior" ColumnName="IsExterior" />
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="File_DataFiles">
+            <EntityTypeMapping TypeName="SwpDbModel.File_DataFiles">
+              <MappingFragment StoreEntitySet="File_DataFiles">
+                <ScalarProperty Name="ImgId" ColumnName="ImgId" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Keywords" ColumnName="Keywords" />
+                <ScalarProperty Name="Caption" ColumnName="Caption" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="FileExtention" ColumnName="FileExtention" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

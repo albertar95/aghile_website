@@ -1,0 +1,373 @@
+﻿@model SWProject.ViewModels.Admin.PostDetailViewModel
+
+@{
+    ViewBag.Title = "جزییات پست صراط مستقیم";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<div class="content-box-large box-with-header" style="text-align:right;min-height:525px;">
+    <div class="content-box-header">
+        <div class="panel-title" style="direction:rtl;text-align:right;float:right;">@ViewBag.Title</div>
+    </div>
+    <div class="content-box-large">
+        <div class="panel-body">
+
+            <fieldset>
+                <div class="title" style="font-size:18px;">
+                    @Html.DisplayNameFor(model => model.post.Title)
+                </div>
+                <div class="form-control">
+                    @Html.DisplayFor(model => model.post.Title, new { @class = "text-right" })
+                </div>
+                <div class="title" style="font-size:18px;">
+                    @Html.DisplayNameFor(model => model.post.Type)
+                </div>
+                <div class="form-control">
+                    @if (Model.post.Type == 4)
+                    {
+                        <p>برنامه صراط مستقیم</p>
+                    }
+                    else if (Model.post.Type == 3)
+                    {
+                        <p>مقاله</p>
+                    }
+                    else if (Model.post.Type == 2)
+                    {
+                        <p>ویدیو</p>
+                    }
+                    else if (Model.post.Type == 1)
+                    {
+                        <p>صوت</p>
+                    }
+                    else
+                    {
+                        <p>نامشخص</p>
+                    }
+
+                    @Html.DisplayFor(model => model.post.Type, new { @class = "text-right" })
+                </div>
+                <div class="title" style="font-size:18px;">
+                    @Html.DisplayNameFor(model => model.post.User)
+                </div>
+                <div class="form-control">
+                    @Html.DisplayFor(model => model.post.User.Name, new { @class = "text-right" })
+                </div>
+                <div class="title" style="font-size:18px;">
+                    @Html.DisplayNameFor(model => model.post.CreationDate)
+                </div>
+                <div class="form-control">
+                    @Html.DisplayFor(model => model.post.CreationDate, new { @class = "text-right" })
+                </div>
+                <div class="title" style="font-size:18px;">
+                    @Html.DisplayNameFor(model => model.post.Enable)
+                </div>
+                <div class="form-control">
+                    @Html.DisplayFor(model => model.post.Enable, new { @class = "text-right" })
+                </div>
+                <div class="title" style="font-size:18px;">
+                    @Html.DisplayNameFor(model => model.post.ProfilePicId)
+                </div>
+                <div class="form-control" style="height:100px;">
+
+                    @if (Model.post.ProfilePicId != null)
+                    {
+                        <img src="@SWProject.Helpers.Front.Utilities.ToBase64ImageString(SWProject.Helpers.Admin.Utilities.FetchImage(Model.post.ProfilePicId.ToString()))" style="height:75px;width:125px;" />
+                    }
+                    @if (Model.post.ProfilePicId == null)
+                    {
+                        <h3>بدون عکس</h3>
+                    }
+                </div>
+                @if (Model.post.Type == 4)
+                {
+                    <div class="title" style="font-size:18px;">
+                        @Html.DisplayNameFor(model => model.serat.Caption)
+                    </div>
+                    <div class="form-control" style="word-wrap:break-word;">
+                        @Html.DisplayFor(model => model.serat.Caption, new { @class = "text-right" })
+                    </div>
+                    <div class="title" style="font-size:18px;">
+                        @Html.DisplayNameFor(model => model.serat.FileExtention)
+                    </div>
+                    <div class="form-control">
+                        @Html.DisplayFor(model => model.serat.FileExtention, new { @class = "text-right" })
+                    </div>
+                    <div class="title" style="font-size:18px;">
+                        @Html.DisplayNameFor(model => model.serat.FileName)
+                    </div>
+                    <div class="form-control">
+                        @Html.DisplayFor(model => model.serat.FileName, new { @class = "text-right" })
+                    </div>
+                    <div class="title" style="font-size:18px;">
+                        @Html.DisplayNameFor(model => model.serat.Size)
+                    </div>
+                    <div class="form-control">
+                        @Html.DisplayFor(model => model.serat.Size, new { @class = "text-right" })
+                    </div>
+                    <div class="title" style="font-size:18px;">
+                        @Html.DisplayNameFor(model => model.serat.Description)
+                    </div>
+                    <div class="form-control" style="word-wrap:break-word;">
+                        @Html.DisplayFor(model => model.serat.Description, new { @class = "text-right" })
+                    </div>
+                    <div class="title" style="font-size:18px;">
+                        @Html.DisplayNameFor(model => model.serat.Keywords)
+                    </div>
+                    <div class="form-control">
+                        @Html.DisplayFor(model => model.serat.Keywords, new { @class = "text-right" })
+                    </div>
+                    <div class="title" style="font-size:18px;">
+                        فایل
+                    </div>
+                    <div style="width:640px !important;height:264px !important;margin-bottom:25px;">
+                        <video id="my_video_1" class="video-js vjs-default-skin vjs-big-play-centered center vjs-16-9" controls preload="auto" style="width:100% !important;height:100% !important"
+                               data-setup='{ "asdf": true }' poster="">
+                            <source src="@Url.Content(Model.serat.FilePath)" type='@Model.serat.FileExtention'>
+                        </video>
+                    </div>
+
+                    @*<video controls playsinline poster="" id="player">
+        <!-- Video files -->
+        <source src="@Url.Content(Model.serat.FilePath)" type="@Model.serat.FileExtention" size="576">
+        <source src="@Url.Content(Model.serat.FilePath)" type="@Model.serat.FileExtention" size="720">
+        <source src="@Url.Content(Model.serat.FilePath)" type="@Model.serat.FileExtention" size="1080">
+        <!-- https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4 -->
+        <!-- Caption files -->
+    </video>*@
+                }
+                @if (Model.post.Type == 3)
+                {
+                    <div class="title" style="font-size:18px;">
+                        @Html.DisplayNameFor(model => model.paper.Title)
+                    </div>
+                    <div class="form-control">
+                        @Html.DisplayFor(model => model.paper.Title, new { @class = "text-right" })
+                    </div>
+                    <div class="title" style="font-size:18px;">
+                        @Html.DisplayNameFor(model => model.paper.Authors)
+                    </div>
+                    <div class="form-control">
+                        @Html.DisplayFor(model => model.paper.Authors, new { @class = "text-right" })
+                    </div>
+                    <div class="title" style="font-size:18px;">
+                        @Html.DisplayNameFor(model => model.paper.Introduction)
+                    </div>
+                    <div class="form-control">
+                        @Html.DisplayFor(model => model.paper.Introduction, new { @class = "text-right" })
+                    </div>
+                    <div class="title" style="font-size:18px;">
+                        @Html.DisplayNameFor(model => model.paper.Summary)
+                    </div>
+                    <div class="form-control" style="word-wrap:break-word;">
+                        @Html.DisplayFor(model => model.paper.Summary, new { @class = "text-right" })
+                    </div>
+                    <div class="title" style="font-size:18px;">
+                        @Html.DisplayNameFor(model => model.paper.Conclution)
+                    </div>
+                    <div class="form-control">
+                        @Html.DisplayFor(model => model.paper.Conclution, new { @class = "text-right" })
+                    </div>
+                    <div class="title" style="font-size:18px;">
+                        @Html.DisplayNameFor(model => model.paper.Description)
+                    </div>
+                    <div class="form-control" style="word-wrap:break-word;">
+                        @Html.DisplayFor(model => model.paper.Description, new { @class = "text-right" })
+                    </div>
+                    <div class="title" style="font-size:18px;">
+                        @Html.DisplayNameFor(model => model.paper.Keywords)
+                    </div>
+                    <div class="form-control">
+                        @Html.DisplayFor(model => model.paper.Keywords, new { @class = "text-right" })
+                    </div>
+                    <div class="title" style="font-size:18px;">
+                        @Html.DisplayNameFor(model => model.paper.Source)
+                    </div>
+                    <div class="form-control">
+                        @Html.DisplayFor(model => model.paper.Source, new { @class = "text-right" })
+                    </div>
+                    <div class="title" style="font-size:18px;">
+                        @Html.DisplayNameFor(model => model.paper.Body)
+                    </div>
+                    @*<div class="content-box" style="word-wrap:break-word;">
+                            @Html.Raw(Model.paper.Body)
+                        </div>*@
+                }
+                @if (Model.post.Type == 2)
+                {
+                    <div class="title" style="font-size:18px;">
+                        @Html.DisplayNameFor(model => model.serat.Caption)
+                    </div>
+                    <div class="form-control" style="word-wrap:break-word;">
+                        @Html.DisplayFor(model => model.serat.Caption, new { @class = "text-right" })
+                    </div>
+                    <div class="title" style="font-size:18px;">
+                        @Html.DisplayNameFor(model => model.serat.FileExtention)
+                    </div>
+                    <div class="form-control">
+                        @Html.DisplayFor(model => model.serat.FileExtention, new { @class = "text-right" })
+                    </div>
+                    <div class="title" style="font-size:18px;">
+                        @Html.DisplayNameFor(model => model.serat.FileName)
+                    </div>
+                    <div class="form-control">
+                        @Html.DisplayFor(model => model.serat.FileName, new { @class = "text-right" })
+                    </div>
+                    <div class="title" style="font-size:18px;">
+                        @Html.DisplayNameFor(model => model.serat.Size)
+                    </div>
+                    <div class="form-control">
+                        @Html.DisplayFor(model => model.serat.Size, new { @class = "text-right" })
+                    </div>
+                    <div class="title" style="font-size:18px;">
+                        @Html.DisplayNameFor(model => model.serat.Description)
+                    </div>
+                    <div class="form-control" style="word-wrap:break-word;">
+                        @Html.DisplayFor(model => model.serat.Description, new { @class = "text-right" })
+                    </div>
+                    <div class="title" style="font-size:18px;">
+                        @Html.DisplayNameFor(model => model.serat.Keywords)
+                    </div>
+                    <div class="form-control">
+                        @Html.DisplayFor(model => model.serat.Keywords, new { @class = "text-right" })
+                    </div>
+                    <div class="title" style="font-size:18px;">
+                        فایل
+                    </div>
+                    <div style="width:640px !important;height:264px !important;margin-bottom:25px;">
+                        <video id="my_video_1" class="video-js vjs-default-skin vjs-big-play-centered center vjs-16-9" controls preload="auto" style="width:100% !important;height:100% !important"
+                               data-setup='{ "asdf": true }' poster="">
+                            <source src="@Url.Content(Model.serat.FilePath)" type='@Model.serat.FileExtention'>
+                        </video>
+                    </div>
+
+                    @*<video controls playsinline poster="" id="player">
+                            <!-- Video files -->
+                            <source src="@Url.Content(Model.serat.FilePath)" type="@Model.serat.FileExtention" size="576">
+                            <source src="@Url.Content(Model.serat.FilePath)" type="@Model.serat.FileExtention" size="720">
+                            <source src="@Url.Content(Model.serat.FilePath)" type="@Model.serat.FileExtention" size="1080">
+                            <!-- https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4 -->
+                            <!-- Caption files -->
+                        </video>*@
+                }
+                @if (Model.post.Type == 1)
+                {
+                    <div class="title" style="font-size:18px;word-wrap:break-word;">
+                        @Html.DisplayNameFor(model => model.serat.Caption)
+                    </div>
+                    <div class="form-control">
+                        @Html.DisplayFor(model => model.serat.Caption, new { @class = "text-right" })
+                    </div>
+                    <div class="title" style="font-size:18px;">
+                        @Html.DisplayNameFor(model => model.serat.FileExtention)
+                    </div>
+                    <div class="form-control">
+                        @Html.DisplayFor(model => model.serat.FileExtention, new { @class = "text-right", @style = "" })
+                    </div>
+                    <div class="title" style="font-size:18px;">
+                        @Html.DisplayNameFor(model => model.serat.FileName)
+                    </div>
+                    <div class="form-control">
+                        @Html.DisplayFor(model => model.serat.FileName, new { @class = "text-right" })
+                    </div>
+                    <div class="title" style="font-size:18px;">
+                        @Html.DisplayNameFor(model => model.serat.Size)
+                    </div>
+                    <div class="form-control">
+                        @Html.DisplayFor(model => model.serat.Size, new { @class = "text-right" })
+                    </div>
+                    <div class="title" style="font-size:18px;">
+                        @Html.DisplayNameFor(model => model.serat.Description)
+                    </div>
+                    <div class="form-control" style="word-wrap:break-word;">
+                        @Html.DisplayFor(model => model.serat.Description, new { @class = "text-right" })
+                    </div>
+                    <div class="title" style="font-size:18px;">
+                        @Html.DisplayNameFor(model => model.serat.Keywords)
+                    </div>
+                    <div class="form-control">
+                        @Html.DisplayFor(model => model.serat.Keywords, new { @class = "text-right" })
+                    </div>
+                    <div class="title" style="font-size:18px;margin-bottom:50px;">
+                        فایل
+                    </div>
+                    <div class="plyr">
+                        <audio controls="controls" id="player">
+                            <source src="@Url.Content(Model.serat.FilePath)" type="@Model.serat.FileExtention" />
+                        </audio>
+                    </div>
+                }
+                <div>
+                    <a href="@Url.Action("Serats","Admin")" class="btn btn-default" style="margin-top:100px;"><i class="glyphicon glyphicon-arrow-right"></i>&nbsp; بازگشت &nbsp;</a>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+@section scripts
+    {
+    <script src="@Url.Content("~/Content/FrontTemplate/js/jquery-2.2.4.min.js")"></script>
+    <!-- Popper js -->
+    <script src="@Url.Content("~/Content/FrontTemplate/js/popper.min.js")"></script>
+    <!-- Bootstrap js -->
+    <script src="@Url.Content("~/Content/FrontTemplate/js/bootstrap.min.js")"></script>
+    <!-- Plugins js -->
+    <script src="@Url.Content("~/Content/FrontTemplate/js/plugins.js")"></script>
+    <!-- Active js -->
+    <script src="@Url.Content("~/Content/FrontTemplate/js/active.js")"></script>
+    <script src="@Url.Content("~/Content/FrontTemplate/plyrPlayer/dist/plyr.js")"></script>
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <script src="js/plugins.js"></script>
+    <!-- Active js -->
+    <script src="js/active.js"></script>
+    <script src="~/Content/FrontTemplate/videojs/video.js"></script>
+    <script src="~/Content/FrontTemplate/videojs/video.min.js"></script>
+    <script src="@Url.Content("~/Content/FrontTemplate/plyrPlayer/dist/plyr.js")"></script>
+    <script src="https://cdn.plyr.io/3.4.7/plyr.js"></script>
+    <script>
+                $(function () {
+                    const player = new Plyr('#player');
+                    plyr.setup("#player");
+                    videojs.autoSetup();
+
+                    videojs('my_video_1').ready(function () {
+                        console.log(this.options()); //log all of the default videojs options
+
+                        // Store the video object
+                        var myPlayer = this, id = myPlayer.id();
+                        // Make up an aspect ratio
+                        var aspectRatio = 264 / 640;
+
+                        //function resizeVideoJS() {
+                        //    var width = document.getElementById(id).parentElement.offsetWidth;
+                        //    myPlayer.width(width).height(width * aspectRatio);
+
+                        //}
+
+                        // Initialize resizeVideoJS()
+                        //resizeVideoJS();
+                        //// Then on resize call resizeVideoJS()
+                        //window.onresize = resizeVideoJS;
+                    });
+                });
+    </script>
+
+
+}
+@section styles
+            {
+    <link href="@Url.Content("~/Content/FrontTemplate/plyrPlayer/dist/plyr.css")" rel="stylesheet" />
+    <link href="~/Content/FrontTemplate/videojs/video-js.css" rel="stylesheet" />
+    <link href="~/Content/FrontTemplate/videojs/video-js.min.css" rel="stylesheet" />
+}
+
+
+
+

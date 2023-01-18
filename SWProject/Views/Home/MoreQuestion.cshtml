@@ -1,0 +1,26 @@
+﻿
+@model IEnumerable<SWProject.Models.DomainModel.Doubt>
+
+
+@foreach (var fod in Model)
+{
+    <div class="col col-md-12" style="text-align:right;float:right;">
+        <div class="single-blog-post post-style-4 d-flex align-items-center mmedia">
+            <!-- Post Thumbnail -->
+            <!-- Post Content -->
+            <div class="post-content">
+
+                <a href="~/DoubtDetail/@fod.Title" class="headline">
+                    <h5>@fod.Title</h5>
+                </a>
+                <p>@fod.Question</p>
+                <!-- Post Meta -->
+                <div class="post-meta">
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+

@@ -1,0 +1,232 @@
+﻿@model SWProject.ViewModels.Admin.EditPostViewModel
+
+@{
+    ViewBag.Title = "فرم ویرایش پست";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("SubmitEditPost", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", id = "editPostformmedia" }))
+{
+    @Html.ValidationSummary()
+    @Html.HiddenFor(Model => Model.post.Id)
+    @Html.HiddenFor(Model => Model.post.ModifiedDate)
+    @Html.HiddenFor(Model => Model.post.CreationDate)
+    @Html.HiddenFor(Model => Model.post.UserId)
+    @Html.HiddenFor(Model => Model.post.VisitCount)
+    @Html.HiddenFor(Model => Model.post.Type)
+    if (Model.post.Type == 3)
+    {
+        @Html.HiddenFor(Model => Model.paper.Id)
+        @Html.HiddenFor(Model => Model.paper.PostId)
+    }
+    if (Model.post.Type == 1 || Model.post.Type == 2)
+    {
+        @Html.HiddenFor(Model => Model.media.FileExtention)
+        @Html.HiddenFor(Model => Model.media.FileName)
+        @Html.HiddenFor(Model => Model.media.FilePath)
+        @Html.HiddenFor(Model => Model.media.Id)
+        @Html.HiddenFor(Model => Model.media.PostId)
+        @Html.HiddenFor(Model => Model.media.Size)
+        @Html.HiddenFor(Model => Model.media.UserId)
+    }
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="content-box-header">
+                <div class="panel-title" style="direction:rtl;text-align:right;float:right;">@ViewBag.Title</div>
+            </div>
+            <div class="content-box-large">
+                <div class="panel-body" style="min-height:525px;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="content-box-large">
+                                <div class="panel-body">
+                                    <fieldset>
+                                        <div class="form-group">
+                                            @Html.LabelFor(Model => Model.post.Title)
+                                            @Html.TextBoxFor(Model => Model.post.Title, new { @class = "form-control", Value = Model.post.Title })
+                                            @Html.ValidationMessageFor(Model => Model.post.Title)
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(Model => Model.post.ProfilePicId)
+                                            @Html.Upload("ProfilePicId", new { @class = "form-control" })
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(Model => Model.post.CategoryId)
+                                            @{
+                                                List<SelectListItem> listItems = new List<SelectListItem>();
+                                                var selectedindex = Model.post.CategoryId;
+                                                var cats = SWProject.Helpers.Admin.Utilities.GetCategories().Select(p => new { p.HierarchyId, p.Title }).Distinct();
+                                                foreach (var item in cats)
+                                                {
+                                                    if (item.HierarchyId == selectedindex)
+                                                    {
+                                                        listItems.Add(new SelectListItem
+                                                        {
+                                                            Selected = true,
+                                                            Text = item.Title,
+                                                            Value = item.HierarchyId.ToString(),
+                                                        });
+                                                    }
+                                                    else
+                                                    {
+                                                        listItems.Add(new SelectListItem
+                                                        {
+
+                                                            Text = item.Title,
+                                                            Value = item.HierarchyId.ToString(),
+                                                        });
+                                                    }
+                                                }
+                                            }
+                                            @Html.DropDownListFor(model => model.post.CategoryId, listItems, "---سر گروه را انتخاب کنید---", new { @class = "form-control" })
+                                        </div>
+
+                                        @if (Model.post.Type == 3)
+                                        {
+                                            <div class="form-group">
+                                                @Html.LabelFor(Model => Model.paper.Introduction)
+                                                @Html.TextAreaFor(Model => Model.paper.Introduction, new { @class = "form-control", @id = "ckeditor_standard", Value = Model.paper.Introduction })
+                                                @Html.ValidationMessageFor(Model => Model.paper.Introduction)
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.LabelFor(Model => Model.paper.Authors)
+                                                @Html.TextAreaFor(Model => Model.paper.Authors, new { @class = "form-control", Value = Model.paper.Authors })
+                                                @Html.ValidationMessageFor(Model => Model.paper.Authors)
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.LabelFor(Model => Model.paper.Summary)
+                                                @Html.TextAreaFor(Model => Model.paper.Summary, new { @class = "form-control", @id = "ckeditor_standard2", Value = Model.paper.Summary })
+                                                @Html.ValidationMessageFor(Model => Model.paper.Summary)
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.LabelFor(Model => Model.paper.Title)
+                                                @Html.TextBoxFor(Model => Model.paper.Title, new { @class = "form-control", Value = Model.paper.Title })
+                                                @Html.ValidationMessageFor(Model => Model.paper.Title)
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.LabelFor(Model => Model.paper.Body)
+                                                @Html.TextAreaFor(Model => Model.paper.Body, new { @class = "form-control", @id = "ckeditor_full", Value = Model.paper.Body })
+                                                @Html.ValidationMessageFor(Model => Model.paper.Body)
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.LabelFor(Model => Model.paper.Source)
+                                                @Html.TextAreaFor(Model => Model.paper.Source, new { @class = "form-control", Value = Model.paper.Source })
+                                                @Html.ValidationMessageFor(Model => Model.paper.Source)
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.LabelFor(Model => Model.paper.Keywords)
+                                                @Html.TextBoxFor(Model => Model.paper.Keywords, new { @class = "form-control", Value = Model.paper.Keywords })
+                                                @Html.ValidationMessageFor(Model => Model.paper.Keywords)
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.LabelFor(Model => Model.paper.Description)
+                                                @Html.TextAreaFor(Model => Model.paper.Description, new { @class = "form-control", Value = Model.paper.Description })
+                                                @Html.ValidationMessageFor(Model => Model.paper.Description)
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.LabelFor(Model => Model.paper.Conclution)
+                                                @Html.TextAreaFor(Model => Model.paper.Conclution, new { @class = "form-control", @id = "ckeditor_standard3", Value = Model.paper.Conclution })
+                                                @Html.ValidationMessageFor(Model => Model.paper.Conclution)
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.LabelFor(Model => Model.post.IsIndex)
+                                                @Html.CheckBoxFor(Model => Model.post.IsIndex, new { @class = "checkbox", @checked = false })
+                                            </div>
+                                        }
+                                        @if (Model.post.Type == 2 || Model.post.Type == 1)
+                                        {
+                                            <div class="form-group">
+                                                @Html.LabelFor(Model => Model.media.Caption)
+                                                @Html.TextBoxFor(Model => Model.media.Caption, new { @class = "form-control", Value = Model.media.Caption })
+                                                @Html.ValidationMessageFor(Model => Model.media.Caption)
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.LabelFor(Model => Model.media.Introduction)
+                                                @Html.TextAreaFor(Model => Model.media.Introduction, new { @class = "form-control", @id = "ckeditor_full2", Value = Model.media.Introduction })
+                                                @Html.ValidationMessageFor(Model => Model.media.Introduction)
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.LabelFor(Model => Model.media.Keywords)
+                                                @Html.TextBoxFor(Model => Model.media.Keywords, new { @class = "form-control", Value = Model.media.Keywords })
+                                                @Html.ValidationMessageFor(Model => Model.media.Keywords)
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.LabelFor(Model => Model.media.Description)
+                                                @Html.TextAreaFor(Model => Model.media.Description, new { @class = "form-control", @id = "ckeditor_full3", Value = Model.media.Description })
+                                                @Html.ValidationMessageFor(Model => Model.media.Description)
+                                            </div>
+                                        }
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(Model => Model.post.Enable)
+                                            @Html.EditorFor(Model => Model.post.Enable, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(Model => Model.post.Enable)
+                                        </div>
+                                    </fieldset>
+                                    <div>
+                                        <input type="submit" class="btn btn-success btn-large" value="ویرایش" id="addpost" style="font-size:18px;min-width:100px;" />
+                                        <a href="@Url.Action("Posts","Admin")" class="btn btn-default"><i class="glyphicon glyphicon-arrow-right"></i>&nbsp; بازگشت &nbsp;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+                                                }
+@section Scripts{
+    <script src="@Url.Content("~/Scripts/Ckfinder/ckfinder.js")"></script>
+    <script type="text/javascript">
+        $(function () {
+            var ckeditor5 = CKEDITOR.replace('ckeditor_full2');
+            CKFinder.setupCKEditor(ckeditor5);
+            var ckeditor6 = CKEDITOR.replace('ckeditor_full3');
+            CKFinder.setupCKEditor(ckeditor6);
+            var ckeditor = CKEDITOR.replace('ckeditor_full');
+            CKFinder.setupCKEditor(ckeditor);
+            var ckeditor2 = CKEDITOR.replace('ckeditor_standard');
+            CKFinder.setupCKEditor(ckeditor2);
+            var ckeditor3 = CKEDITOR.replace('ckeditor_standard2');
+            CKFinder.setupCKEditor(ckeditor3);
+            var ckeditor4 = CKEDITOR.replace('ckeditor_standard3');
+            CKFinder.setupCKEditor(ckeditor4);
+            CKEDITOR.on('dialogDefinition', function (ev) {
+
+                $("#cke_145_uiElement").click(function (e) {
+                });
+
+            });
+            $("#txtKeywords").keypress(function (event) {
+                if (event.keyCode == 13) {
+                    event.preventDefault();
+                }
+            }).tagsinput();
+        });
+    </script>
+
+
+    <script src="@Url.Content("~/Scripts/AjaxForm/jquery.form.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")"></script>
+    <script src="@Url.Content("~/Content/BackTemplate/vendors/ckeditor/ckeditor.js")"></script>
+    <script src="@Url.Content("~/Content/BackTemplate/vendors/ckeditor/adapters/jquery.js")"></script>
+    <script src="@Url.Content("~/Content/BackTemplate/bootstrap/js/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/Content/BackTemplate/js/custom.js")"></script>
+    <script src="@Url.Content("~/Content/BackTemplate/js/editors.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui.js")"></script>
+    <script src="@Url.Content("~/Scripts/TagsInput/bootstrap-tagsinput.min.js")"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@section styles
+    {
+    <link href="@Url.Content("~/Content/BackTemplate/bootstrap/css/bootstrap.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Scripts/jquery-ui.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Scripts/TagsInput/bootstrap-tagsinput.css")" rel="stylesheet" />
+}
+
+

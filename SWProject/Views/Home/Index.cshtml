@@ -1,0 +1,548 @@
+﻿@model SWProject.ViewModels.Front.IndexViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@*<div id="preloader">
+    <div class="preload-content">
+        <div id="world-load"></div>
+    </div>
+</div>*@
+@*<div class="hero-area">
+    <div class="hero-slides owl-carousel" style="width:100% !important;">
+        @foreach (var indsl in Model.slider)
+        {
+            <div class="single-hero-slide bg-img img-responsive" style="background-image: url();">
+                <img src="@Url.Content(indsl.Value)" />
+            </div>
+        }
+    </div>
+</div>*@
+<div class="rtop" id="rrtop"></div>
+<div class="ltop" id="lltop"></div>
+<div class="mtop col-8" id="mmtop"></div>
+
+<div class="col-12 col-lg-12 col-xs-12" style="margin-top:315px;">
+    <div class="post-content-area mb-50">
+
+        <div class="hero-area">
+            <div class="hero-slides owl-carousel" style="width:100% !important;">
+                @foreach (var indsl in Model.slider)
+                {
+                    <div class="single-hero-slide bg-img img-responsive" style="background-image: url();">
+                        <img src="@Url.Content(indsl.Value)" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
+<div id="contentcolumns" class="col-12 col-lg-12 col-xs-12">
+    <div class="col-12 col-lg-3 " style="margin-top:0;padding:1px;" id="rrtop2">
+        <div id="rihgtbordered">
+            <div class="post-content-area mb-50 col-md-12">
+                <div class="world-catagory-area backgroundnborder">
+                    <div class="tab-content">
+                        <div class="col-12 col-lg-12">
+
+                            <div class="title" style="text-align:right;font-size:18px;font-weight:700;">
+                                <h5>مقاله</h5>
+                                <hr />
+                            </div>
+                            @foreach (var tcpss2 in Model.LastPapers)
+            {
+                                <div class="single-blog-post post-style-4 d-flex align-items-center wow fadeInUpBig" data-wow-delay="0.2s">
+                                    <!-- Post Thumbnail -->
+                                    @*<div class="post-thumbnail">
+                                        @if (tcpss2.ProfilePicId != null)
+                                        {
+                                            <img style="height:150px !important;width:200px !important;float:right;margin-top:10px;" src="@SWProject.Helpers.Front.Utilities.ToBase64ImageString(tcpss2.Img_DataFiles.FileBody)" alt="">
+                                        }
+                                        @if (tcpss2.ProfilePicId == null)
+                                        {
+                                            <img style="height:150px !important;width:200px !important;float:right;margin-top:10px;" src="@Url.Content("~/Content/FrontTemplate/img/no-image-icon.png")" />
+                                        }
+                                    </div>*@
+                                    <!-- Post Content -->
+                                    <div class="post-content">
+                                        @if (tcpss2.Type == 3)
+                                        {
+                                            <a href="/paper?title=@tcpss2.Title" class="headline">
+                                                <h5>@tcpss2.Title</h5>
+                                            </a>
+                                        }
+                                        @if (tcpss2.Type == 2)
+                                        {
+                                            <a href="/video?filename=@tcpss2.Title" class="headline">
+                                                <h5>@tcpss2.Title</h5>
+                                            </a>
+                                        }
+                                        @if (tcpss2.Type == 1)
+                                        {
+                                            <a href="/audio?filename=@tcpss2.Title" class="headline">
+                                                <h5>@tcpss2.Title</h5>
+                                            </a>
+                                        }
+                                        <!-- Post Meta -->
+                                        <div class="post-meta">
+                                            @*<p><a href="#" class="post-author">@tcps2.User.Name</a> on <a href="#" class="post-date">@tcps2.CreationDate</a></p>*@
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <a href="@Url.Content("~/Categories?Name=papers")" class="btn btn-primary" style="text-align:right;margin:15px;">< &nbsp; ادامه</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="world-catagory-area backgroundnborder" style="margin-top:10px;">
+                    <div class="tab-content">
+                        <div class="col-12 col-lg-12">
+
+                            <div class="title" style="text-align:right;font-size:18px;font-weight:700;">
+                                <h5>پرسش و پاسخ</h5>
+                                <hr />
+                            </div>
+                            @foreach (var qndss in Model.QnD.Where(q => q.Type == false))
+                            {
+                                <div class="single-blog-post post-style-4 d-flex align-items-center wow fadeInUpBig" data-wow-delay="0.2s">
+                                    <!-- Post Thumbnail -->
+                                    <!-- Post Content -->
+                                    <div class="post-content">
+                                        <a href="DoubtDetail?title=@qndss.Title" class="headline">
+                                            <h5>@qndss.Title</h5>
+                                        </a>
+                                        <!-- Post Meta -->
+                                        <div class="post-meta">
+                                            @*<p><a href="#" class="post-author">@tcps2.User.Name</a> on <a href="#" class="post-date">@tcps2.CreationDate</a></p>*@
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <a href="@Url.Content("~/Question")" class="btn btn-primary" style="text-align:right;margin:15px;">< &nbsp; ادامه</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-6" style="padding:1px;" id="mmtop2">
+        <div class="col-centered" id="middleColumn">
+            <div class="main-content-wrapper">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <!-- ============= Post Content Area Start ============= -->
+
+
+                        <div class="col-12 col-lg-12">
+                            <div class="post-content-area mb-50" id="cats">
+                                <div class="world-catagory-area backgroundnborder">
+                                    <div class="tab-content">
+                                        <div class="col-12 col-lg-12">
+
+                                            <div class="title" style="text-align:right;font-size:18px;font-weight:700;">
+                                                <h5>برنامه صراط مستقیم</h5>
+                                                <hr />
+                                            </div>
+                                            @foreach (var lsps in Model.lastseratposts)
+                                            {
+                                                <div class="single-blog-post post-style-4 d-flex align-items-center wow fadeInUpBig col-lg-12" data-wow-delay="0.2s">
+                                                    <!-- Post Thumbnail -->
+                                                    <div class="post-thumbnail">
+                                                        @if (lsps.ProfilePicId != null)
+                                                        {
+                                                            <img style="height:150px !important;width:200px !important;float:right;margin-top:10px;" src="@SWProject.Helpers.Front.Utilities.ToBase64ImageString(lsps.Img_DataFiles.FileBody)" alt="">
+                                                        }
+                                                        @if (lsps.ProfilePicId == null)
+                                                        {
+                                                            <img style="height:150px !important;width:200px !important;float:right;margin-top:10px;" src="@Url.Content("~/Content/FrontTemplate/img/no-image-icon.png")" />
+                                                        }
+                                                    </div>
+                                                    <!-- Post Content -->
+                                                    <div class="post-content">
+                                                        @if (lsps.Type == 4)
+                                                        {
+                                                            <a href="~/show?title=@lsps.Title" class="headline">
+                                                                <h5>@lsps.Title</h5>
+                                                            </a>
+                                                        }
+                                                        @if (lsps.Type == 3)
+                                                        {
+                                                            <a href="~/paper?title=@lsps.Title" class="headline">
+                                                                <h5>@lsps.Title</h5>
+                                                            </a>
+                                                        }
+                                                        @if (lsps.Type == 2)
+                                                        {
+                                                            <a href="~/video?title=@lsps.Title" class="headline">
+                                                                <h5>@lsps.Title</h5>
+                                                            </a>
+                                                        }
+                                                        @if (lsps.Type == 1)
+                                                        {
+                                                            <a href="~/audio?title=@lsps.Title" class="headline">
+                                                                <h5>@lsps.Title</h5>
+                                                            </a>
+                                                        }
+                                                        <!-- Post Meta -->
+                                                        <div class="post-meta">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                            <a href="@Url.Content("~/Categories?Name=shows")" class="btn btn-primary" style="text-align:right;margin:15px;">< &nbsp; ادامه</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="world-catagory-area backgroundnborder" style="margin-top:10px;">
+                                    <div class="tab-content">
+                                        <div class="col-12 col-lg-12">
+
+                                            <div class="title" style="text-align:right;font-size:18px;font-weight:700;">
+                                                <h5>فیلم</h5>
+                                                <hr />
+                                            </div>
+                                            @foreach (var tcps in Model.TopTypePosts.Where(p => p.Type == 2))
+                                            {
+                                                <div class="single-blog-post post-style-4 d-flex align-items-center wow fadeInUpBig col-lg-12" data-wow-delay="0.2s">
+                                                    <!-- Post Thumbnail -->
+                                                    <div class="post-thumbnail">
+                                                        @if (tcps.ProfilePicId != null)
+                                                        {
+                                                            <img style="height:150px !important;width:200px !important;float:right;margin-top:10px;" src="@SWProject.Helpers.Front.Utilities.ToBase64ImageString(tcps.Img_DataFiles.FileBody)" alt="">
+                                                        }
+                                                        @if (tcps.ProfilePicId == null)
+                                                        {
+                                                            <img style="height:150px !important;width:200px !important;float:right;margin-top:10px;" src="@Url.Content("~/Content/FrontTemplate/img/no-image-icon.png")" />
+                                                        }
+                                                    </div>
+                                                    <!-- Post Content -->
+                                                    <div class="post-content">
+                                                        @if (tcps.Type == 3)
+                                                        {
+                                                            <a href="~/paper?title=@tcps.Title" class="headline">
+                                                                <h5>@tcps.Title</h5>
+                                                            </a>
+                                                        }
+                                                        @if (tcps.Type == 2)
+                                                        {
+                                                            <a href="~/video?title=@tcps.Title" class="headline">
+                                                                <h5>@tcps.Title</h5>
+                                                            </a>
+                                                        }
+                                                        @if (tcps.Type == 1)
+                                                        {
+                                                            <a href="~/audio?title=@tcps.Title" class="headline">
+                                                                <h5>@tcps.Title</h5>
+                                                            </a>
+                                                        }
+                                                        <!-- Post Meta -->
+                                                        <div class="post-meta">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                            <a href="@Url.Content("~/Categories?Name=videos")" class="btn btn-primary" style="text-align:right;margin:15px;">< &nbsp; ادامه</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="world-catagory-area backgroundnborder" style="margin-top:10px;">
+                                    <div class="tab-content">
+                                        <div class="col-12 col-lg-12">
+
+                                            <div class="title" style="text-align:right;font-size:18px;font-weight:700;">
+                                                <h5>صوت</h5>
+                                                <hr />
+                                            </div>
+                                            @foreach (var tcps1 in Model.TopTypePosts.Where(p => p.Type == 1))
+                                            {
+                                                <div class="single-blog-post post-style-4 d-flex align-items-center wow fadeInUpBig col-lg-12" data-wow-delay="0.2s">
+                                                    <!-- Post Thumbnail -->
+                                                    <div class="post-thumbnail">
+                                                        @if (tcps1.ProfilePicId != null)
+                                                        {
+                                                            <img style="height:150px !important;width:200px !important;float:right;margin-top:10px;" src="@SWProject.Helpers.Front.Utilities.ToBase64ImageString(tcps1.Img_DataFiles.FileBody)" alt="">
+                                                        }
+                                                        @if (tcps1.ProfilePicId == null)
+                                                        {
+                                                            <img style="height:150px !important;width:200px !important;float:right;margin-top:10px;" src="@Url.Content("~/Content/FrontTemplate/img/no-image-icon.png")" />
+                                                        }
+                                                    </div>
+                                                    <!-- Post Content -->
+                                                    <div class="post-content">
+                                                        @if (tcps1.Type == 3)
+                                                        {
+                                                            <a href="~/paper?title=@tcps1.Title" class="headline">
+                                                                <h5>@tcps1.Title</h5>
+                                                            </a>
+                                                        }
+                                                        @if (tcps1.Type == 2)
+                                                        {
+                                                            <a href="~/video?title=@tcps1.Title" class="headline">
+                                                                <h5>@tcps1.Title</h5>
+                                                            </a>
+                                                        }
+                                                        @if (tcps1.Type == 1)
+                                                        {
+                                                            <a href="~/audio?title=@tcps1.Title" class="headline">
+                                                                <h5>@tcps1.Title</h5>
+                                                            </a>
+                                                        }
+                                                        <!-- Post Meta -->
+                                                        <div class="post-meta">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                            <a href="@Url.Content("~/Categories?Name=voices")" class="btn btn-primary" style="text-align:right;margin:15px;">< &nbsp; ادامه</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*<div class="row">
+                                <div class="col-12">
+                                    <div class="load-more-btn mt-50 text-center">
+                                        <a href="#" id="more" class="btn world-btn">بیشتر</a>
+                                        <a href="#" id="more1" class="btn world-btn" hidden>بیشتر</a>
+                                    </div>
+                                </div>
+                            </div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col-12 col-lg-3" style="padding:1px;" id="lltop2">
+        <div id="leftbordered">
+            <div class="post-content-area mb-50 col-md-12">
+                <div class="world-catagory-area backgroundnborder">
+                    <div class="tab-content">
+                        <div class="col-12 col-lg-12">
+
+                            <div class="title" style="text-align:right;font-size:18px;font-weight:700;">
+                                <h5>کتابخانه</h5>
+                                <hr />
+                            </div>
+                            @foreach (var tcpss3 in Model.LastBooks)
+                            {
+                                <div class="single-blog-post post-style-4 d-flex align-items-center wow fadeInUpBig" data-wow-delay="0.2s">
+                                    <!-- Post Thumbnail -->
+                                    @*<div class="post-thumbnail">
+                                        <img style="height:150px !important;width:200px !important;float:right;margin-top:10px;" src="~/Content/FrontTemplate/img/textfile.jpg" alt="">
+                                    </div>*@
+                                    <!-- Post Content -->
+                                    <div class="post-content">
+                                        <a href="bookDetail?title=@tcpss3.Caption" class="headline">
+                                            <h5>@tcpss3.Caption</h5>
+                                        </a>
+
+                                        <!-- Post Meta -->
+                                        <div class="post-meta">
+                                            @*<p><a href="#" class="post-author">@tcpss3.User.Name</a> on <a href="#" class="post-date">@tcpss3.TimeStamp</a></p>*@
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <a href="@Url.Content("~/Categories?Name=books")" class="btn btn-primary" style="text-align:right;margin:15px;">< &nbsp; ادامه</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="world-catagory-area backgroundnborder" style="margin-top:10px;">
+                    <div class="tab-content">
+                        <div class="col-12 col-lg-12">
+
+                            <div class="title" style="text-align:right;font-size:18px;font-weight:700;">
+                                <h5>شبهات</h5>
+                                <hr />
+                            </div>
+                            @foreach (var qnds in Model.QnD.Where(p => p.Type == true))
+                            {
+                                <div class="single-blog-post post-style-4 d-flex align-items-center wow fadeInUpBig" data-wow-delay="0.2s">
+                                    <!-- Post Thumbnail -->
+                                    <!-- Post Content -->
+                                    <div class="post-content">
+                                        <a href="DoubtDetail?title=@qnds.Title" class="headline">
+                                            <h5>@qnds.Title</h5>
+                                        </a>
+
+                                        <!-- Post Meta -->
+                                        <div class="post-meta">
+                                            @*<p><a href="#" class="post-author">@tcpss3.User.Name</a> on <a href="#" class="post-date">@tcpss3.TimeStamp</a></p>*@
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <a href="@Url.Content("~/Doubt")" class="btn btn-primary" style="text-align:right;margin:15px;">< &nbsp; ادامه</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+                        <script src="~/Content/FrontTemplate/js/active.js"></script>
+                        <script src="~/Content/FrontTemplate/js/plugins.js"></script>
+                        @section scripts
+                        {
+                        <script>
+                            $(function () {
+
+                                $("#more").click(function (e) {
+                                    e.preventDefault();
+                                    $.ajax(
+                                        {
+                                            url: '@Url.Action("MorePost","Home")',
+                                            type: 'post',
+                                            datatype: 'json',
+                                            data: { toload: 'paper' },
+                                            success: function (result) {
+                                                $("#cats").append(result);
+                                                $("#more").remove();
+                                                $("#more1").removeAttr("hidden");
+                                                var h = $(document).height();
+                                                var middleh = $("#middleColumn").height();
+                                                $("#rsticked").css('height', middleh);
+                                                $("#lsticked").css('height', middleh);
+                                                $("#mlsticked").css('height', middleh);
+                                                $("#mrsticked").css('height', middleh);
+                                                $("#footy").css('margin-top', middleh);
+                                            },
+                                            error: function () {
+                                                alert("error");
+                                            }
+
+                                        });
+                                });
+                                $("#more1").click(function (e) {
+                                    e.preventDefault();
+                                    $.ajax(
+                                        {
+                                            url: '@Url.Action("MorePostFiles","Home")',
+                                            type: 'post',
+                                            datatype: 'json',
+                                            data: { toload: 'book' },
+                                            success: function (result) {
+                                                $("#cats").append(result);
+                                                $("#more1").remove();
+                                                var h = $(document).height();
+                                                var middleh = $("#middleColumn").height();
+                                                $("#rsticked").css('height', middleh);
+                                                $("#lsticked").css('height', middleh);
+                                                $("#mlsticked").css('height', middleh);
+                                                $("#mrsticked").css('height', middleh);
+                                                $("#footy").css('margin-top', middleh);
+                                            },
+                                            error: function () {
+                                                alert("error");
+                                            }
+
+                                        });
+                                });
+
+                                var middleh = $("#middleColumn").height() + 625;
+                                $("#rsticked").css('height', middleh);
+                                $("#lsticked").css('height', middleh);
+
+                                if (screen.width >= 320 && screen.width < 480) {
+                                    $("#rihgtbordered").insertAfter("#centerpeice");
+                                    $("#leftbordered").insertAfter("#centerpeice");
+                                    $("#middleColumn").insertAfter("#centerpeice");
+                                    $("#rsticked").css('height', 0);
+                                    $("#lsticked").css('height', 0);
+                                }
+                                if (screen.width >= 480 && screen.width < 992) {
+                                    $("#rihgtbordered").insertAfter("#centerpeice");
+                                    $("#leftbordered").insertAfter("#centerpeice");
+                                    $("#middleColumn").insertAfter("#centerpeice");
+                                    var mheight = $("#middleColumn").height();
+                                    var rheight = $("#rihgtbordered").height();
+                                    var lheight = $("#leftbordered").height();
+                                    var theight = mheight + rheight + lheight + 725;
+                                    $("#rsticked").css('height', theight);
+                                    $("#lsticked").css('height', theight);
+                                }
+                                if (screen.width >= 992 && screen.width < 1200) {
+                                    $("#rihgtbordered").insertAfter("#centerpeice");
+                                    $("#leftbordered").insertAfter("#centerpeice");
+                                    $("#middleColumn").insertAfter("#centerpeice");
+                                    var mheight = $("#middleColumn").height();
+                                    var rheight = $("#rihgtbordered").height();
+                                    var lheight = $("#leftbordered").height();
+                                    var theight = mheight + rheight + lheight + 725;
+                                    $("#rsticked").css('height', theight);
+                                    $("#lsticked").css('height', theight);
+                                }
+                                $(window).resize(function () {
+                                    if (window.innerWidth >= 1200) {
+                                        var mheight = $("#middleColumn").height() + 625;
+                                        $("#rsticked").css('height', mheight);
+                                        $("#lsticked").css('height', mheight);
+                                        var noderight = $("#rihgtbordered");
+                                        $("#rihgtbordered").remove();
+                                        $("#rrtop2").append(noderight);
+                                        var noderight = $("#leftbordered");
+                                        $("#leftbordered").remove();
+                                        $("#lltop2").append(noderight);
+                                        var noderight = $("#middleColumn");
+                                        $("#middleColumn").remove();
+                                        $("#mmtop2").append(noderight);
+
+                                    }
+                                    if (window.innerWidth >= 320 && window.innerWidth < 480) {
+                                        $("#rihgtbordered").insertAfter("#centerpeice");
+                                        $("#leftbordered").insertAfter("#centerpeice");
+                                        $("#middleColumn").insertAfter("#centerpeice");
+                                        $("#rsticked").css('height', 0);
+                                        $("#lsticked").css('height', 0);
+                                    }
+                                    if (window.innerWidth >= 480 && window.innerWidth < 992) {
+                                        $("#rihgtbordered").insertAfter("#centerpeice");
+                                        $("#leftbordered").insertAfter("#centerpeice");
+                                        $("#middleColumn").insertAfter("#centerpeice");
+                                        var mheight = $("#middleColumn").height();
+                                        var rheight = $("#rihgtbordered").height();
+                                        var lheight = $("#leftbordered").height();
+                                        var theight = mheight + rheight + lheight + 725;
+                                        $("#rsticked").css('height', theight);
+                                        $("#lsticked").css('height', theight);
+                                    }
+                                    if (window.innerWidth >= 992 && window.innerWidth < 1200) {
+                                        $("#rihgtbordered").insertAfter("#centerpeice");
+                                        $("#leftbordered").insertAfter("#centerpeice");
+                                        $("#middleColumn").insertAfter("#centerpeice");
+                                        var mheight = $("#middleColumn").height();
+                                        var rheight = $("#rihgtbordered").height();
+                                        var lheight = $("#leftbordered").height();
+                                        var theight = mheight + rheight + lheight + 725;
+                                        $("#rsticked").css('height', theight);
+                                        $("#lsticked").css('height', theight);
+                                    }
+                                });
+                            });
+                        </script>
+                        }
+
+
+                        @section styles
+                        {
+                        <meta name="description" content="" /> <!--fill this-->
+                        <meta name="keywords" content="" /> <!--fill this-->
+                        }

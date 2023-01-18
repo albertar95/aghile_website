@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "ایجاد پست";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="content-box-header">
+            <div class="panel-title" style="direction:rtl;text-align:right;float:right;">@ViewBag.Title</div>
+        </div>
+        <div class="content-box-large">
+            <div class="panel-body" style="min-height:525px;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="content-box-large">
+                            <div class="panel-body" id="pbody">
+                                <div class="well" style="margin-top:30px;" >
+                                    <a href="@Url.Action("AddPost_Film")" class="btn btn-lg btn-block btn-primary">فیلم</a>
+                                </div>
+                                <div class="well" style="margin-top:30px;">
+                                    <a href="@Url.Action("AddPost_Voice")" class="btn btn-lg btn-block btn-primary">صوت</a>
+                                </div>
+                                <div class="well" style="margin-top:30px;">
+                                    <a href="@Url.Action("AddPost_Paper")" class="btn btn-lg btn-block btn-primary">مقاله</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+<script type="text/javascript">
+    $(function ()
+    {
+        $("#film").click(function (e)
+        {
+            e.preventDefault();
+            $("#pbody").load('@Url.Action("AddPost_Film","Admin")');
+        });
+        $("#voice").click(function (e) {
+            e.preventDefault();
+            $("#pbody").load('@Url.Action("AddPost_Voice","Admin")');
+        });
+        $("#paper").click(function (e) {
+            e.preventDefault();
+            $("#pbody").load('@Url.Action("AddPost_Paper","Admin")');
+        });
+
+        //CKEDITOR.replace('ckeditor_full');
+        //CKEDITOR.replace('ckeditor_standard');
+        //CKEDITOR.replace('ckeditor_standard2');
+        //CKEDITOR.replace('ckeditor_standard3');
+        //var ckeditor = CKEDITOR.replace('ckeditor_full');
+        //CKFinder.setupCKEditor(ckeditor);
+        //CKEDITOR.on('dialogDefinition', function (ev) {
+
+        //    $("#cke_145_uiElement").click(function (e) {
+        //    });
+
+        //});
+    });
+</script>
+
+
+<script src="@Url.Content("~/Scripts/AjaxForm/jquery.form.min.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")"></script>
+@*<script src="@Url.Content("~/Content/BackTemplate/vendors/ckeditor/ckeditor.js")"></script>
+<script src="@Url.Content("~/Content/BackTemplate/vendors/ckeditor/adapters/jquery.js")"></script>*@
+<script src="@Url.Content("~/Content/BackTemplate/bootstrap/js/bootstrap.min.js")"></script>
+<script src="@Url.Content("~/Content/BackTemplate/js/custom.js")"></script>
+<script src="@Url.Content("~/Content/BackTemplate/js/editors.js")"></script>
+@*<script src="@Url.Content("~/Scripts/jquery-1.10.2.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery-ui.js")"></script>*@
+
+
+@Scripts.Render("~/bundles/jqueryval")
+    }
+
+@section styles
+    {
+    
+@*<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/BackTemplate/vendors/bootstrap-wysihtml5/src/bootstrap-wysihtml5.css")">*@
+<link href="@Url.Content("~/Content/BackTemplate/bootstrap/css/bootstrap.min.css")" rel="stylesheet">
+@*<link href="@Url.Content("~/Scripts/jquery-ui.css")" rel="stylesheet" />*@
+    }

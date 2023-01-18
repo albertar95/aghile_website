@@ -1,0 +1,276 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+     @*Global site tag (gtag.js) - Google Analytics 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132313260-1"></script>
+    <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-132313260-1');
+    </script>*@
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سایت تحقیقاتی حضرت عقیله</title>
+    <link rel="stylesheet" href="@Url.Content("~/Content/FrontTemplate/css/bootstrap.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/FrontTemplate/css/animate.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/FrontTemplate/css/owl.carousel.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/FrontTemplate/css/magnific-popup.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/FrontTemplate/css/font-awesome.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/FrontTemplate/css/themify-icons.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/FrontTemplate/style.css")">
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("styles", required: false)
+</head>
+<body>
+    <div class="topbanner" id="thetopbanner">
+        @*<img src="~/Content/FrontTemplate/img/banner.png" class="bannerimg" />*@
+    </div>
+    <div class="lstick" id="lsticked">
+    </div>
+    <div class="rstick" id="rsticked">
+    </div>
+    @*<div class="mrstick" id="mrsticked">
+    </div>
+    <div class="mlstick" id="mlsticked">
+    </div>*@
+    @*<div class="rkash" id="rightkash"></div>
+    <div class="lkash" id="leftkash"></div>*@
+        @*<img src="~/Content/FrontTemplate/img/banner.png" class="topbanner" />*@
+    <header class="header-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                    <a id="instagramlink" href="https://instagram.com" target="_blank" style="margin:25px;"><i style="font-size:32px;margin-top:1%;margin-bottom:1%;vertical-align:middle;" class="fa fa-instagram"></i></a>
+                    <!-- Search Form  -->
+                    <div id="search-wrapper">
+                        <form action="#">
+                            @*<div id="close-icon"></div>*@
+                            <input type="text" id="search" style="text-align:right;" placeholder="...جستجوی ویدئو،مقالات،اخبار و">
+                            <input class="d-none" id="ser2" type="submit" value="">
+                        </form>
+                    </div>
+                    <nav class="navbar navbar-expand-lg">
+                        <!-- Navbar Toggler -->
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#worldNav" aria-controls="worldNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                        <!-- Navbar -->
+                        <div class="collapse navbar-collapse" id="worldNav">
+
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item" id="licontact">
+                                    <a class="nav-link" style="font-family:B Titr Bold_0;"  href="@Url.Content("~/Contactus")">تماس با ما</a>
+                                </li>
+                                <li class="nav-item" id="liserat">
+                                    <a class="nav-link" style="font-family:B Titr Bold_0;" href="@Url.Content("~/Categories?Name=shows")">برنامه صراط مستقیم</a>
+                                </li>
+                                <li class="nav-item" id="lidoubt">
+                                    <a class="nav-link" style="font-family:B Titr Bold_0;" href="@Url.Content("~/Doubt")">شبهات</a>
+                                </li>
+                                <li class="nav-item" id="liquestion">
+                                    <a class="nav-link" style="font-family:B Titr Bold_0;" href="@Url.Content("~/Question")">پرسش و پاسخ</a>
+                                </li>
+                                <li class="nav-item" id="libook">
+                                    <a class="nav-link" style="font-family:B Titr Bold_0;" href="@Url.Content("~/Categories?Name=books")">کتابخانه</a>
+                                </li>
+                                <li class="nav-item" id="lipaper">
+                                    <a class="nav-link" style="font-family:B Titr Bold_0;" href="@Url.Content("~/Categories?Name=papers")">مقالات</a>
+                                </li>
+                                <li class="nav-item" id="liaudio">
+                                    <a class="nav-link" style="font-family:B Titr Bold_0;" href="@Url.Content("~/Categories?Name=voices")">صوت</a>
+                                </li>
+                                <li class="nav-item" id="livideo">
+                                    <a class="nav-link" style="font-family:B Titr Bold_0;" href="@Url.Content("~/Categories?Name=videos")">فیلم</a>
+                                </li>
+                                <li class="nav-item active" id="lihome">
+                                    <a class="nav-link" style="font-family:B Titr Bold_0;" href="/">خانه<span class="sr-only">(current)</span></a>
+                                </li>
+                            </ul>
+
+
+                        </div>
+
+                        <!-- Logo -->
+                        @*<a class="navbar-brand" href="index.html"><img src="@Url.Content("~/Content/FrontTemplate/img/core-img/logo.png")" alt="Logo"></a>*@
+                    </nav>
+                </div>
+            </div>
+            <div class="row">
+                <div id="resultcont"></div>
+            </div>
+        </div>
+    </header>
+    <div class="container body-content" id="aghile">
+
+            @RenderBody()
+        <div class="" id="centerpeice"></div>
+    </div>
+
+    <footer class="footer-area" id="footy">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <div class="footer-single-widget">
+                        <div class="copywrite-text mt-30">
+                            @*<h5>
+                            </h5>*@
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4"></div>
+                <div class="col-12 col-md-4" style="text-align:right;">
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="@Url.Content("~/Content/FrontTemplate/js/jquery-2.2.4.min.js")"></script>
+    <script src="@Url.Content("~/Content/FrontTemplate/js/popper.min.js")"></script>
+    <script src="@Url.Content("~/Content/FrontTemplate/js/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/Content/FrontTemplate/js/plugins.js")"></script>
+    <script src="@Url.Content("~/Content/FrontTemplate/js/active.js")"></script>
+    <script type="text/javascript">
+        function topFunction() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+        $(function ()
+        {
+            $.ajax(
+            {
+            url:'@Url.Action("CommonItems","Home")',
+            type:'post',
+            datatype: 'json',
+            success: function (respose)
+            {
+                if (respose.isDone)
+                    $("#instagramlink").attr("href", respose.Message);
+            },
+            error: function () {
+                alert("error");
+            }
+            });
+            $("#search").focus(function () 
+            {
+               $("#resultcont").show();
+            });
+            $("#search").focusout(function ()
+            {
+                $("#resultcont").hide();
+            });
+
+            var middleh = $("#middleColumn").height() + 270;
+            $("#rsticked").css('height', middleh);
+            $("#lsticked").css('height', middleh);
+
+            if (screen.width >= 320 && screen.width < 480) {
+                $("#rihgtbordered").insertAfter("#centerpeice");
+                $("#leftbordered").insertAfter("#centerpeice");
+                $("#middleColumn").insertAfter("#centerpeice");
+                $("#rsticked").css('height', 0);
+                $("#lsticked").css('height', 0);
+            }
+            if (screen.width >= 480 && screen.width < 992)
+            {
+                $("#rihgtbordered").insertAfter("#centerpeice");
+                $("#leftbordered").insertAfter("#centerpeice");
+                $("#middleColumn").insertAfter("#centerpeice");
+                var mheight = $("#middleColumn").height();
+                var rheight = $("#rihgtbordered").height();
+                var lheight = $("#leftbordered").height();
+                var theight = mheight + rheight + lheight + 270;
+                $("#rsticked").css('height', theight);
+                $("#lsticked").css('height', theight);
+            }
+            if (screen.width >= 992 && screen.width < 1200) {
+                $("#rihgtbordered").insertAfter("#centerpeice");
+                $("#leftbordered").insertAfter("#centerpeice");
+                $("#middleColumn").insertAfter("#centerpeice");
+                var mheight = $("#middleColumn").height();
+                var rheight = $("#rihgtbordered").height();
+                var lheight = $("#leftbordered").height();
+                var theight = mheight + rheight + lheight + 270;
+                $("#rsticked").css('height', theight);
+                $("#lsticked").css('height', theight);
+            }
+            $(window).resize(function () {
+                if(window.innerWidth >= 1200)
+                {
+                    var mheight = $("#middleColumn").height() + 270;
+                    $("#rsticked").css('height', mheight);
+                    $("#lsticked").css('height', mheight);
+                    var noderight = $("#rihgtbordered");
+                    $("#rihgtbordered").remove();
+                    $("#rrtop2").append(noderight);
+                    var noderight = $("#leftbordered");
+                    $("#leftbordered").remove();
+                    $("#lltop2").append(noderight);
+                    var noderight = $("#middleColumn");
+                    $("#middleColumn").remove();
+                    $("#mmtop2").append(noderight);
+
+                }
+                if (window.innerWidth >= 320 && window.innerWidth < 480) {
+                    $("#rihgtbordered").insertAfter("#centerpeice");
+                    $("#leftbordered").insertAfter("#centerpeice");
+                    $("#middleColumn").insertAfter("#centerpeice");
+                    $("#rsticked").css('height', 0);
+                    $("#lsticked").css('height', 0);
+                }
+                if (window.innerWidth >= 480 && window.innerWidth < 992) {
+                    $("#rihgtbordered").insertAfter("#centerpeice");
+                    $("#leftbordered").insertAfter("#centerpeice");
+                    $("#middleColumn").insertAfter("#centerpeice");
+                    var mheight = $("#middleColumn").height();
+                    var rheight = $("#rihgtbordered").height();
+                    var lheight = $("#leftbordered").height();
+                    var theight = mheight + rheight + lheight + 270;
+                    $("#rsticked").css('height', theight);
+                    $("#lsticked").css('height', theight);
+                }
+                if (window.innerWidth >= 992 && window.innerWidth < 1200) {
+                    $("#rihgtbordered").insertAfter("#centerpeice");
+                    $("#leftbordered").insertAfter("#centerpeice");
+                    $("#middleColumn").insertAfter("#centerpeice");
+                    var mheight = $("#middleColumn").height();
+                    var rheight = $("#rihgtbordered").height();
+                    var lheight = $("#leftbordered").height();
+                    var theight = mheight + rheight + lheight + 270;
+                    $("#rsticked").css('height', theight);
+                    $("#lsticked").css('height', theight);
+                }
+            });
+
+            var inp = $("#search-wrapper").css('width');
+            var searchData;
+            jQuery('#search').on('input propertychange paste', function () {
+                $.ajax(
+                {
+    url: '@Url.Action("SearchAsYouType","Home")',
+    type: 'post',
+    datatype: 'json',
+    data: { fkey: $("#search").val() },
+    success: function (sres) {
+        $("#resultcont").html(sres);
+    },
+    error: function () {
+        alert("nok");
+    }
+});
+            });
+
+            $("#search").keypress(function (event) {
+                if (event.keyCode == 13) {
+                    win = window.open("/SearchResult" + "?fkey=" + $("#search").val(), "_blank");
+                    win.document.body.innerHTML = result;
+                }
+            });
+        });
+    </script>
+    @*@Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")*@
+    @RenderSection("scripts", required: false)
+</body>
+</html>

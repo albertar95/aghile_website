@@ -1,0 +1,70 @@
+﻿@model SWProject.Models.DomainModel.LocalVariable
+
+@{
+    ViewBag.Title = "ایجاد اسلایدر";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("SubmitAddSlider", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", id = "addSliderform" }))
+{
+    @Html.ValidationSummary()
+    @Html.HiddenFor(Model => Model.Id)
+    @Html.HiddenFor(Model => Model.Value, new { @id = "fvalue" })
+    @Html.HiddenFor(Model => Model.Type, new { @id = "ftype" })
+    @Html.HiddenFor(Model => Model.IsNecessary, new { @id = "fnecessary" })
+    <div class="row">
+        <div class="col-md-12">
+            <div class="content-box-header">
+                <div class="panel-title" style="direction:rtl;text-align:right;float:right;">@ViewBag.Title</div>
+            </div>
+            <div class="content-box-large">
+                <div class="panel-body" style="min-height:525px;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="content-box-large">
+                                <div class="panel-body">
+                                    <fieldset>
+                                        <div class="form-group">
+                                            @Html.LabelFor(Model => Model.Title)
+                                            @Html.TextBoxFor(Model => Model.Title, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(Model => Model.Title)
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.Label("تصویر")
+                                            @Html.Upload("picture")
+                                        </div>
+                                    </fieldset>
+                                    <div>
+                                        <input type="submit" class="btn btn-success btn-large" value="ثبت" id="addslider" style="font-size:18px;min-width:100px;" />
+                                        <a href="@Url.Action("Sliders","Admin")" class="btn btn-default"><i class="glyphicon glyphicon-arrow-right"></i>&nbsp; بازگشت &nbsp;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+                                                }
+@section Scripts{
+    <script src="@Url.Content("~/Scripts/AjaxForm/jquery.form.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(function () {
+
+            function _(el) {
+                return document.getElementById(el);
+            }
+            _("fvalue").setAttribute('value', 'null');
+            _("ftype").setAttribute('value', 'null');
+            _("fnecessary").setAttribute('value', 'null');
+    });
+    </script>
+}
+
+
+
+

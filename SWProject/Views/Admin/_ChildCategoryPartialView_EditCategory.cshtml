@@ -1,0 +1,19 @@
+﻿
+@model IEnumerable<SWProject.Models.DomainModel.Category>
+
+@foreach (var subitem in Model)
+{
+    int groot = Convert.ToInt32(ViewData["root"]);
+    <tr class="@Convert.ToString(groot) odd gradeX" gidd="@Convert.ToString(groot)" style="display:none;">
+        <td class="center"></td>
+        <td class="center">@subitem.Title</td>
+        <td class="center">Otto</td>
+        <td class="center">
+            <a href="@Url.Action("EditCategoryForm","Admin",new { gid= subitem.HierarchyId})" class="btn btn-warning"><i class="glyphicon glyphicon-edit"></i>&nbsp; ویرایش &nbsp;</a>
+        </td>
+        @Html.Partial("_ChildCategoryPartialView_EditCategory", SWProject.Helpers.Admin.Utilities.GetChildCategories(subitem.HierarchyId), new ViewDataDictionary { { "root", groot + 1000 } })
+    </tr>
+}
+
+
+

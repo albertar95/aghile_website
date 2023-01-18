@@ -1,0 +1,47 @@
+﻿@model IEnumerable<SWProject.Models.DomainModel.Post>
+
+
+@foreach (var fov2 in Model)
+{
+    <div class="col col-md-12" style="text-align:right;float:right;">
+        <div class="single-blog-post post-style-4 d-flex align-items-center mmedia">
+            <!-- Post Thumbnail -->
+            <div class="post-thumbnail">
+                @if (fov2.ProfilePicId != null)
+                {
+                    <img style="height:150px !important;width:100px !important;padding:5px;" src="@SWProject.Helpers.Front.Utilities.ToBase64ImageString(fov2.Img_DataFiles.FileBody)" alt="">
+                }
+                @if (fov2.ProfilePicId == null)
+                {
+                    <img style="height:150px !important;width:100px !important;padding:5px;" src="@Url.Content("~/Content/FrontTemplate/img/no-image-icon.png")" />
+                }
+            </div>
+            <!-- Post Content -->
+            <div class="post-content" style="width:100% !important;">
+                @if (fov2.Type == 4)
+                {
+                    <a href="~/show?title=@fov2.Title" class="headline">
+                        <h5>@fov2.Title</h5>
+                    </a>
+                }
+                @if (fov2.Type == 2)
+                {
+                    <a href="~/video?title=@fov2.Title" class="headline">
+                        <h5>@fov2.Title</h5>
+                    </a>
+                }
+                @if (fov2.Type == 1)
+                {
+                    <a href="~/audio?title=@fov2.Title" class="headline" style="word-wrap:break-word;">
+                        <h5>@fov2.Title</h5>
+                    </a>
+                }
+                <!-- Post Meta -->
+                <div class="post-meta">
+                    @*<p><a href="#" class="post-author">@fov1.User.Name</a> on <a href="#" class="post-date">@fov1.CreationDate</a></p>*@
+                </div>
+            </div>
+
+        </div>
+    </div>
+}

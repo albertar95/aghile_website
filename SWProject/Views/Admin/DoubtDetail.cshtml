@@ -1,0 +1,47 @@
+﻿@model SWProject.Models.DomainModel.Doubt
+
+@{
+    ViewBag.Title = "جزییات شبهه";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-box-large box-with-header" style="text-align:right;min-height:525px;">
+    <div class="content-box-header">
+        <div class="panel-title" style="direction:rtl;text-align:right;float:right;">@ViewBag.Title</div>
+    </div>
+    <div class="content-box-large">
+        <div class="panel-body">
+
+            <fieldset>
+                <div class="title" style="font-size:18px;">
+                    @Html.DisplayNameFor(model => model.Title)
+                </div>
+                <div class="form-control">
+                    @Html.DisplayFor(model => model.Title, new { @class = "text-right" })
+                </div>
+                <div class="title" style="font-size:18px;">
+                    @Html.DisplayNameFor(model => model.Question)
+                </div>
+                <div class="form-control">
+                    @Html.DisplayFor(model => model.Question, new { @class = "text-right" })
+                </div>
+                <div class="title" style="font-size:18px;">
+                    @Html.DisplayNameFor(model => model.Answer)
+                </div>
+                <div class="form-control">
+                    @Html.DisplayFor(model => model.Answer, new { @class = "text-right" })
+                </div>
+                <div class="title" style="font-size:18px;">
+                    @Html.DisplayNameFor(model => model.Enable)
+                </div>
+                <div class="form-control">
+                    @Html.DisplayFor(model => model.Enable, new { @class = "text-right" })
+                </div>
+                <div>
+                    <a href="@Url.Action("Doubts","Admin")" class="btn btn-default"><i class="glyphicon glyphicon-arrow-right"></i>&nbsp; بازگشت &nbsp;</a>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+

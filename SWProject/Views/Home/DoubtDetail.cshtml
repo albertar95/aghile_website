@@ -1,0 +1,91 @@
+﻿@model SWProject.Models.DomainModel.Doubt
+
+
+@{
+    ViewBag.Title = "DoubtDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="rtop" id="rrtop"></div>
+<div class="ltop" id="lltop"></div>
+<div class="mtop col-8" id="mmtop"></div>
+<div id="contentcolumns" class="col-12 col-lg-12">
+    <div class="col-12 col-lg-1" style="margin-top:0;" id="rrtop2">
+        <div class="col-lg-12 col-md-12 col-sm-12" id="rihgtbordered"></div>
+    </div>
+    <div class="col-12 col-lg-10" id="mmtop2">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-centered" style="padding:50px;" id="middleColumn">
+            <div class="col-lg-12" style="margin-top:300px;">
+
+                <div class="title" style="text-align:right;font-size:18px;font-weight:700;word-wrap:break-word;">
+                    <h5>شبهه</h5>
+                    <hr />
+                </div>
+
+                <!-- ********** Hero Area End ********** -->
+
+                <div class="main-content-wrapper section-padding-100">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <!-- ============= Post Content Area ============= -->
+                            <div class="col-12 col-lg-12">
+                                <div class="single-blog-content mb-100" style="text-align:right !important;">
+                                    <!-- Post Meta -->
+                                    <div class="post-meta" style="text-align:right !important;word-wrap:break-word;">
+                                        <label>&nbsp; : &nbsp; سوال</label>
+                                        <p> @Model.Question</p>
+                                    </div>
+                                    <!-- Post Content -->
+                                    <div class="post-content" style="text-align:right !important;word-wrap:break-word;">
+                                        @Html.Raw(Model.Answer)
+                                        <!-- Post Meta -->
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col-12 col-lg-1" id="lltop2">
+        <div class="col-lg-12 col-md-12 col-sm-12" id="leftbordered"></div>
+    </div>
+
+</div>
+
+
+        @section scripts
+    {
+            <script>
+                $(function () {
+                    $(".navbar-nav li").removeClass("active");
+                });
+            </script>
+            <script src="@Url.Content("~/Content/FrontTemplate/js/jquery/jquery-2.2.4.min.js")"></script>
+            <!-- Popper js -->
+            <script src="@Url.Content("~/Content/FrontTemplate/js/popper.min.js")"></script>
+            <!-- Bootstrap js -->
+            <script src="@Url.Content("~/Content/FrontTemplate/js/bootstrap.min.js")"></script>
+            <!-- Plugins js -->
+            <script src="@Url.Content("~/Content/FrontTemplate/js/plugins.js")"></script>
+            <!-- Active js -->
+            <script src="@Url.Content("~/Content/FrontTemplate/js/active.js")"></script>
+        }
+        <!-- ***** Footer Area End ***** -->
+        <!-- jQuery (Necessary for All JavaScript Plugins) -->
+
+
+        @section styles
+    {
+            <meta name="description" content="" /> <!--fill this-->
+            <meta name="keywords" content="" /> <!--fill this-->
+        }
+
+

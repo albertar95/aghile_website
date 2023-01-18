@@ -1,0 +1,69 @@
+﻿@model IEnumerable<SWProject.Models.DomainModel.Doubt>
+
+@{
+    ViewBag.Title = "پرسش و پاسخ";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-box-large box-with-header" style="text-align:right;min-height:525px;">
+    <div class="content-box-header">
+        <div class="panel-title" style="direction:rtl;text-align:right;float:right;">@ViewBag.Title</div>
+    </div>
+    <div class="content-box-large">
+        <div class="panel-body">
+            @if (TempData["SuccessfulQuestion"] != null)
+            {
+                <div class="alert alert-success fadeIn alert-dismissable">
+                    <strong>@TempData["SuccessfulQuestion"]</strong>
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+                </div>
+            }
+            @if (TempData["notSuccessfulQuestion"] != null)
+            {
+                <div class="alert alert-danger fadeIn alert-dismissable">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+                    <strong>@TempData["notSuccessfulQuestion"]</strong>
+                </div>
+            }
+            <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" style="text-align:center;">
+                <thead style="text-align:center;">
+                    <tr class="odd gradeX">
+                        <th class="center">ردیف</th>
+                        <th class="center">عنوان</th>
+                        <th class="center">جزییات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int i = 1;
+                    }
+                    @foreach (var item in Model)
+                    {
+                        <tr class="odd gradeX" id="@item.Id">
+                            <td class="center">@Convert.ToString(i++)</td>
+                            <td class="center">@item.Title</td>
+                            <td class="center">
+                                <a href="@Url.Action("QuestionDetail","Admin", new { id = item.Id.ToString()})" class="btn btn-default"><i class="glyphicon glyphicon-list"></i>&nbsp; جزییات &nbsp;</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="btn-group" style="bottom: 0;">
+        <a href="@Url.Action("Questions","Admin")" class="btn btn-default"><i class="glyphicon glyphicon-eye-open"></i>&nbsp; لیست &nbsp;</a>
+        <a href="@Url.Action("DeleteQuestion","Admin")" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i>&nbsp; حذف &nbsp;</a>
+        <a href="@Url.Action("EditQuestion","Admin")" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i>&nbsp; ویرایش &nbsp;</a>
+        <a href="@Url.Action("AddQuestion","Admin")" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp; اضافه &nbsp;</a>
+    </div>
+</div>
+
+@section styles
+    {
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
+}
+
+
+
+

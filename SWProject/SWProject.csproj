@@ -1,0 +1,1343 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F7DD5FBF-30C2-430B-B74D-70010307BFDE}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SWProject</RootNamespace>
+    <AssemblyName>SWProject</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CKSource.CKFinder.Connector.Core, Version=3.4.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CKSource.CKFinder.Connector.Core.3.4.4\lib\net452\CKSource.CKFinder.Connector.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CKSource.FileSystem, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CKSource.FileSystem.1.1.1\lib\net452\CKSource.FileSystem.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ImageProcessor, Version=2.6.1.19, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageProcessor.2.6.1.19\lib\net452\ImageProcessor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.0.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.0.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.0.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.0.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.0.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.0.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Loggings.svc.cs">
+      <DependentUpon>Loggings.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\Admin\FileCompression.cs" />
+    <Compile Include="Helpers\Admin\ImageUtility.cs" />
+    <Compile Include="Helpers\Admin\UploadHelper.cs" />
+    <Compile Include="Helpers\Admin\Utilities.cs" />
+    <Compile Include="Helpers\Front\Utilities.cs" />
+    <Compile Include="Models\DomainModel\Category.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DomainModel\Doubt.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DomainModel\File_DataFiles.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DomainModel\Img_DataFiles.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DomainModel\LocalVariable.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DomainModel\Log.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DomainModel\Media_DataFiles.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DomainModel\Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DomainModel\Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DomainModel\Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DomainModel\Paper_DataFiles.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DomainModel\Post.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DomainModel\tmp_PagesStatLogs.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DomainModel\User.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EntityModel\CategoryMetadata.cs" />
+    <Compile Include="Models\EntityModel\DoubtMetadata.cs" />
+    <Compile Include="Models\EntityModel\File_DataFilesMetadata.cs" />
+    <Compile Include="Models\EntityModel\LocalVariableMetadata.cs" />
+    <Compile Include="Models\EntityModel\Media_DataFilesMetadata.cs" />
+    <Compile Include="Models\EntityModel\Paper_DataFilesMetadata.cs" />
+    <Compile Include="Models\EntityModel\PostMetadata.cs" />
+    <Compile Include="Models\EntityModel\UserMetadata.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Admin\CategoriesViewModel.cs" />
+    <Compile Include="ViewModels\Admin\EditPostViewModel.cs" />
+    <Compile Include="ViewModels\Admin\LogsViewModel.cs" />
+    <Compile Include="ViewModels\Admin\MediaPostViewModel.cs" />
+    <Compile Include="ViewModels\Admin\PaperPostViewModel.cs" />
+    <Compile Include="ViewModels\Admin\PostDetailViewModel.cs" />
+    <Compile Include="ViewModels\Front\CategoryViewModel.cs" />
+    <Compile Include="ViewModels\Front\IndexViewModel.cs" />
+    <Compile Include="ViewModels\Front\MediaViewModel.cs" />
+    <Compile Include="ViewModels\Front\PaperViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\BackTemplate\bootstrap\css\bootstrap-theme.css" />
+    <Content Include="Content\BackTemplate\bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="Content\BackTemplate\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\BackTemplate\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\BackTemplate\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\BackTemplate\bootstrap\js\bootstrap.js" />
+    <Content Include="Content\BackTemplate\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\BackTemplate\css\buttons.css" />
+    <Content Include="Content\BackTemplate\css\calendar.css" />
+    <Content Include="Content\BackTemplate\css\forms.css" />
+    <Content Include="Content\BackTemplate\css\stats.css" />
+    <Content Include="Content\BackTemplate\css\styles.css" />
+    <Content Include="Content\BackTemplate\images\facebook.png" />
+    <Content Include="Content\BackTemplate\images\loginmerryspell.png" />
+    <Content Include="Content\BackTemplate\js\calendar.js" />
+    <Content Include="Content\BackTemplate\js\custom.js" />
+    <Content Include="Content\BackTemplate\js\editors.js" />
+    <Content Include="Content\BackTemplate\js\forms.js" />
+    <Content Include="Content\BackTemplate\js\stats.js" />
+    <Content Include="Content\BackTemplate\js\tables.js" />
+    <Content Include="Content\BackTemplate\tables.html" />
+    <Content Include="Content\BackTemplate\vendors\address\address.css" />
+    <Content Include="Content\BackTemplate\vendors\address\address.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-datetimepicker\bootstrap-datetimepicker.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-datetimepicker\datetimepicker.css" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\dist\bootstrap-wysihtml5-0.0.2.css" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\dist\bootstrap-wysihtml5-0.0.2.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\dist\bootstrap-wysihtml5-0.0.2.min.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\index.html" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\lib\css\bootstrap-responsive.css" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\lib\css\bootstrap-responsive.min.css" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\lib\css\bootstrap.css" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\lib\css\bootstrap.min.css" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\lib\css\prettify.css" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\lib\css\wysiwyg-color.css" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\lib\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\lib\img\glyphicons-halflings.png" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\lib\js\bootstrap-button.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\lib\js\bootstrap.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\lib\js\bootstrap.min.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\lib\js\jquery-1.7.2.min.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\lib\js\prettify.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\lib\js\wysihtml5-0.3.0.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\lib\js\wysihtml5-0.3.0.min.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\src\bootstrap-wysihtml5.css" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\src\bootstrap-wysihtml5.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\src\locales\bootstrap-wysihtml5.ar-AR.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\src\locales\bootstrap-wysihtml5.bg-BG.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\src\locales\bootstrap-wysihtml5.ca-CT.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\src\locales\bootstrap-wysihtml5.cs-CZ.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\src\locales\bootstrap-wysihtml5.da-DK.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\src\locales\bootstrap-wysihtml5.de-DE.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\src\locales\bootstrap-wysihtml5.el-GR.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\src\locales\bootstrap-wysihtml5.es-AR.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\src\locales\bootstrap-wysihtml5.es-ES.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\src\locales\bootstrap-wysihtml5.fr-FR.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\src\locales\bootstrap-wysihtml5.hr-HR.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\src\locales\bootstrap-wysihtml5.it-IT.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\src\locales\bootstrap-wysihtml5.ja-JP.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\src\locales\bootstrap-wysihtml5.ko-KR.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\src\locales\bootstrap-wysihtml5.lt-LT.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\src\locales\bootstrap-wysihtml5.mo-MD.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\src\locales\bootstrap-wysihtml5.nb-NB.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\src\locales\bootstrap-wysihtml5.nl-NL.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\src\locales\bootstrap-wysihtml5.pl-PL.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\src\locales\bootstrap-wysihtml5.pt-BR.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\src\locales\bootstrap-wysihtml5.ru-RU.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\src\locales\bootstrap-wysihtml5.sk-SK.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\src\locales\bootstrap-wysihtml5.sv-SE.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\src\locales\bootstrap-wysihtml5.tr-TR.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\src\locales\bootstrap-wysihtml5.ua-UA.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\src\locales\bootstrap-wysihtml5.zh-CN.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\src\locales\bootstrap-wysihtml5.zh-TW.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\src\wysiwyg-color.css" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\test\bootstrap_wysihtml5\parserRules_test.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\test\browser_test.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\test\editor_test.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\test\incompatible_test.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\test\index.html" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\test\support\html_equal.js" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\test\undo_manager_test.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\adapters\jquery.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\build-config.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\ckeditor.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\config.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\contents.css" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\af.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\ar.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\bg.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\bn.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\bs.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\ca.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\cs.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\cy.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\da.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\de.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\el.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\en-au.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\en-ca.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\en-gb.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\en.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\eo.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\es.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\et.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\eu.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\fa.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\fi.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\fo.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\fr-ca.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\fr.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\gl.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\gu.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\he.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\hi.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\hr.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\hu.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\id.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\is.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\it.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\ja.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\ka.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\km.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\ko.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\ku.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\lt.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\lv.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\mk.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\mn.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\ms.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\nb.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\nl.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\no.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\pl.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\pt-br.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\pt.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\ro.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\ru.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\si.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\sk.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\sl.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\sq.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\sr-latn.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\sr.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\sv.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\th.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\tr.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\ug.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\uk.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\vi.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\zh-cn.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\lang\zh.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\a11yhelp.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\ar.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\bg.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\ca.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\cs.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\cy.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\da.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\de.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\el.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\en.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\eo.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\es.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\et.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\fa.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\fi.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\fr-ca.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\fr.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\gl.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\gu.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\he.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\hi.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\hr.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\hu.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\id.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\it.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\ja.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\km.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\ku.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\lt.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\lv.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\mk.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\mn.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\nb.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\nl.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\no.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\pl.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\pt-br.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\pt.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\ro.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\ru.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\si.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\sk.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\sl.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\sq.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\sr-latn.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\sr.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\sv.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\th.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\tr.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\ug.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\uk.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\vi.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\zh-cn.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\a11yhelp\dialogs\lang\_translationstatus.txt" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\about\dialogs\about.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\about\dialogs\hidpi\logo_ckeditor.png" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\about\dialogs\logo_ckeditor.png" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\clipboard\dialogs\paste.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\colordialog\dialogs\colordialog.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\dialog\dialogDefinition.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\div\dialogs\div.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\fakeobjects\images\spacer.gif" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\find\dialogs\find.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\flash\dialogs\flash.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\flash\images\placeholder.png" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\forms\dialogs\button.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\forms\dialogs\checkbox.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\forms\dialogs\form.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\forms\dialogs\hiddenfield.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\forms\dialogs\radio.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\forms\dialogs\select.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\forms\dialogs\textarea.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\forms\dialogs\textfield.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\forms\images\hiddenfield.gif" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\icons.png" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\icons_hidpi.png" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\iframe\dialogs\iframe.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\iframe\images\placeholder.png" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\image\dialogs\image.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\image\images\noimage.png" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\link\dialogs\anchor.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\link\dialogs\link.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\link\images\anchor.png" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\link\images\hidpi\anchor.png" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\liststyle\dialogs\liststyle.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\magicline\images\hidpi\icon.png" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\magicline\images\icon.png" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\pagebreak\images\pagebreak.gif" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\pastefromword\filter\default.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\preview\preview.html" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\scayt\dialogs\options.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\scayt\dialogs\toolbar.css" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\showblocks\images\block_address.png" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\showblocks\images\block_blockquote.png" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\showblocks\images\block_div.png" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\showblocks\images\block_h1.png" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\showblocks\images\block_h2.png" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\showblocks\images\block_h3.png" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\showblocks\images\block_h4.png" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\showblocks\images\block_h5.png" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\showblocks\images\block_h6.png" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\showblocks\images\block_p.png" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\showblocks\images\block_pre.png" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\smiley\dialogs\smiley.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\smiley\images\angel_smile.gif" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\smiley\images\angry_smile.gif" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\smiley\images\broken_heart.gif" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\smiley\images\confused_smile.gif" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\smiley\images\cry_smile.gif" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\smiley\images\devil_smile.gif" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\smiley\images\embaressed_smile.gif" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\smiley\images\embarrassed_smile.gif" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\smiley\images\envelope.gif" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\smiley\images\heart.gif" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\smiley\images\kiss.gif" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\smiley\images\lightbulb.gif" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\smiley\images\omg_smile.gif" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\smiley\images\regular_smile.gif" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\smiley\images\sad_smile.gif" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\smiley\images\shades_smile.gif" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\smiley\images\teeth_smile.gif" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\smiley\images\thumbs_down.gif" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\smiley\images\thumbs_up.gif" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\smiley\images\tongue_smile.gif" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\smiley\images\tounge_smile.gif" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\smiley\images\whatchutalkingabout_smile.gif" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\smiley\images\wink_smile.gif" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\ar.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\bg.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\ca.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\cs.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\cy.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\de.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\el.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\en.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\eo.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\es.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\et.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\fa.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\fi.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\fr-ca.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\fr.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\gl.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\he.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\hr.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\hu.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\id.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\it.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\ja.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\ku.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\lv.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\nb.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\nl.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\no.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\pl.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\pt-br.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\pt.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\ru.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\si.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\sk.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\sl.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\sq.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\sv.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\th.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\tr.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\ug.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\uk.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\vi.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\zh-cn.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\lang\_translationstatus.txt" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\specialchar\dialogs\specialchar.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\tabletools\dialogs\tableCell.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\table\dialogs\table.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\templates\dialogs\templates.css" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\templates\dialogs\templates.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\templates\templates\default.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\templates\templates\images\template1.gif" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\templates\templates\images\template2.gif" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\templates\templates\images\template3.gif" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\wsc\dialogs\ciframe.html" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\wsc\dialogs\tmp.html" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\wsc\dialogs\tmpFrameset.html" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\wsc\dialogs\wsc.css" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\wsc\dialogs\wsc.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\wsc\dialogs\wsc_ie.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\ajax.html" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\api.html" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\appendto.html" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\assets\inlineall\logo.png" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\assets\outputxhtml\outputxhtml.css" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\assets\sample.css" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\assets\sample.jpg" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\assets\uilanguages\languages.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\datafiltering.html" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\divreplace.html" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\index.html" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\inlineall.html" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\inlinebycode.html" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\inlinetextarea.html" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\jquery.html" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\plugins\dialog\assets\my_dialog.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\plugins\dialog\dialog.html" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\plugins\enterkey\enterkey.html" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.swf" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\plugins\htmlwriter\assets\outputforflash\swfobject.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\plugins\htmlwriter\outputforflash.html" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\plugins\htmlwriter\outputhtml.html" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\plugins\magicline\magicline.html" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\plugins\toolbar\toolbar.html" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\plugins\wysiwygarea\fullpage.html" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\readonly.html" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\replacebyclass.html" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\replacebycode.html" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\sample.css" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\sample.js" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\tabindex.html" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\uicolor.html" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\uilanguages.html" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\xhtmlstyle.html" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\skins\moono\dialog.css" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\skins\moono\dialog_ie.css" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\skins\moono\dialog_ie7.css" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\skins\moono\dialog_ie8.css" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\skins\moono\dialog_iequirks.css" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\skins\moono\dialog_opera.css" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\skins\moono\editor.css" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\skins\moono\editor_gecko.css" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\skins\moono\editor_ie.css" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\skins\moono\editor_ie7.css" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\skins\moono\editor_ie8.css" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\skins\moono\editor_iequirks.css" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\skins\moono\icons.png" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\skins\moono\icons_hidpi.png" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\skins\moono\images\arrow.png" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\skins\moono\images\close.png" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\skins\moono\images\hidpi\close.png" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\skins\moono\images\hidpi\lock-open.png" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\skins\moono\images\hidpi\lock.png" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\skins\moono\images\hidpi\refresh.png" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\skins\moono\images\lock-open.png" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\skins\moono\images\lock.png" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\skins\moono\images\refresh.png" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\styles.js" />
+    <Content Include="Content\BackTemplate\vendors\easypiechart\examples\excanvas.js" />
+    <Content Include="Content\BackTemplate\vendors\easypiechart\examples\index.html" />
+    <Content Include="Content\BackTemplate\vendors\easypiechart\examples\style.css" />
+    <Content Include="Content\BackTemplate\vendors\easypiechart\jquery.easy-pie-chart.css" />
+    <Content Include="Content\BackTemplate\vendors\easypiechart\jquery.easy-pie-chart.js" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\ajax\index.html" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\annotating\index.html" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\axes-interacting\index.html" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\axes-multiple\index.html" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\axes-time-zones\date.js" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\axes-time-zones\index.html" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\axes-time\index.html" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\background.png" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\basic-canvas.html" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\basic-options\index.html" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\basic-usage\index.html" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\canvas\index.html" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\categories\index.html" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\examples.css" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\image\hs-2004-27-a-large-web.jpg" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\image\index.html" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\index.html" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\interacting\index.html" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\navigate\arrow-down.gif" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\navigate\arrow-left.gif" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\navigate\arrow-right.gif" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\navigate\arrow-up.gif" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\navigate\index.html" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\percentiles\index.html" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\realtime\index.html" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\resize\index.html" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\selection\index.html" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\series-errorbars\index.html" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\series-pie\index.html" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\series-toggle\index.html" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\series-types\index.html" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\shared\jquery-ui\jquery-ui.min.css" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\stacking\index.html" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\symbols\index.html" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\threshold\index.html" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\tracking\index.html" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\visitors\index.html" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\zooming\index.html" />
+    <Content Include="Content\BackTemplate\vendors\flot\excanvas.js" />
+    <Content Include="Content\BackTemplate\vendors\flot\excanvas.min.js" />
+    <Content Include="Content\BackTemplate\vendors\flot\jquery.colorhelpers.js" />
+    <Content Include="Content\BackTemplate\vendors\flot\jquery.flot.canvas.js" />
+    <Content Include="Content\BackTemplate\vendors\flot\jquery.flot.categories.js" />
+    <Content Include="Content\BackTemplate\vendors\flot\jquery.flot.crosshair.js" />
+    <Content Include="Content\BackTemplate\vendors\flot\jquery.flot.errorbars.js" />
+    <Content Include="Content\BackTemplate\vendors\flot\jquery.flot.fillbetween.js" />
+    <Content Include="Content\BackTemplate\vendors\flot\jquery.flot.image.js" />
+    <Content Include="Content\BackTemplate\vendors\flot\jquery.flot.js" />
+    <Content Include="Content\BackTemplate\vendors\flot\jquery.flot.navigate.js" />
+    <Content Include="Content\BackTemplate\vendors\flot\jquery.flot.pie.js" />
+    <Content Include="Content\BackTemplate\vendors\flot\jquery.flot.resize.js" />
+    <Content Include="Content\BackTemplate\vendors\flot\jquery.flot.selection.js" />
+    <Content Include="Content\BackTemplate\vendors\flot\jquery.flot.stack.js" />
+    <Content Include="Content\BackTemplate\vendors\flot\jquery.flot.symbol.js" />
+    <Content Include="Content\BackTemplate\vendors\flot\jquery.flot.threshold.js" />
+    <Content Include="Content\BackTemplate\vendors\flot\jquery.flot.time.js" />
+    <Content Include="Content\BackTemplate\vendors\flot\jquery.js" />
+    <Content Include="Content\BackTemplate\vendors\flot\LICENSE.txt" />
+    <Content Include="Content\BackTemplate\vendors\form-helpers\css\bootstrap-formhelpers.css" />
+    <Content Include="Content\BackTemplate\vendors\form-helpers\css\bootstrap-formhelpers.min.css" />
+    <Content Include="Content\BackTemplate\vendors\form-helpers\img\bootstrap-formhelpers-countries.flags-LICENSE.txt" />
+    <Content Include="Content\BackTemplate\vendors\form-helpers\img\bootstrap-formhelpers-countries.flags.png" />
+    <Content Include="Content\BackTemplate\vendors\form-helpers\img\bootstrap-formhelpers-currencies.flags.png" />
+    <Content Include="Content\BackTemplate\vendors\form-helpers\img\bootstrap-formhelpers-googlefonts.png" />
+    <Content Include="Content\BackTemplate\vendors\form-helpers\js\bootstrap-formhelpers.js" />
+    <Content Include="Content\BackTemplate\vendors\form-helpers\js\bootstrap-formhelpers.min.js" />
+    <Content Include="Content\BackTemplate\vendors\fullcalendar\fullcalendar.css" />
+    <Content Include="Content\BackTemplate\vendors\fullcalendar\fullcalendar.js" />
+    <Content Include="Content\BackTemplate\vendors\fullcalendar\fullcalendar.min.js" />
+    <Content Include="Content\BackTemplate\vendors\fullcalendar\fullcalendar.print.css" />
+    <Content Include="Content\BackTemplate\vendors\fullcalendar\gcal.js" />
+    <Content Include="Content\BackTemplate\vendors\jquery.knob.js" />
+    <Content Include="Content\BackTemplate\vendors\mask\jquery.maskedinput.min.js" />
+    <Content Include="Content\BackTemplate\vendors\moment\moment.min.js" />
+    <Content Include="Content\BackTemplate\vendors\morris\morris.css" />
+    <Content Include="Content\BackTemplate\vendors\morris\morris.js" />
+    <Content Include="Content\BackTemplate\vendors\morris\morris.min.js" />
+    <Content Include="Content\BackTemplate\vendors\raphael-min.js" />
+    <Content Include="Content\BackTemplate\vendors\select2\select2-bootstrap.css" />
+    <Content Include="Content\BackTemplate\vendors\select2\select2.css" />
+    <Content Include="Content\BackTemplate\vendors\select2\select2.js" />
+    <Content Include="Content\BackTemplate\vendors\select\bootstrap-select.css" />
+    <Content Include="Content\BackTemplate\vendors\select\bootstrap-select.js" />
+    <Content Include="Content\BackTemplate\vendors\select\bootstrap-select.min.css" />
+    <Content Include="Content\BackTemplate\vendors\select\bootstrap-select.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tags\css\bootstrap-tags.css" />
+    <Content Include="Content\BackTemplate\vendors\tags\js\bootstrap-tags.js" />
+    <Content Include="Content\BackTemplate\vendors\tags\js\bootstrap-tags.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\changelog.txt" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\jquery.tinymce.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\license.txt" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\advlist\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\anchor\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\autolink\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\autoresize\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\autosave\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\bbcode\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\charmap\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\code\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\compat3x\editable_selects.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\compat3x\form_utils.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\compat3x\mctabs.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\compat3x\tiny_mce_popup.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\compat3x\validate.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\contextmenu\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\directionality\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\emoticons\img\smiley-cool.gif" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\emoticons\img\smiley-cry.gif" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\emoticons\img\smiley-embarassed.gif" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\emoticons\img\smiley-foot-in-mouth.gif" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\emoticons\img\smiley-frown.gif" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\emoticons\img\smiley-innocent.gif" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\emoticons\img\smiley-kiss.gif" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\emoticons\img\smiley-laughing.gif" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\emoticons\img\smiley-money-mouth.gif" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\emoticons\img\smiley-sealed.gif" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\emoticons\img\smiley-smile.gif" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\emoticons\img\smiley-surprised.gif" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\emoticons\img\smiley-tongue-out.gif" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\emoticons\img\smiley-undecided.gif" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\emoticons\img\smiley-wink.gif" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\emoticons\img\smiley-yell.gif" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\emoticons\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\example\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\example_dependency\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\fullpage\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\fullscreen\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\hr\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\image\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\importcss\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\insertdatetime\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\layer\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\legacyoutput\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\link\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\lists\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\media\moxieplayer.swf" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\media\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\nonbreaking\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\noneditable\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\pagebreak\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\paste\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\preview\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\print\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\save\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\searchreplace\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\spellchecker\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\tabfocus\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\table\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\template\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\textcolor\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\visualblocks\css\visualblocks.css" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\visualblocks\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\visualchars\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\plugins\wordcount\plugin.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\skins\lightgray\content.inline.min.css" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\skins\lightgray\content.min.css" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\skins\lightgray\fonts\icomoon-small.svg" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\skins\lightgray\fonts\icomoon.svg" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\skins\lightgray\img\anchor.gif" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\skins\lightgray\img\loader.gif" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\skins\lightgray\img\object.gif" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\skins\lightgray\img\trans.gif" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\skins\lightgray\img\wline.gif" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\skins\lightgray\skin.ie7.min.css" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\skins\lightgray\skin.min.css" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\themes\modern\theme.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\tinymce.min.js" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\LICENSE.TXT" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\FrontTemplate\css\animate.css" />
+    <Content Include="Content\FrontTemplate\css\bootstrap.min.css" />
+    <Content Include="Content\FrontTemplate\css\font-awesome.min.css" />
+    <Content Include="Content\FrontTemplate\css\magnific-popup.css" />
+    <Content Include="Content\FrontTemplate\css\owl.carousel.css" />
+    <Content Include="Content\FrontTemplate\css\themify-icons.css" />
+    <Content Include="Content\FrontTemplate\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\FrontTemplate\fonts\themify.svg" />
+    <Content Include="Content\FrontTemplate\fonts\Yekan\Yekan.svg" />
+    <Content Include="Content\FrontTemplate\img\bannerr.png" />
+    <Content Include="Content\FrontTemplate\img\banner-.png" />
+    <Content Include="Content\FrontTemplate\img\blog-img\b1.jpg" />
+    <Content Include="Content\FrontTemplate\img\blog-img\b10.jpg" />
+    <Content Include="Content\FrontTemplate\img\blog-img\b11.jpg" />
+    <Content Include="Content\FrontTemplate\img\blog-img\b12.jpg" />
+    <Content Include="Content\FrontTemplate\img\blog-img\b13.jpg" />
+    <Content Include="Content\FrontTemplate\img\blog-img\b14.jpg" />
+    <Content Include="Content\FrontTemplate\img\blog-img\b15.jpg" />
+    <Content Include="Content\FrontTemplate\img\blog-img\b16.jpg" />
+    <Content Include="Content\FrontTemplate\img\blog-img\b17.jpg" />
+    <Content Include="Content\FrontTemplate\img\blog-img\b18.jpg" />
+    <Content Include="Content\FrontTemplate\img\blog-img\b19.jpg" />
+    <Content Include="Content\FrontTemplate\img\blog-img\b2.jpg" />
+    <Content Include="Content\FrontTemplate\img\blog-img\b20.jpg" />
+    <Content Include="Content\FrontTemplate\img\blog-img\b21.jpg" />
+    <Content Include="Content\FrontTemplate\img\blog-img\b22.jpg" />
+    <Content Include="Content\FrontTemplate\img\blog-img\b23.jpg" />
+    <Content Include="Content\FrontTemplate\img\blog-img\b24.jpg" />
+    <Content Include="Content\FrontTemplate\img\blog-img\b3.jpg" />
+    <Content Include="Content\FrontTemplate\img\blog-img\b4.jpg" />
+    <Content Include="Content\FrontTemplate\img\blog-img\b5.jpg" />
+    <Content Include="Content\FrontTemplate\img\blog-img\b6.jpg" />
+    <Content Include="Content\FrontTemplate\img\blog-img\b7.jpg" />
+    <Content Include="Content\FrontTemplate\img\blog-img\b8.jpg" />
+    <Content Include="Content\FrontTemplate\img\blog-img\bg1.jpg" />
+    <Content Include="Content\FrontTemplate\img\blog-img\bg2.jpg" />
+    <Content Include="Content\FrontTemplate\img\blog-img\bg3.jpg" />
+    <Content Include="Content\FrontTemplate\img\blog-img\bg4.jpg" />
+    <Content Include="Content\FrontTemplate\img\blog-img\photo_2018-08-21_19-50-34.jpg" />
+    <Content Include="Content\FrontTemplate\img\blog-img\photo_2018-08-21_19-50-41.jpg" />
+    <Content Include="Content\FrontTemplate\img\blog-img\photo_2018-08-21_19-50-47.jpg" />
+    <Content Include="Content\FrontTemplate\img\banner.png" />
+    <Content Include="Content\FrontTemplate\img\footer.jpg" />
+    <Content Include="Content\FrontTemplate\img\footer2.jpg" />
+    <Content Include="Content\FrontTemplate\img\kashi.jpg" />
+    <Content Include="Content\FrontTemplate\img\lefttop.png" />
+    <Content Include="Content\FrontTemplate\img\lkashi.jpg" />
+    <Content Include="Content\FrontTemplate\img\middletop.png" />
+    <Content Include="Content\FrontTemplate\img\newpic\banner1366.jpg" />
+    <Content Include="Content\FrontTemplate\img\newpic\banner1920.jpg" />
+    <Content Include="Content\FrontTemplate\img\newpic\banner220.jpg" />
+    <Content Include="Content\FrontTemplate\img\newpic\banner320.jpg" />
+    <Content Include="Content\FrontTemplate\img\newpic\banner480.jpg" />
+    <Content Include="Content\FrontTemplate\img\newpic\banner720.jpg" />
+    <Content Include="Content\FrontTemplate\img\newpic\lefttop1366.jpg" />
+    <Content Include="Content\FrontTemplate\img\newpic\lefttop1920.jpg" />
+    <Content Include="Content\FrontTemplate\img\newpic\lefttop480.jpg" />
+    <Content Include="Content\FrontTemplate\img\newpic\lefttop720.jpg" />
+    <Content Include="Content\FrontTemplate\img\newpic\middletop1366.jpg" />
+    <Content Include="Content\FrontTemplate\img\newpic\middletop1920.jpg" />
+    <Content Include="Content\FrontTemplate\img\newpic\middletop480.jpg" />
+    <Content Include="Content\FrontTemplate\img\newpic\middletop720.jpg" />
+    <Content Include="Content\FrontTemplate\img\newpic\righttop1366.jpg" />
+    <Content Include="Content\FrontTemplate\img\newpic\righttop1920.jpg" />
+    <Content Include="Content\FrontTemplate\img\newpic\righttop480.jpg" />
+    <Content Include="Content\FrontTemplate\img\newpic\righttop720.jpg" />
+    <Content Include="Content\FrontTemplate\img\no-image-icon.png" />
+    <Content Include="Content\FrontTemplate\img\righttop.png" />
+    <Content Include="Content\FrontTemplate\img\textfile.jpg" />
+    <Content Include="Content\FrontTemplate\img\vert.png" />
+    <Content Include="Content\FrontTemplate\js\active.js" />
+    <Content Include="Content\FrontTemplate\js\bootstrap.min.js" />
+    <Content Include="Content\FrontTemplate\js\jquery-2.2.4.min.js" />
+    <Content Include="Content\FrontTemplate\js\map-active.js" />
+    <Content Include="Content\FrontTemplate\js\plugins.js" />
+    <Content Include="Content\FrontTemplate\js\popper.min.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\dist\blank.mp4" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\dist\plyr.css" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\dist\plyr.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\dist\plyr.min.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\dist\plyr.polyfilled.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\dist\plyr.polyfilled.min.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\dist\plyr.svg" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\js\captions.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\js\config\defaults.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\js\config\types.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\js\console.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\js\controls.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\js\fullscreen.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\js\html5.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\js\i18n.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\js\listeners.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\js\media.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\js\plugins\ads.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\js\plugins\vimeo.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\js\plugins\youtube.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\js\plyr.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\js\plyr.polyfilled.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\js\source.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\js\storage.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\js\support.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\js\ui.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\js\utils\animation.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\js\utils\arrays.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\js\utils\browser.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\js\utils\elements.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\js\utils\events.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\js\utils\fetch.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\js\utils\is.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\js\utils\loadImage.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\js\utils\loadScript.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\js\utils\loadSprite.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\js\utils\objects.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\js\utils\strings.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\js\utils\time.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\js\utils\urls.js" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sprite\plyr-airplay.svg" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sprite\plyr-captions-off.svg" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sprite\plyr-captions-on.svg" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sprite\plyr-enter-fullscreen.svg" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sprite\plyr-exit-fullscreen.svg" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sprite\plyr-fast-forward.svg" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sprite\plyr-muted.svg" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sprite\plyr-pause.svg" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sprite\plyr-pip.svg" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sprite\plyr-play.svg" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sprite\plyr-restart.svg" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sprite\plyr-rewind.svg" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sprite\plyr-settings.svg" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sprite\plyr-volume.svg" />
+    <Content Include="Content\FrontTemplate\style.css" />
+    <Content Include="Content\FrontTemplate\videojs\video-js.css" />
+    <Content Include="Content\FrontTemplate\videojs\video-js.min.css" />
+    <Content Include="Content\FrontTemplate\videojs\video.cjs.js" />
+    <Content Include="Content\FrontTemplate\videojs\video.es.js" />
+    <Content Include="Content\FrontTemplate\videojs\video.js" />
+    <Content Include="Content\FrontTemplate\videojs\video.min.js" />
+    <Content Include="Controllers\Loggings.svc" />
+    <Content Include="favicon.ico" />
+    <Content Include="Files\ErrorPages\404 page.png" />
+    <Content Include="Files\ErrorPages\404.html" />
+    <Content Include="Files\ErrorPages\405 page.jpg" />
+    <Content Include="Files\ErrorPages\405.html" />
+    <Content Include="Files\ErrorPages\500 page.png" />
+    <Content Include="Files\ErrorPages\500.html" />
+    <Content Include="Files\ErrorPages\503 page.png" />
+    <Content Include="Files\ErrorPages\503.html" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Models\DomainModel\Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\DomainModel\Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.cs</LastGenOutput>
+    </Content>
+    <Content Include="robot.txt" />
+    <Content Include="Scripts\ai.0.22.9-build00167.js" />
+    <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="Scripts\AjaxForm\jquery.form.js" />
+    <Content Include="Scripts\AjaxForm\jquery.form.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\FrontTemplate\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\FrontTemplate\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\FrontTemplate\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\FrontTemplate\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\FrontTemplate\fonts\FontAwesome.otf" />
+    <Content Include="Content\FrontTemplate\fonts\themify.eot" />
+    <Content Include="Content\FrontTemplate\fonts\themify.ttf" />
+    <Content Include="Content\FrontTemplate\fonts\themify.woff" />
+    <Content Include="Content\FrontTemplate\scss\style.scss" />
+    <Content Include="Content\FrontTemplate\scss\_mixin.scss" />
+    <Content Include="Content\FrontTemplate\scss\_responsive.scss" />
+    <Content Include="Content\FrontTemplate\scss\_theme_color.scss" />
+    <Content Include="Content\FrontTemplate\scss\_variables.scss" />
+    <Content Include="Content\BackTemplate\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\BackTemplate\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\BackTemplate\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\.gitignore" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\.settings\.gitignore" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\component.json" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\Gemfile" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\Gemfile.lock" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\LICENCE" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\Rakefile" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\readme.textile" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\test\lib" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\test\README" />
+    <Content Include="Content\BackTemplate\vendors\bootstrap-wysihtml5\VERSION" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\CHANGES.md" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\LICENSE.md" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\scayt\LICENSE.md" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\scayt\README.md" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\wsc\LICENSE.md" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\plugins\wsc\README.md" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\README.md" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\assets\posteddata.php" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.fla" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\samples\sample_posteddata.php" />
+    <Content Include="Content\BackTemplate\vendors\ckeditor\skins\moono\readme.md" />
+    <Content Include="Content\BackTemplate\vendors\flot\.gitignore" />
+    <Content Include="Content\BackTemplate\vendors\flot\.travis.yml" />
+    <Content Include="Content\BackTemplate\vendors\flot\API.md" />
+    <Content Include="Content\BackTemplate\vendors\flot\component.json" />
+    <Content Include="Content\BackTemplate\vendors\flot\CONTRIBUTING.md" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\ajax\data-eu-gdp-growth-1.json" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\ajax\data-eu-gdp-growth-2.json" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\ajax\data-eu-gdp-growth-3.json" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\ajax\data-eu-gdp-growth-4.json" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\ajax\data-eu-gdp-growth-5.json" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\ajax\data-eu-gdp-growth.json" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\ajax\data-japan-gdp-growth.json" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\ajax\data-usa-gdp-growth.json" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\axes-time-zones\tz\africa" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\axes-time-zones\tz\antarctica" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\axes-time-zones\tz\asia" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\axes-time-zones\tz\australasia" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\axes-time-zones\tz\backward" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\axes-time-zones\tz\etcetera" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\axes-time-zones\tz\europe" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\axes-time-zones\tz\factory" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\axes-time-zones\tz\iso3166.tab" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\axes-time-zones\tz\leapseconds" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\axes-time-zones\tz\northamerica" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\axes-time-zones\tz\pacificnew" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\axes-time-zones\tz\solar87" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\axes-time-zones\tz\solar88" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\axes-time-zones\tz\solar89" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\axes-time-zones\tz\southamerica" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\axes-time-zones\tz\systemv" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\axes-time-zones\tz\yearistype.sh" />
+    <Content Include="Content\BackTemplate\vendors\flot\examples\axes-time-zones\tz\zone.tab" />
+    <Content Include="Content\BackTemplate\vendors\flot\FAQ.md" />
+    <Content Include="Content\BackTemplate\vendors\flot\flot.jquery.json" />
+    <Content Include="Content\BackTemplate\vendors\flot\Makefile" />
+    <Content Include="Content\BackTemplate\vendors\flot\NEWS.md" />
+    <Content Include="Content\BackTemplate\vendors\flot\package.json" />
+    <Content Include="Content\BackTemplate\vendors\flot\PLUGINS.md" />
+    <Content Include="Content\BackTemplate\vendors\flot\README.md" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\langs\readme.md" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\skins\lightgray\fonts\icomoon-small.eot" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\skins\lightgray\fonts\icomoon-small.ttf" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\skins\lightgray\fonts\icomoon-small.woff" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\skins\lightgray\fonts\icomoon.eot" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\skins\lightgray\fonts\icomoon.ttf" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\skins\lightgray\fonts\icomoon.woff" />
+    <Content Include="Content\BackTemplate\vendors\tinymce\js\tinymce\skins\lightgray\fonts\readme.md" />
+    <EntityDeploy Include="Models\DomainModel\Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DomainModel\Model.edmx.diagram">
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Content>
+    <Content Include="Content\FrontTemplate\plyrPlayer\dist\plyr.js.map" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\dist\plyr.min.js.map" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\dist\plyr.polyfilled.js.map" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\dist\plyr.polyfilled.min.js.map" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sass\components\badges.scss" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sass\components\captions.scss" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sass\components\control.scss" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sass\components\controls.scss" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sass\components\embed.scss" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sass\components\menus.scss" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sass\components\poster.scss" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sass\components\progress.scss" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sass\components\sliders.scss" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sass\components\times.scss" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sass\components\tooltips.scss" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sass\components\video.scss" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sass\components\volume.scss" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sass\lib\animation.scss" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sass\lib\functions.scss" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sass\lib\mixins.scss" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sass\settings\badges.scss" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sass\settings\breakpoints.scss" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sass\settings\captions.scss" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sass\settings\colors.scss" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sass\settings\controls.scss" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sass\settings\cosmetics.scss" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sass\settings\helpers.scss" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sass\settings\menus.scss" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sass\settings\progress.scss" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sass\settings\sliders.scss" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sass\settings\tooltips.scss" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sass\settings\type.scss" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sass\states\fullscreen.scss" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sass\utils\animation.scss" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sass\utils\hidden.scss" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sass\base.scss" />
+    <Content Include="Content\FrontTemplate\plyrPlayer\src\sass\plyr.scss" />
+    <Content Include="Content\FrontTemplate\fonts\Yekan\Yekan.eot" />
+    <Content Include="Content\FrontTemplate\fonts\Yekan\Yekan.ttf" />
+    <Content Include="Content\FrontTemplate\fonts\Yekan\Yekan.woff" />
+    <Content Include="Content\FrontTemplate\fonts\BYekan.eot" />
+    <Content Include="Content\FrontTemplate\fonts\BYekan.ttf" />
+    <Content Include="Content\FrontTemplate\fonts\BYekan.woff" />
+    <Content Include="Content\FrontTemplate\fonts\Yekan.eot" />
+    <Content Include="Content\FrontTemplate\fonts\Yekan.ttf" />
+    <Content Include="Content\FrontTemplate\fonts\Yekan.woff" />
+    <Content Include="Content\FrontTemplate\fonts\yekannumbers-regular.eot" />
+    <Content Include="Content\FrontTemplate\fonts\yekannumbers-regular.ttf" />
+    <Content Include="Content\FrontTemplate\fonts\yekannumbers-regular.woff" />
+    <Content Include="Content\BackTemplate\fonts\BYekan.eot" />
+    <Content Include="Content\BackTemplate\fonts\BYekan.ttf" />
+    <Content Include="Content\BackTemplate\fonts\BYekan.woff" />
+    <Content Include="Content\BackTemplate\fonts\Yekan.eot" />
+    <Content Include="Content\BackTemplate\fonts\Yekan.ttf" />
+    <Content Include="Content\BackTemplate\fonts\Yekan.woff" />
+    <Content Include="Content\BackTemplate\fonts\yekannumbers-regular.eot" />
+    <Content Include="Content\BackTemplate\fonts\yekannumbers-regular.ttf" />
+    <Content Include="Content\BackTemplate\fonts\yekannumbers-regular.woff" />
+    <Content Include="Content\FrontTemplate\fonts\B-Titr\B Titr Bold_0.ttf" />
+    <Content Include="Content\FrontTemplate\fonts\B Nazanin\B Nazanin Bold.TTF" />
+    <Content Include="Content\FrontTemplate\fonts\B Nazanin\B Nazanin.ttf" />
+    <None Include="Properties\PublishProfiles\alireza.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Ckfinder\ckfinder.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui.css" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery-ui.min.css" />
+    <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\jquery-ui.structure.css" />
+    <Content Include="Scripts\jquery-ui.structure.min.css" />
+    <Content Include="Scripts\jquery-ui.theme.css" />
+    <Content Include="Scripts\jquery-ui.theme.min.css" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Categories.cshtml" />
+    <Content Include="Views\Admin\_ChildCategoryPartialView.cshtml" />
+    <Content Include="Views\Admin\AddCategory.cshtml" />
+    <Content Include="Views\Admin\EditCategory.cshtml" />
+    <Content Include="Views\Admin\DeleteCategory.cshtml" />
+    <Content Include="Views\Admin\_ChildCategoryPartialView_DeleteCategory.cshtml" />
+    <Content Include="Views\Admin\_ChildCategoryPartialView_EditCategory.cshtml" />
+    <Content Include="Views\Admin\EditCategoryForm.cshtml" />
+    <Content Include="Views\Admin\Users.cshtml" />
+    <Content Include="Views\Admin\AddUser.cshtml" />
+    <Content Include="Views\Admin\DeleteUser.cshtml" />
+    <Content Include="Views\Admin\_UserInformationPartialView.cshtml" />
+    <Content Include="Views\Admin\AddLocal.cshtml" />
+    <Content Include="Views\Admin\EditLocal.cshtml" />
+    <Content Include="Views\Admin\DeleteLocal.cshtml" />
+    <Content Include="Views\Admin\Locals.cshtml" />
+    <Content Include="Views\Admin\EditLocalForm.cshtml" />
+    <Content Include="Views\Admin\Posts.cshtml" />
+    <Content Include="Views\Admin\AddPost.cshtml" />
+    <Content Include="Views\Admin\_AddPostFilm.cshtml" />
+    <Content Include="Views\Admin\_AddPostVoice.cshtml" />
+    <Content Include="Views\Admin\_AddPostPaper.cshtml" />
+    <Content Include="Views\Admin\PostDetail.cshtml" />
+    <Content Include="Views\Admin\EditPost.cshtml" />
+    <Content Include="Views\Admin\DeletePost.cshtml" />
+    <Content Include="Views\Admin\EditPostForm.cshtml" />
+    <Content Include="Views\Admin\Doubts.cshtml" />
+    <Content Include="Views\Admin\AddDoubt.cshtml" />
+    <Content Include="Views\Admin\EditDoubt.cshtml" />
+    <Content Include="Views\Admin\DeleteDoubt.cshtml" />
+    <Content Include="Views\Admin\EditDoubtForm.cshtml" />
+    <Content Include="Views\Home\Categories.cshtml" />
+    <Content Include="Views\Home\paper.cshtml" />
+    <Content Include="Views\Home\Video.cshtml" />
+    <Content Include="Views\Home\Audio.cshtml" />
+    <Content Include="Views\Home\MorePost.cshtml" />
+    <Content Include="Views\Home\MoreCategoryPostMedia.cshtml" />
+    <Content Include="Views\Home\MoreCategoryPostPaper.cshtml" />
+    <Content Include="Views\Home\ContactUs.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
+    <Content Include="Views\Home\SearchResult.cshtml" />
+    <Content Include="Views\Home\_SearchResultAsYouType.cshtml" />
+    <Content Include="Views\Admin\Logs.cshtml" />
+    <Content Include="Views\Admin\DoubtDetail.cshtml" />
+    <Content Include="Views\Admin\Questions.cshtml" />
+    <Content Include="Views\Admin\QuestionDetail.cshtml" />
+    <Content Include="Views\Admin\EditQuestion.cshtml" />
+    <Content Include="Views\Admin\DeleteQuestion.cshtml" />
+    <Content Include="Views\Admin\AddQuestion.cshtml" />
+    <Content Include="Views\Admin\EditQuestionForm.cshtml" />
+    <Content Include="Views\Admin\Books.cshtml" />
+    <Content Include="Views\Admin\BookDetail.cshtml" />
+    <Content Include="Views\Admin\AddBook.cshtml" />
+    <Content Include="Views\Admin\EditBook.cshtml" />
+    <Content Include="Views\Admin\DeleteBook.cshtml" />
+    <Content Include="Views\Admin\EditBookForm.cshtml" />
+    <Content Include="Views\Admin\Sliders.cshtml" />
+    <Content Include="Views\Admin\AddSlider.cshtml" />
+    <Content Include="Views\Admin\DeleteSlider.cshtml" />
+    <Content Include="Views\Home\MorePostFiles.cshtml" />
+    <Content Include="Views\Home\MoreCategoryFile.cshtml" />
+    <Content Include="Views\Home\Doubt.cshtml" />
+    <Content Include="Views\Home\Question.cshtml" />
+    <Content Include="Views\Home\MoreDoubt.cshtml" />
+    <Content Include="Views\Home\MoreQuestion.cshtml" />
+    <Content Include="Views\Home\DoubtDetail.cshtml" />
+    <Content Include="Views\Home\QuestionDetail.cshtml" />
+    <Content Include="Views\Admin\_UserLoggedIn.cshtml" />
+    <Content Include="Views\Admin\UserMessages.cshtml" />
+    <Content Include="Views\Admin\DeleteUserMessage.cshtml" />
+    <Content Include="Views\Admin\_UserMessagePartialView.cshtml" />
+    <Content Include="Views\Home\BookDetail.cshtml" />
+    <Content Include="Views\Admin\EditPostFormMedia.cshtml" />
+    <Content Include="Views\Admin\GalleryManagement.cshtml" />
+    <Content Include="Views\Admin\_FetchGalleryFolder.cshtml" />
+    <Content Include="Views\Admin\simpleLogs.cshtml" />
+    <Content Include="Views\Admin\Serats.cshtml" />
+    <Content Include="Views\Admin\EditSerats.cshtml" />
+    <Content Include="Views\Admin\DeleteSerats.cshtml" />
+    <Content Include="Views\Admin\AddSerats.cshtml" />
+    <Content Include="Views\Admin\EditSeratForm.cshtml" />
+    <Content Include="Views\Admin\SeratDetail.cshtml" />
+    <Content Include="Views\Home\MoreCategoryPostSerat.cshtml" />
+    <Content Include="Views\Home\Show.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\BackTemplate\vendors\datatables\" />
+    <Folder Include="Content\BackTemplate\vendors\wizard\" />
+    <Folder Include="Content\BackTemplate\vendors\wysiwyg\" />
+    <Folder Include="Content\FrontTemplate\img\core-img\" />
+    <Folder Include="Files\books\" />
+    <Folder Include="Files\films\" />
+    <Folder Include="Files\Gallery\" />
+    <Folder Include="Files\Serat\" />
+    <Folder Include="Files\slider\" />
+    <Folder Include="Files\voices\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1952</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:8001/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

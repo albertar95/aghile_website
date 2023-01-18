@@ -1,0 +1,35 @@
+﻿@model IEnumerable<SWProject.Models.DomainModel.File_DataFiles>
+
+
+<div class="world-catagory-area">
+    <div class="tab-content">
+        <div class="col-12 col-lg-12 bordered">
+
+            <div class="title" style="text-align:right;font-size:18px;font-weight:700;">
+                <h5>کتابخانه</h5>
+                <hr />
+            </div>
+            @foreach (var tcps3 in Model)
+            {
+                <div class="single-blog-post post-style-4 d-flex align-items-center wow fadeInUpBig" data-wow-delay="0.2s">
+                    <!-- Post Thumbnail -->
+                    <div class="post-thumbnail">
+                            <img style="height:150px !important;width:200px !important;float:right;margin-top:10px;" src="~/Content/FrontTemplate/img/textfile.jpg" alt="">
+                    </div>
+                    <!-- Post Content -->
+                    <div class="post-content">
+                            <a href="book?title=@tcps3.Caption" class="headline">
+                                <h5>@tcps3.Caption</h5>
+                            </a>
+                        
+                        <!-- Post Meta -->
+                        <div class="post-meta">
+                            @*<p><a href="#" class="post-author">@tcps3.User.Name</a> on <a href="#" class="post-date">@tcps3.TimeStamp</a></p>*@
+                        </div>
+                    </div>
+                </div>
+            }
+            <a href="@Url.Content("~/Categories?Name=books")" class="btn btn-primary" style="text-align:right;margin:15px;">< &nbsp; ادامه</a>
+        </div>
+    </div>
+</div>

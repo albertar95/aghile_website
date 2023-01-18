@@ -1,0 +1,13 @@
+﻿@model IEnumerable<SWProject.Models.DomainModel.Category>
+
+@foreach (var subitem in Model)
+{
+     int groot = Convert.ToInt32(ViewData["root"]);
+    <tr class="@Convert.ToString(groot) odd gradeX" gidd="@Convert.ToString(groot)" style="display:none;">
+        <td class="center"></td>
+        <td class="center">@subitem.Title</td>
+        <td class="center">Otto</td>
+        @Html.Partial("_ChildCategoryPartialView", SWProject.Helpers.Admin.Utilities.GetChildCategories(subitem.HierarchyId),new ViewDataDictionary { { "root", groot +1000} })
+    </tr>
+    }
+

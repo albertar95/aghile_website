@@ -1,0 +1,18 @@
+﻿@model IEnumerable<SWProject.Models.DomainModel.Category>
+
+@foreach (var subitem in Model)
+{
+    int groot = Convert.ToInt32(ViewData["root"]);
+    <tr class="@Convert.ToString(groot) odd gradeX" gidd="@Convert.ToString(groot)" style="display:none;">
+        <td class="center"></td>
+        <td class="center">@subitem.Title</td>
+        <td class="center">Otto</td>
+        <td class="center">
+            <a class="btn btn-danger" gid="@subitem.HierarchyId.ToString()"><i class="glyphicon glyphicon-remove"></i>&nbsp; حذف &nbsp;</a>
+        </td>
+        @Html.Partial("_ChildCategoryPartialView_DeleteCategory", SWProject.Helpers.Admin.Utilities.GetChildCategories(subitem.HierarchyId), new ViewDataDictionary { { "root", groot + 1000 } })
+    </tr>
+}
+
+
+

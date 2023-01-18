@@ -1,0 +1,424 @@
+﻿@model SWProject.ViewModels.Front.CategoryViewModel
+
+
+@{
+    ViewBag.Title = "Categories";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="rtop" id="rrtop"></div>
+<div class="ltop" id="lltop"></div>
+<div class="mtop col-8" id="mmtop"></div>
+<div id="contentcolumns" class="col-12 col-lg-12">
+    <div class="col-12 col-lg-1" style="margin-top:0;" id="rrtop2">
+        <div class="col-lg-12 col-md-12 col-sm-12" id="rihgtbordered"></div>
+    </div>
+    <div class="col-12 col-lg-10" id="mmtop2">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-centered" style="padding:50px;" id="middleColumn">
+            <div class="main-content-wrapper section-padding-100" style="margin-top:300px;">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <!-- ============= Post Content Area Start ============= -->
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12" style="text-align:right;word-wrap:break-word;">
+                            <div class="post-content-area mb-100">
+                                <!-- Catagory Area -->
+                                <div class="world-catagory-area">
+                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                        <li class="title" style="right:0;position:absolute;margin-right:50px;">@Model.ThisCategory</li>
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="tab1" data-toggle="tab" href="#world-tab-1" role="tab" aria-controls="world-tab-1" aria-selected="true">همه</a>
+                                        </li>
+                                    </ul>
+                                    @Html.Hidden("pagetitle", Model.ThisCategory)
+                                    <div class="tab-content" id="myTabContent">
+                                        @if (Model.ThisCategory == "برنامه صراط مستقیم")
+                                        {
+                                            <div class="tab-pane fade show active" role="tabpanel" aria-labelledby="tab1">
+                                                <!-- Single Blog Post -->
+                                                <div class="row">
+                                                    <div class="col-12 col-md-12" style="text-align:right;float:right;" id="world-tab-1">
+                                                        @foreach (var soss in Model.serats)
+                                                        {
+                                                            <div class="col col-md-12" style="text-align:right;float:right;">
+                                                                <div class="single-blog-post post-style-4 d-flex align-items-center mmedia">
+                                                                    <!-- Post Thumbnail -->
+                                                                    <div class="post-thumbnail">
+                                                                        @if (soss.ProfilePicId != null)
+                                                                        {
+                                                                            <img style="height:150px !important;width:100px !important;padding:5px;" src="@SWProject.Helpers.Front.Utilities.ToBase64ImageString(soss.Img_DataFiles.FileBody)" alt="">
+                                                                        }
+                                                                        @if (soss.ProfilePicId == null)
+                                                                        {
+                                                                            <img style="height:150px !important;width:100px !important;padding:5px;" src="@Url.Content("~/Content/FrontTemplate/img/no-image-icon.png")" />
+                                                                        }
+                                                                    </div>
+                                                                    <!-- Post Content -->
+                                                                    <div class="post-content" style="width:100% !important;">
+                                                                        @if (soss.Type == 4)
+                                                                        {
+                                                                            <a href="~/show?title=@soss.Title" class="headline">
+                                                                                <h5>@soss.Title</h5>
+                                                                            </a>
+                                                                        }
+                                                                        @if (soss.Type == 2)
+                                                                        {
+                                                                            <a href="~/video?title=@soss.Title" class="headline">
+                                                                                <h5>@soss.Title</h5>
+                                                                            </a>
+                                                                        }
+                                                                        @if (soss.Type == 1)
+                                                                        {
+                                                                            <a href="~/audio?title=@soss.Title" class="headline" style="word-wrap:break-word;">
+                                                                                <h5>@soss.Title</h5>
+                                                                            </a>
+                                                                        }
+                                                                        <!-- Post Meta -->
+                                                                        <div class="post-meta">
+                                                                            @*<p><a href="#" class="post-author">@fov.User.Name</a> on <a href="#" class="post-date">@fov.CreationDate</a></p>*@
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        }
+                                        @if (Model.ThisCategory == "فیلم" || Model.ThisCategory == "صوت")
+                                        {
+                                            <div class="tab-pane fade show active"  role="tabpanel" aria-labelledby="tab1">
+                                                <!-- Single Blog Post -->
+                                                <div class="row">
+                                                    <div class="col-12 col-md-12" style="text-align:right;float:right;" id="world-tab-1">
+                                                        @foreach (var fov in Model.medias)
+                                                        {
+                                                            <div class="col col-md-12" style="text-align:right;float:right;">
+                                                                <div class="single-blog-post post-style-4 d-flex align-items-center mmedia">
+                                                                    <!-- Post Thumbnail -->
+                                                                    <div class="post-thumbnail">
+                                                                    @if (fov.ProfilePicId != null)
+                                                                    {
+                                                                        <img style="height:150px !important;width:100px !important;padding:5px;" src="@SWProject.Helpers.Front.Utilities.ToBase64ImageString(fov.Img_DataFiles.FileBody)" alt="">
+                                                                    }
+                                                                    @if (fov.ProfilePicId == null)
+                                                                    {
+                                                                        <img style="height:150px !important;width:100px !important;padding:5px;" src="@Url.Content("~/Content/FrontTemplate/img/no-image-icon.png")" />
+                                                                    }
+                                                                </div>
+                                                                    <!-- Post Content -->
+                                                                    <div class="post-content" style="width:100% !important;">
+                                                                        @if (fov.Type == 2)
+                                                                        {
+                                                                            <a href="~/video?title=@fov.Title" class="headline">
+                                                                                <h5>@fov.Title</h5>
+                                                                            </a>
+                                                                        }
+                                                                        @if (fov.Type == 1)
+                                                                        {
+                                                                            <a href="~/audio?title=@fov.Title" class="headline" style="word-wrap:break-word;">
+                                                                                <h5>@fov.Title</h5>
+                                                                            </a>
+                                                                        }
+                                                                        <!-- Post Meta -->
+                                                                        <div class="post-meta">
+                                                                            @*<p><a href="#" class="post-author">@fov.User.Name</a> on <a href="#" class="post-date">@fov.CreationDate</a></p>*@
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        }
+                                        @if (Model.ThisCategory == "مقاله")
+                                        {
+                                            <div class="tab-pane fade show active" id="world-tab-1" role="tabpanel" aria-labelledby="tab1">
+                                                <!-- Single Blog Post -->
+                                                @foreach (var ps in Model.papers)
+                                                {
+                                                    <div class="col col-md-12" style="text-align:right;float:right;">
+                                                        <div class="single-blog-post post-style-4 d-flex align-items-center paper mmedia">
+                                                            <!-- Post Thumbnail -->
+                                                            <div class="post-thumbnail">
+                                                            @if (ps.ProfilePicId != null)
+                                                                                {
+                                                                            <img style="height:150px !important;width:100px !important;padding:5px;" src="@SWProject.Helpers.Front.Utilities.ToBase64ImageString(ps.Img_DataFiles.FileBody)" alt="">
+                                                                                }
+                                                            @if (ps.ProfilePicId == null)
+                                                                                {
+                                                                            <img style="height:150px !important;width:100px !important;padding:5px;" src="@Url.Content("~/Content/FrontTemplate/img/no-image-icon.png")" />
+                                                                                }
+                                                        </div>
+                                                            <!-- Post Content -->
+                                                            <div class="post-content">
+                                                                <a href="~/paper?title=@ps.Title" class="headline">
+                                                                    <h5>@ps.Title</h5>
+                                                                </a>
+                                                                <!-- Post Meta -->
+                                                                <div class="post-meta">
+                                                                    @*<p><a href="#" class="post-author">@ps.User.Name</a> on <a href="#" class="post-date">@ps.CreationDate</a></p>*@
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+
+                                        }
+                                        @if (Model.ThisCategory == "کتابخانه")
+                                        {
+                                            <div class="tab-pane fade show active" id="world-tab-1" role="tabpanel" aria-labelledby="tab1">
+                                                <!-- Single Blog Post -->
+                                                @foreach (var fs in Model.files)
+                                                {
+                                                    <div class="col col-md-12" style="text-align:right;float:right;">
+                                                        <div class="single-blog-post post-style-4 d-flex align-items-center paper mmedia">
+                                                            <!-- Post Thumbnail -->
+                                                            <div class="post-thumbnail">
+                                                                @if (fs.ImgId != null)
+                                                                {
+                                                                    <img style="height:150px !important;width:100px !important;padding:5px;" src="@SWProject.Helpers.Front.Utilities.ToBase64ImageString(fs.Img_DataFiles.FileBody)" alt="">
+                                                                }
+                                                                @if (fs.ImgId == null)
+                                                                {
+                                                                    <img style="height:150px !important;width:100px !important;padding:5px;" src="@Url.Content("~/Content/FrontTemplate/img/no-image-icon.png")" />
+                                                                }
+                                                            </div>
+
+                                                            <!-- Post Content -->
+                                                            <div class="post-content">
+                                                                <a href="~/bookDetail?title=@fs.Caption" class="headline">
+                                                                    <h5>@fs.Caption</h5>
+                                                                </a>
+                                                                <!-- Post Meta -->
+                                                                <div class="post-meta">
+                                                                    @*<p><a href="#" class="post-author">@fs.User.Name</a> on <a href="#" class="post-date">@fs.TimeStamp</a></p>*@
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ========== Sidebar Area ========== -->
+                        @*<div class="col-12 col-md-8 col-lg-4">
+                        <div class="post-sidebar-area wow fadeInUpBig" data-wow-delay="0.2s">
+                            <!-- Widget Area -->
+                            <!-- Widget Area -->
+                            <div class="sidebar-widget-area">
+                                <h5 class="title">دسته بندی</h5>
+                                <div class="widget-content">
+                                    @foreach (var item2 in Model.Categories)
+                                    {
+
+                                        <div class="single-blog-post post-style-2 d-flex align-items-center widget-post">
+                                            <!-- Post Thumbnail -->
+                                            <div class="post-thumbnail">
+                                                <img src="@Url.Content("~/Content/FrontTemplate/img/blog-img/b12.jpg")" alt="">
+                                            </div>
+                                            <!-- Post Content -->
+                                            <div class="post-content">
+                                                <a href="@Url.Action("categories","Home",new { Category = item2.Title })" class="headline">
+                                                    <h5 class="mb-0">@item2.Title</h5>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                    }
+                                </div>
+                            </div>
+                            <!-- Widget Area -->
+                            <div class="sidebar-widget-area">
+                                <h5 class="title">با ما همراه باشید</h5>
+                                <div class="widget-content">
+                                    <div class="social-area d-flex justify-content-between">
+                                        <a href="#"><i class="fa fa-facebook"></i></a>
+                                        <a href="#"><i class="fa fa-twitter"></i></a>
+                                        <a href="#"><i class="fa fa-pinterest"></i></a>
+                                        <a href="#"><i class="fa fa-vimeo"></i></a>
+                                        <a href="#"><i class="fa fa-instagram"></i></a>
+                                        <a href="#"><i class="fa fa-google"></i></a>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Widget Area -->
+                        </div>
+                    </div>*@
+
+                    </div>
+
+                    <!-- Load More btn -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="load-more-btn mt-50 text-center">
+                                <a href="#" id="more" class="btn world-btn">بیشتر</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col-12 col-lg-1" id="lltop2">
+        <div class="col-lg-12 col-md-12 col-sm-12" id="leftbordered"></div>
+    </div>
+
+</div>
+
+    @section scripts
+    {
+        <script>
+            $(function () {
+                $(".navbar-nav li").removeClass("active");
+                var typo = $("#pagetitle").val();
+                if (typo == "فیلم") {
+                    $("#livideo").addClass("active");
+                }
+                if (typo == "صوت") {
+                    $("#liaudio").addClass("active");
+                }
+                if (typo == "کتابخانه") {
+                    $("#libook").addClass("active");
+                }
+                if (typo == "مقاله") {
+                    $("#lipaper").addClass("active");
+                }
+                if (typo == "برنامه صراط مستقیم") {
+                    $("#liserat").addClass("active");
+                }
+                $("#more").click(function (e) {
+
+                    e.preventDefault();
+                    var count = 0;
+                    count = $(".mmedia").length;
+                    var cate = $("#pagetitle").val();
+                    $.ajax(
+                    {
+                        url: '@Url.Action("MoreCategoryPost","Home")',
+                        type: 'post',
+                        datatype: 'json',
+                        data: { Current: count, Category: cate },
+                        success: function (result) {
+                            $("#world-tab-1").append(result);
+                            var middleh = $("#middleColumn").height() + 325;
+                            $("#rsticked").css('height', middleh);
+                            $("#lsticked").css('height', middleh);
+                            //var middleh = $("#middleColumn").height() + 300;
+                            //$("#rsticked").css('height', middleh);
+                            //$("#lsticked").css('height', middleh);
+                            //$("#mlsticked").css('height', middleh);
+                            //$("#mrsticked").css('height', middleh);
+                            //$("#footy").css('margin-top', middleh);
+
+                            //if (screen.width >= 320 && screen.width < 992) {
+                            //    $("#rihgtbordered").insertAfter("#centerpeice");
+                            //    $("#leftbordered").insertAfter("#centerpeice");
+                            //    $("#middleColumn").insertAfter("#centerpeice");
+                            //    var mheight = $("#middleColumn").height();
+                            //    var rheight = $("#rihgtbordered").height();
+                            //    var lheight = $("#leftbordered").height();
+                            //    var theight = mheight + rheight + lheight + 335;
+                            //    $("#footy").css('margin-top', 0);
+                            //    $("#rsticked").css('height', theight);
+                            //    $("#lsticked").css('height', theight);
+                            //}
+                            //if (screen.width >= 992 && screen.width < 1080) {
+                            //    $("#rihgtbordered").insertAfter("#centerpeice");
+                            //    $("#leftbordered").insertAfter("#centerpeice");
+                            //    $("#middleColumn").insertAfter("#centerpeice");
+                            //    var mheight = $("#middleColumn").height();
+                            //    var rheight = $("#rihgtbordered").height();
+                            //    var lheight = $("#leftbordered").height();
+                            //    var theight = mheight + rheight + lheight + 400;
+                            //    $("#footy").css('margin-top', 0);
+                            //    $("#rsticked").css('height', theight);
+                            //    $("#lsticked").css('height', theight);
+                            //}
+                            //$(window).resize(function () {
+                            //    if (window.innerWidth >= 1080) {
+                            //        var mheight = $("#middleColumn").height() + 300;
+                            //        $("#rsticked").css('height', mheight);
+                            //        $("#lsticked").css('height', mheight);
+                            //        $("#mlsticked").css('height', mheight);
+                            //        $("#mrsticked").css('height', mheight);
+                            //        $("#footy").css('margin-top', mheight);
+                            //        var noderight = $("#rihgtbordered");
+                            //        $("#rihgtbordered").remove();
+                            //        $("#rrtop").append(noderight);
+                            //        var noderight = $("#leftbordered");
+                            //        $("#leftbordered").remove();
+                            //        $("#lltop").append(noderight);
+                            //        var noderight = $("#middleColumn");
+                            //        $("#middleColumn").remove();
+                            //        $("#mmtop").append(noderight);
+
+                            //    }
+                            //    if (window.innerWidth >= 320 && window.innerWidth < 992) {
+                            //        $("#rihgtbordered").insertAfter("#centerpeice");
+                            //        $("#leftbordered").insertAfter("#centerpeice");
+                            //        $("#middleColumn").insertAfter("#centerpeice");
+                            //        var mheight = $("#middleColumn").height();
+                            //        var rheight = $("#rihgtbordered").height();
+                            //        var lheight = $("#leftbordered").height();
+                            //        var theight = mheight + rheight + lheight + 335;
+                            //        $("#footy").css('margin-top', 0);
+                            //        $("#rsticked").css('height', theight);
+                            //        $("#lsticked").css('height', theight);
+                            //    }
+                            //    if (window.innerWidth >= 992 && window.innerWidth < 1080) {
+                            //        $("#rihgtbordered").insertAfter("#centerpeice");
+                            //        $("#leftbordered").insertAfter("#centerpeice");
+                            //        $("#middleColumn").insertAfter("#centerpeice");
+                            //        var mheight = $("#middleColumn").height();
+                            //        var rheight = $("#rihgtbordered").height();
+                            //        var lheight = $("#leftbordered").height();
+                            //        var theight = mheight + rheight + lheight + 400;
+                            //        $("#footy").css('margin-top', 0);
+                            //        $("#rsticked").css('height', theight);
+                            //        $("#lsticked").css('height', theight);
+                            //    }
+                            //});
+                        },
+                        error: function () {
+                            alert("error");
+                        }
+
+                    });
+                });
+            });
+        </script>
+    }
+
+
+    @section styles
+    {
+        <meta name="description" content="" /> <!--fill this-->
+        <meta name="keywords" content="" /> <!--fill this-->
+    }
+    <!-- ***** Footer Area End ***** -->
+    <!-- jQuery (Necessary for All JavaScript Plugins) -->
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <script src="js/plugins.js"></script>
+    <!-- Active js -->
+    <script src="js/active.js"></script>

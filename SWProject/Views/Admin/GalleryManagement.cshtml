@@ -1,0 +1,107 @@
+﻿
+<div class="page-content" style="direction:rtl;">
+    <div class="row">
+        <div class="col-md-12" style="display:block;float:right;direction:rtl;">
+            @*<div class="row" style="direction:rtl;">*@
+            <div class="col-md-9">
+                <div class="row" id="bodyrow1">
+                    <div class="col-md-12" style="direction:rtl;float:right;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="content-box-large">
+                                    <div class="panel-heading">
+                                        <div class="panel-title" style="text-align:right;"></div>
+                                    </div>
+                                    <div class="panel-body" style="text-align:right;max-height:400px;">
+                                        <div class="alert alert-heading alert-dismissable fade in">
+                                            <h3 style="color:cornflowerblue;margin-top:0;">تصویر مورد نظر را انتخاب نمایید</h3>
+                                            <div class="form-group">
+                                                <input type="file" id="UploadPic" />
+                                                <div style="margin-bottom:25px;">
+                                                    <a class="btn btn-success btn-large" id="addpostpic" style="font-size:18px;min-width:100px;margin-top:25px;">آپلود کن</a>
+                                                    <i style="margin:10px;" id="statusmessage"></i>
+                                                </div>
+                                                <p style="margin:25px;">لینک عکس : <code id="piclink" style="word-wrap:break-word;"></code></p>
+                                                <img width="300" height="150" id="currentpic" style="margin:0 auto;" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*</div>*@
+            <div class="col-md-3">
+                <div class="sidebar content-box" style="display: block;">
+                    <ul class="nav">
+                        <!-- Main menu -->
+                        <li class="current"><a href="#"><i class="glyphicon glyphicon-upload"></i> آپلود عکس</a></li>
+                        <li><a id="gallerypic" href="#"><i class="glyphicon glyphicon-picture"></i> گالری</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+@*<script src="@Url.Content("~/Scripts/jquery-1.7.1.js")"></script>*@
+    <script>
+
+        $(function ()
+        {
+            $("#addpostpic").click(function() {
+                var formData = new FormData();
+                var totalFiles = document.getElementById("UploadPic").files.length;
+                for (var i = 0; i < totalFiles; i++) {
+                    var file = document.getElementById("UploadPic").files[i];
+                    formData.append("UploadPic", file);
+                }
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("UploadGalleryPic","Admin")',
+                    data: formData,
+                    dataType: 'json',
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        if(response.isDone)
+                        {
+                            $("#statusmessage").text("فایل با موفقیت آپلود شد");
+                            $("#piclink").text(response.Message);
+                            $("#currentpic").attr("src",response.Message);
+                        }
+                    },
+                    error: function(error) {
+                        alert("errror");
+                    }
+                });
+            });
+
+            $("#gallerypic").click(function (e)
+            {
+                e.preventDefault();
+                var mynode = document.getElementById("bodyrow1");
+                mynode.innerHTML = '';
+                $.ajax(
+                    {
+                        url: '@Url.Action("FetchGalleryFolder","Admin")',
+                        type: 'post',
+                        datatype: 'json',
+                        data:{number:'10'},
+                        success: function (response)
+                        {
+                            $("#bodyrow1").html(response);
+                        },
+                        error: function () {
+                            alert("error");
+                        }
+
+                    });
+            });
+        });
+    </script>

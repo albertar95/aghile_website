@@ -1,0 +1,183 @@
+﻿@model SWProject.ViewModels.Front.PaperViewModel
+
+
+@{
+    ViewBag.Title = "Papers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<div class="rtop" id="rrtop"></div>
+<div class="ltop" id="lltop"></div>
+<div class="mtop col-8" id="mmtop"></div>
+<div id="contentcolumns" class="col-12 col-lg-12">
+    <div class="col-12 col-lg-1" style="margin-top:0;" id="rrtop2">
+        <div class="col-lg-12 col-md-12 col-sm-12" id="rihgtbordered"></div>
+    </div>
+    <div class="col-12 col-lg-10" id="mmtop2">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-centered" style="padding:50px;" id="middleColumn">
+            <div class="col-lg-12" style="margin-top:300px;">
+                <div class="single-blog-title text-center">
+                    <!-- Catagory -->
+                    <div class="post-cta" style="text-align:right;word-wrap:break-word;text-align:right;">
+                        <h3>@Model.paper.Title</h3>
+                    </div>
+                </div>
+
+
+                <!-- ********** Hero Area End ********** -->
+
+                <div class="main-content-wrapper section-padding-100">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <!-- ============= Post Content Area ============= -->
+                            <div class="col-12 col-lg-12">
+                                <div class="single-blog-content mb-100">
+                                    <!-- Post Meta -->
+                                    <div class="post-meta">
+                                        @*<p><a href="#" class="post-author" style="word-wrap:break-word;">@Model.paper.Post.User.Name</a> on <a href="#" class="post-date">@Model.paper.Post.CreationDate</a></p>*@
+                                    </div>
+                                    <!-- Post Content -->
+                                    <div class="post-content" style="word-wrap:break-word;text-align:right;">
+                                        @Html.Raw(Model.paper.Body)
+                                        <ul class="post-tags">
+                                            @Model.paper.Keywords
+                                        </ul>
+                                        <!-- Post Meta -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ========== Sidebar Area ========== -->
+                            @*<div class="col-12 col-md-8 col-lg-4">
+                            <div class="post-sidebar-area wow fadeInUpBig" data-wow-delay="0.2s">
+                                <!-- Widget Area -->
+                                <!-- Widget Area -->
+                                <div class="sidebar-widget-area">
+                                    <h5 class="title">دسته بندی</h5>
+                                    <div class="widget-content">
+                                        @foreach (var item2 in Model.categories)
+                                        {
+
+                                            <div class="single-blog-post post-style-2 d-flex align-items-center widget-post">
+                                                <!-- Post Thumbnail -->
+                                                <div class="post-thumbnail">
+                                                    <img src="@Url.Content("~/Content/FrontTemplate/img/blog-img/b12.jpg")" alt="">
+                                                </div>
+                                                <!-- Post Content -->
+                                                <div class="post-content">
+                                                    <a href="@Url.Action("categories","Home",new { Category = item2.Title })" class="headline">
+                                                        <h5 class="mb-0">@item2.Title</h5>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                        }
+                                    </div>
+                                </div>
+                                <!-- Widget Area -->
+                                <div class="sidebar-widget-area">
+                                    <h5 class="title">با ما همراه باشید</h5>
+                                    <div class="widget-content">
+                                        <div class="social-area d-flex justify-content-between">
+                                            <a href="#"><i class="fa fa-facebook"></i></a>
+                                            <a href="#"><i class="fa fa-twitter"></i></a>
+                                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                                            <a href="#"><i class="fa fa-vimeo"></i></a>
+                                            <a href="#"><i class="fa fa-instagram"></i></a>
+                                            <a href="#"><i class="fa fa-google"></i></a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Widget Area -->
+                            </div>
+                        </div>*@
+
+                        </div>
+
+                        <!-- ============== Related Post ============== -->
+                        <div class="row">
+
+
+                            @foreach (var rel in Model.similar_paper)
+            {
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="single-blog-post">
+                                        <!-- Post Thumbnail -->
+                                        <div class="post-thumbnail">
+                                            @if (rel.Post.ProfilePicId != null)
+                                            {
+                                                <img src="@SWProject.Helpers.Front.Utilities.ToBase64ImageString(rel.Post.Img_DataFiles.FileBody)" alt="">
+                                            }
+                                            @if (rel.Post.ProfilePicId == null)
+                                            {
+                                                <img src="@Url.Content("~/Content/FrontTemplate/img/no-image-icon.png")" />
+                                            }
+                                            <!-- Catagory -->
+                                            <div class="post-cta"><a href="#"></a></div>
+                                        </div>
+                                        <!-- Post Content -->
+                                        <div class="post-content">
+                                            <a href="~/paper?title=@rel.Post.Title" class="headline">
+                                                <h5>@rel.Post.Title</h5>
+                                            </a>
+                                            <div class="post-meta">
+                                                <p><a href="#" class="post-author">@rel.Post.User.Name</a> on <a href="#" class="post-date">@rel.Post.CreationDate</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col-12 col-lg-1" id="lltop2">
+        <div class="col-lg-12 col-md-12 col-sm-12" id="leftbordered"></div>
+    </div>
+
+</div>
+
+
+        @section scripts
+    {
+            <script>
+                $(function () {
+                    $(".navbar-nav li").removeClass("active");
+                });
+            </script>
+            <script src="@Url.Content("~/Content/FrontTemplate/js/jquery/jquery-2.2.4.min.js")"></script>
+            <!-- Popper js -->
+            <script src="@Url.Content("~/Content/FrontTemplate/js/popper.min.js")"></script>
+            <!-- Bootstrap js -->
+            <script src="@Url.Content("~/Content/FrontTemplate/js/bootstrap.min.js")"></script>
+            <!-- Plugins js -->
+            <script src="@Url.Content("~/Content/FrontTemplate/js/plugins.js")"></script>
+            <!-- Active js -->
+            <script src="@Url.Content("~/Content/FrontTemplate/js/active.js")"></script>
+        }
+        <!-- ***** Footer Area End ***** -->
+        <!-- jQuery (Necessary for All JavaScript Plugins) -->
+        <script src="js/jquery/jquery-2.2.4.min.js"></script>
+        <!-- Popper js -->
+        <script src="js/popper.min.js"></script>
+        <!-- Bootstrap js -->
+        <script src="js/bootstrap.min.js"></script>
+        <!-- Plugins js -->
+        <script src="js/plugins.js"></script>
+        <!-- Active js -->
+        <script src="js/active.js"></script>
+
+        @section styles
+    {
+            <meta name="description" content="@Model.paper.Description" /> <!--fill this-->
+            <meta name="keywords" content="@Model.paper.Keywords" /> <!--fill this-->
+        }

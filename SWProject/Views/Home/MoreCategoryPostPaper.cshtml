@@ -1,0 +1,32 @@
+﻿@model IEnumerable<SWProject.Models.DomainModel.Post>
+
+
+@foreach (var ps1 in Model)
+{
+    <div class="col col-md-12" style="text-align:right;float:right;">
+        <div class="single-blog-post post-style-4 d-flex align-items-center paper mmedia">
+            <!-- Post Thumbnail -->
+            <div class="post-thumbnail">
+                @if (ps1.ProfilePicId != null)
+                {
+                    <img style="height:150px !important;width:100px !important;padding:5px;" src="@SWProject.Helpers.Front.Utilities.ToBase64ImageString(ps1.Img_DataFiles.FileBody)" alt="">
+                }
+                @if (ps1.ProfilePicId == null)
+                {
+                    <img style="height:150px !important;width:100px !important;padding:5px;" src="@Url.Content("~/Content/FrontTemplate/img/no-image-icon.png")" />
+                }
+            </div>
+            <!-- Post Content -->
+            <div class="post-content">
+                <a href="#" class="headline">
+                    <h5>@ps1.Title</h5>
+                </a>
+                <!-- Post Meta -->
+                <div class="post-meta">
+                    @*<p><a href="#" class="post-author">@ps1.User.Name</a> on <a href="#" class="post-date">@ps1.CreationDate</a></p>*@
+                </div>
+            </div>
+        </div>
+        </div>
+        }
+

@@ -1,0 +1,139 @@
+﻿@model SWProject.ViewModels.Front.MediaViewModel
+
+
+@{
+    ViewBag.Title = "Show";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- ********** Hero Area End ********** -->
+
+
+<div class="rtop" id="rrtop"></div>
+<div class="ltop" id="lltop"></div>
+<div class="mtop col-8" id="mmtop"></div>
+<div id="contentcolumns" class="col-12 col-lg-12">
+    <div class="col-12 col-lg-1" style="margin-top:0;" id="rrtop2">
+        <div class="col-lg-12 col-md-12 col-sm-12" id="rihgtbordered"></div>
+    </div>
+    <div class="col-12 col-lg-10" id="mmtop2">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-centered" style="padding:50px;" id="middleColumn">
+            <div id="videopart" class="col-lg-12 col-md-12 col-sm-12 col-centered" style="padding-top:25px;">
+                <div class="bordered" style="margin-top:300px;">
+
+                    <div class="title" style="text-align:right;font-size:18px;font-weight:700;word-wrap:break-word;">
+                        <h5>@Model.serat.Caption</h5>
+                        <hr />
+                    </div>
+                    <div class="regular-page-wrap section-padding-100">
+                        <div class="container">
+                            <video id="my_video_1" class="video-js vjs-default-skin vjs-big-play-centered center vjs-16-9" controls preload="auto"
+                                   data-setup='{ "asdf": true }' poster="">
+                                <source src="@Url.Content(Model.serat.FilePath)" type='@Model.serat.FileExtention'>
+                            </video>
+                        </div>
+                    </div>
+                    <div class="regular-page-wrap section-padding-100 bordered" style="text-align:right;word-wrap:break-word;">
+                        <div class="container">
+                            @Html.Raw(Model.serat.Description)
+                        </div>
+                    </div>
+                    <div class="regular-page-wrap section-padding-100" style="text-align:right;">
+                        <div class="container">
+                            <i class="glyphicon glyphicon-download"></i>  <a target="_blank" href="DownloadFilm?title=@Model.serat.Post.Title" class="headline" style="font-size:20px;">دانلود</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="container bordered" style="border-bottom:thick;">
+                    <h5 class="title" style="text-align:right;font-size:22px;">ویدیو های مرتبط</h5>
+                </div>
+                <hr />
+                <div class="main-content-wrapper section-padding-100">
+                    <div class="container">
+                        <div class="row">
+
+                            @foreach (var item in Model.similars)
+            {
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <!-- Single Blog Post -->
+                                    <div class="single-blog-post">
+                                        <!-- Post Thumbnail -->
+                                        <div class="post-thumbnail">
+                                            @if (item.Post.ProfilePicId != null)
+                                            {
+                                                <img src="@SWProject.Helpers.Front.Utilities.ToBase64ImageString(item.Post.Img_DataFiles.FileBody)" alt="">
+                                            }
+                                            @if (item.Post.ProfilePicId == null)
+                                            {
+                                                <img src="@Url.Content("~/Content/FrontTemplate/img/no-image-icon.png")" />
+                                            }
+                                            <!-- Catagory -->
+                                            <div class="post-cta"><a href="#">@item.Post.CategoryId</a></div>
+                                        </div>
+                                        <!-- Post Content -->
+                                        <div class="post-content">
+                                            <a href="#" class="headline">
+                                                <h5>@item.Post.Title</h5>
+                                            </a>
+                                            <p>@item.Caption</p>
+                                            <!-- Post Meta -->
+                                            <div class="post-meta">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col-12 col-lg-1" id="lltop2">
+        <div class="col-lg-12 col-md-12 col-sm-12" id="leftbordered"></div>
+    </div>
+
+</div>
+
+<!-- Plugins js -->
+<script src="@Url.Content("~/Content/FrontTemplate/js/plugins.js")"></script>
+<!-- Active js -->
+<script src="@Url.Content("~/Content/FrontTemplate/js/active.js")"></script>
+<script src="@Url.Content("~/Content/FrontTemplate/videojs/video.js")"></script>
+<script src="@Url.Content("~/Content/FrontTemplate/videojs/video.min.js")"></script>
+@section scripts
+    {
+
+    <script>
+                $(function () {
+
+                    videojs.autoSetup();
+
+                    videojs('my_video_1').ready(function () {
+                        console.log(this.options()); //log all of the default videojs options
+
+                        // Store the video object
+                        var myPlayer = this, id = myPlayer.id();
+                        // Make up an aspect ratio
+                        var aspectRatio = 264 / 640;
+
+                        //function resizeVideoJS() {
+                        //    var width = document.getElementById(id).parentElement.offsetWidth;
+                        //    myPlayer.width(width).height(width * aspectRatio);
+
+
+                    });
+                });
+    </script>
+}
+@section styles
+            {
+    @*<link href="@Url.Content("~/Content/FrontTemplate/plyrPlayer/dist/plyr.css")" rel="stylesheet" />*@
+    <link href="@Url.Content("~/Content/FrontTemplate/videojs/video-js.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/FrontTemplate/videojs/video-js.min.css")" rel="stylesheet" />
+    <meta name="description" content="@Model.serat.Description" /> <!--fill this-->
+    <meta name="keywords" content="@Model.serat.Keywords" /> <!--fill this-->
+}

@@ -1,0 +1,149 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>بخش مدیریت سایت</title>
+    <!-- Bootstrap -->
+    <link href="@Url.Content("~/Content/BackTemplate/bootstrap/css/bootstrap.min.css")" rel="stylesheet">
+    <!-- styles -->
+    <link href="@Url.Content("~/Content/BackTemplate/css/styles.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/BackTemplate/vendors/datatables/dataTables.bootstrap.css")" rel="stylesheet" media="screen">
+    @RenderSection("styles",required: false)
+</head>
+<body>
+    <div>
+        <div class="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="navbar navbar-inverse" role="banner">
+                            <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
+                                <ul class="nav navbar-nav">
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" onclick="">ناحیه کاربری <b class="caret"></b></a>
+                                        <ul class="dropdown-menu animated fadeInUp">
+                                            <li><a href="~/swp/admin/logout">خروج</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="input-group form" style="direction:rtl;">
+                                    <input type="text" class="form-control" placeholder="جستجو...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary" style=" border-top-right-radius: 0;
+                                                border-bottom-right-radius: 0;" type="button">
+                                            جستجو
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <!-- Logo -->
+                        <div class="logo" style="text-align:right;">
+                            <h1><a href="/" target="_blank">سایت تحقیقاتی حضرت عقیله</a></h1>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="page-content" style="direction:rtl;">
+            <div class="row">
+                <div class="col-md-12" style="display:block;float:right;direction:rtl;">
+                    @*<div class="row" style="direction:rtl;">*@
+                        <div class="col-md-10">
+                            <div class="row" id="bodyrow">
+                                <div class="col-md-12" style="direction:rtl;float:right;" id="bodyParent" >
+                                    @RenderBody()
+                                </div>
+                            </div>
+                        </div>
+                    @*</div>*@
+                    <div class="col-md-2" style="min-height:470px;">
+                        <div class="sidebar content-box" style="display: block;">
+                            <ul class="nav">
+                                <!-- Main menu -->
+                                <li class="current"><a href="~/swp/Admin/index"><i class="glyphicon glyphicon-home"></i> صفحه اصلی</a></li>
+                                <li><a href="~/swp/Admin/Categories"><i class="glyphicon glyphicon-tasks"></i> دسته بندی</a></li>
+                                <li><a href="~/swp/Admin/Posts"><i class="glyphicon glyphicon-pencil"></i> پست ها</a></li>
+                                <li><a href="~/swp/Admin/Serats"><i class="glyphicon glyphicon-film"></i> برنامه صراط مستقیم</a></li>
+                                <li><a href="~/swp/Admin/Books"><i class="glyphicon glyphicon-book"></i> کتابخانه</a></li>
+                                <li><a id="usersrefrence" href="~/swp/Admin/Users"><i class="glyphicon glyphicon-user"></i> کاربران</a></li>
+                                <li><a href="~/swp/Admin/Locals"><i class="glyphicon glyphicon-phone"></i> متغییر ها</a></li>
+                                <li><a id="sliderrefrence" href="~/swp/Admin/Sliders"><i class="glyphicon glyphicon-play-circle"></i> اسلایدر</a></li>
+                                <li><a href="~/swp/Admin/Doubts"><i class="glyphicon glyphicon-question-sign"></i> شبهات</a></li>
+                                <li><a href="~/swp/Admin/Questions"><i class="glyphicon glyphicon-transfer"></i> پرسش و پاسخ</a></li>
+                                <li><a id="usermessagerefrence" href="~/swp/Admin/UserMessages"><i class="glyphicon glyphicon-envelope"></i> پیام کاربران</a></li>
+                                <li><a id="logsrefrence" href="~/swp/Admin/Logs"><i class="glyphicon glyphicon-stats"></i> گزارشات</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+                            </div>
+                        </div>
+                        <footer style="bottom:0;width:100%;">
+                            <div class="container">
+
+                                <div class="copy text-center">
+                                    کپی رایت &copy;
+                                    تمامی حقوق این سایت محفوظ می باشد
+                                    | سایت تحقیقاتی حضرت عقیله
+                                </div>
+
+                            </div>
+                        </footer>
+                    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+                    <script src="https://code.jquery.com/jquery.js"></script>
+                    <!-- Include all compiled plugins (below), or include individual files as needed -->
+                    <script src="@Url.Content("~/Content/BackTemplate/bootstrap/js/bootstrap.min.js")"></script>
+                    <script src="@Url.Content("~/Content/BackTemplate/js/custom.js")"></script>
+                    <script src="@Url.Content("~/Content/BackTemplate/vendors/datatables/js/jquery.dataTables.min.js")"></script>
+                    <script src="@Url.Content("~/Content/BackTemplate/vendors/datatables/dataTables.bootstrap.js")"></script>
+    <script type="text/javascript">
+        function topFunction() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+        $(function ()
+        {
+            $.ajax(
+            {
+            url:'@Url.Action("AdminStatus","Admin")',
+            type:'post',
+            datatype: 'json',
+            success: function (respose)
+            {
+                if (!respose.isDone)
+                {
+                    $("#logsrefrence").remove();
+                    $("#usersrefrence").remove();
+                    $("#usermessagerefrence").remove();
+                    $("#sliderrefrence").remove();
+                }
+            },
+            error: function () {
+                alert("error");
+            }
+            });
+        });
+    </script>
+
+                    @RenderSection("scripts", required: false)
+</body>
+</html>

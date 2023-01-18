@@ -1,0 +1,179 @@
+﻿@model SWProject.ViewModels.Admin.EditPostViewModel
+
+@{
+    ViewBag.Title = "EditSeratForm";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("SubmitEditSerats", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", id = "editPostformmedia" }))
+{
+    @Html.ValidationSummary()
+    @Html.HiddenFor(Model => Model.post.Id)
+    @Html.HiddenFor(Model => Model.post.ModifiedDate)
+    @Html.HiddenFor(Model => Model.post.CreationDate)
+    @Html.HiddenFor(Model => Model.post.UserId)
+    @Html.HiddenFor(Model => Model.post.VisitCount)
+    @Html.HiddenFor(Model => Model.post.Type)
+    if (Model.post.Type == 4)
+    {
+        @Html.HiddenFor(Model => Model.serat.FileExtention)
+        @Html.HiddenFor(Model => Model.serat.FileName)
+        @Html.HiddenFor(Model => Model.serat.FilePath)
+        @Html.HiddenFor(Model => Model.serat.Id)
+        @Html.HiddenFor(Model => Model.serat.PostId)
+        @Html.HiddenFor(Model => Model.serat.Size)
+        @Html.HiddenFor(Model => Model.serat.UserId)
+    }
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="content-box-header">
+                <div class="panel-title" style="direction:rtl;text-align:right;float:right;">@ViewBag.Title</div>
+            </div>
+            <div class="content-box-large">
+                <div class="panel-body" style="min-height:525px;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="content-box-large">
+                                <div class="panel-body">
+                                    <fieldset>
+                                        <div class="form-group">
+                                            @Html.LabelFor(Model => Model.post.Title)
+                                            @Html.TextBoxFor(Model => Model.post.Title, new { @class = "form-control", Value = Model.post.Title })
+                                            @Html.ValidationMessageFor(Model => Model.post.Title)
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(Model => Model.post.ProfilePicId)
+                                            @Html.Upload("ProfilePicId", new { @class = "form-control" })
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(Model => Model.post.CategoryId)
+                                            @{
+                                                List<SelectListItem> listItems = new List<SelectListItem>();
+                                                var selectedindex = Model.post.CategoryId;
+                                                var cats = SWProject.Helpers.Admin.Utilities.GetCategories().Select(p => new { p.HierarchyId, p.Title }).Distinct();
+                                                foreach (var item in cats)
+                                                {
+                                                    if (item.HierarchyId == selectedindex)
+                                                    {
+                                                        listItems.Add(new SelectListItem
+                                                        {
+                                                            Selected = true,
+                                                            Text = item.Title,
+                                                            Value = item.HierarchyId.ToString(),
+                                                        });
+                                                    }
+                                                    else
+                                                    {
+                                                        listItems.Add(new SelectListItem
+                                                        {
+
+                                                            Text = item.Title,
+                                                            Value = item.HierarchyId.ToString(),
+                                                        });
+                                                    }
+                                                }
+                                            }
+                                            @Html.DropDownListFor(model => model.post.CategoryId, listItems, "---سر گروه را انتخاب کنید---", new { @class = "form-control" })
+                                        </div>
+
+                                        @if (Model.post.Type == 4)
+                                        {
+                                            <div class="form-group">
+                                                @Html.LabelFor(Model => Model.serat.Caption)
+                                                @Html.TextBoxFor(Model => Model.serat.Caption, new { @class = "form-control", Value = Model.serat.Caption })
+                                                @Html.ValidationMessageFor(Model => Model.serat.Caption)
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.LabelFor(Model => Model.serat.Introduction)
+                                                @Html.TextAreaFor(Model => Model.serat.Introduction, new { @class = "form-control", @id = "ckeditor_full2", Value = Model.serat.Introduction })
+                                                @Html.ValidationMessageFor(Model => Model.serat.Introduction)
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.LabelFor(Model => Model.serat.Keywords)
+                                                @Html.TextBoxFor(Model => Model.serat.Keywords, new { @class = "form-control", Value = Model.serat.Keywords })
+                                                @Html.ValidationMessageFor(Model => Model.serat.Keywords)
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.LabelFor(Model => Model.serat.Description)
+                                                @Html.TextAreaFor(Model => Model.serat.Description, new { @class = "form-control", @id = "ckeditor_full3", Value = Model.serat.Description })
+                                                @Html.ValidationMessageFor(Model => Model.serat.Description)
+                                            </div>
+                                        }
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(Model => Model.post.Enable)
+                                            @Html.EditorFor(Model => Model.post.Enable, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(Model => Model.post.Enable)
+                                        </div>
+                                    </fieldset>
+                                    <div>
+                                        <input type="submit" class="btn btn-success btn-large" value="ویرایش" id="addpost" style="font-size:18px;min-width:100px;" />
+                                        <a href="@Url.Action("Serats","Admin")" class="btn btn-default"><i class="glyphicon glyphicon-arrow-right"></i>&nbsp; بازگشت &nbsp;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+                                                }
+@section Scripts{
+    <script src="@Url.Content("~/Scripts/Ckfinder/ckfinder.js")"></script>
+    <script type="text/javascript">
+        $(function () {
+            var ckeditor5 = CKEDITOR.replace('ckeditor_full2');
+            CKFinder.setupCKEditor(ckeditor5);
+            var ckeditor6 = CKEDITOR.replace('ckeditor_full3');
+            CKFinder.setupCKEditor(ckeditor6);
+            var ckeditor = CKEDITOR.replace('ckeditor_full');
+            CKFinder.setupCKEditor(ckeditor);
+            var ckeditor2 = CKEDITOR.replace('ckeditor_standard');
+            CKFinder.setupCKEditor(ckeditor2);
+            var ckeditor3 = CKEDITOR.replace('ckeditor_standard2');
+            CKFinder.setupCKEditor(ckeditor3);
+            var ckeditor4 = CKEDITOR.replace('ckeditor_standard3');
+            CKFinder.setupCKEditor(ckeditor4);
+            CKEDITOR.on('dialogDefinition', function (ev) {
+
+                $("#cke_145_uiElement").click(function (e) {
+                });
+
+            });
+            $("#txtKeywords").keypress(function (event) {
+                if (event.keyCode == 13) {
+                    event.preventDefault();
+                }
+            }).tagsinput();
+        });
+    </script>
+
+
+    <script src="@Url.Content("~/Scripts/AjaxForm/jquery.form.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")"></script>
+    <script src="@Url.Content("~/Content/BackTemplate/vendors/ckeditor/ckeditor.js")"></script>
+    <script src="@Url.Content("~/Content/BackTemplate/vendors/ckeditor/adapters/jquery.js")"></script>
+    <script src="@Url.Content("~/Content/BackTemplate/bootstrap/js/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/Content/BackTemplate/js/custom.js")"></script>
+    <script src="@Url.Content("~/Content/BackTemplate/js/editors.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui.js")"></script>
+    <script src="@Url.Content("~/Scripts/TagsInput/bootstrap-tagsinput.min.js")"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@section styles
+    {
+    <link href="@Url.Content("~/Content/BackTemplate/bootstrap/css/bootstrap.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Scripts/jquery-ui.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Scripts/TagsInput/bootstrap-tagsinput.css")" rel="stylesheet" />
+}
+
+
+
+
+

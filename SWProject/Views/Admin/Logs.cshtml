@@ -1,0 +1,133 @@
+﻿@model SWProject.ViewModels.Admin.LogsViewModel
+
+
+@{
+    ViewBag.Title = "Logs";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-box-large">
+    <div class="panel-heading">
+        <div class="panel-title" style="direction:rtl;text-align:right;float:right;">آمار بازدید سایت (صفحه ها)</div>
+    </div>
+    <div class="panel-body">
+        <div class="col-md-6">
+            <div id="hero-bar1" style="height: 230px;"></div>
+        </div>
+        <div class="col-md-3">
+            <div id="pie-chart" style="height: 230px;"></div>
+        </div>
+        <div class="col-md-3">
+            <div id="pie-chart2" style="height: 230px;"></div>
+        </div>
+        <a href="~/swp/Admin/simpleLogs" class="btn btn-large btn-default">بیشتر</a>
+    </div>
+</div>
+<div class="content-box-large">
+    <div class="panel-heading">
+        <div class="panel-title" style="direction:rtl;text-align:right;float:right;">آمار بازدید به تفکیک پست ها</div>
+    </div>
+    <div class="panel-body">
+        <div id="hero-bar2" style="height: 230px;"></div>
+        <a class="btn btn-large btn-primary">بیشتر</a>
+    </div>
+</div>
+<div class="content-box-large">
+    <div class="panel-heading">
+        <div class="panel-title" style="direction:rtl;text-align:right;float:right;">آمار نموداری</div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-12">
+                <div id="pushups" style="height: 230px;"></div>
+            </div>
+        </div>
+        <a class="btn btn-large btn-primary">بیشتر</a>
+    </div>
+</div>
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+@*<div id="bar-example" style="height: 250px;"></div>*@
+
+@section scripts
+    {
+    <script>
+        $(function () {
+
+            var herodata = @Model.PagesBarChart;
+            var herodata2 = herodata.toString().replace('^','"');
+            $(".btn-primary").click(function (e) {
+                e.preventDefault();
+                swal({
+                    title: "پیام",
+                    text: "بخش گزارشات در حال ساخت می باشد.از شکیبایی شما متشکریم",
+                    icon: "information"});
+            });
+    Morris.Bar({
+        element: 'hero-bar1',
+        data: herodata2,
+        xkey: 'x',
+        ykeys: 'y',
+        labels: 'بازدید'
+    });
+    Morris.Bar({
+        element: 'hero-bar2',
+        data: [
+            { y: '2006', a: 100, b: 90 },
+            { y: '2007', a: 75, b: 65 },
+            { y: '2008', a: 50, b: 40 },
+            { y: '2009', a: 75, b: 65 },
+            { y: '2010', a: 50, b: 40 }
+        ],
+        xkey: 'y',
+        ykeys: ['a', 'b'],
+        labels: ['Series A', 'Series B']
+    });
+    Morris.Donut({
+        element: 'pie-chart',
+        data: [
+          { label: "Friends", value: 30 },
+          { label: "Allies", value: 15 },
+          { label: "Enemies", value: 45 },
+          { label: "Neutral", value: 10 }
+        ]
+    });
+    Morris.Donut({
+        element: 'pie-chart2',
+        data: [
+          { label: "Friends", value: 30 },
+          { label: "Allies", value: 15 },
+          { label: "Enemies", value: 45 },
+          { label: "Neutral", value: 10 }
+        ]
+    });
+     Morris.Line({
+        // ID of the element in which to draw the chart.
+        element: 'pushups',
+        // Chart data records -- each entry in this array corresponds to a point on
+        // the chart.
+        data: [
+          { day: 'Monday', pushups: 20, beers: 2 },
+          { day: 'Tuesday', pushups: 10, beers: 2 },
+          { day: 'Wednesday', pushups: 5, beers: 3 },
+          { day: 'Thursday', pushups: 5, beers: 4 },
+          { day: 'Friday', pushups: 20, beers: 1 }
+        ],
+        // The name of the data record attribute that contains x-values.
+        xkey: 'day',
+        parseTime: false,
+        // A list of names of data record attributes that contain y-values.
+        ykeys: ['pushups', 'beers'],
+        // Labels for the ykeys -- will be displayed when you hover over the
+        // chart.
+        labels: ['Pushups', 'Beers'],
+        lineColors: ['#373651', '#E65A26']
+    });
+    });
+</script>
+    }

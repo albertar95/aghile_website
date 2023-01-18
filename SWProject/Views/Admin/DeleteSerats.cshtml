@@ -1,0 +1,120 @@
+﻿@model IEnumerable<SWProject.Models.DomainModel.Post>
+
+@{
+    ViewBag.Title = "حذف پست برنامه صراط مستقیم";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-box-large box-with-header" style="text-align:right;min-height:525px;">
+    <div class="content-box-header">
+        <div class="panel-title" style="direction:rtl;text-align:right;float:right;">@ViewBag.Title</div>
+    </div>
+    <div class="content-box-large">
+        <div class="panel-body">
+            <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" style="text-align:center;">
+                <thead style="text-align:center;">
+                    <tr class="odd gradeX">
+                        <th class="center">ردیف</th>
+                        <th class="center">عنوان</th>
+                        @*<th class="center">نوع</th>*@
+                        <th class="center">جزییات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int i = 1;
+                    }
+                    @foreach (var item in Model)
+                    {
+                        <tr class="odd gradeX" id="@item.Id">
+                            <td class="center">@Convert.ToString(i++)</td>
+                            <td class="center">@item.Title</td>
+                            <td class="center">
+                                <a class="btn btn-danger" gid="@item.Id.ToString()"><i class="glyphicon glyphicon-remove"></i>&nbsp; حذف &nbsp;</a>
+                            </td>
+                        </tr>
+                                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="btn-group" style="bottom: 0;">
+        <a href="@Url.Action("Serats","Admin")" class="btn btn-default"><i class="glyphicon glyphicon-eye-open"></i>&nbsp; لیست &nbsp;</a>
+        <a href="@Url.Action("DeleteSerats","Admin")" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i>&nbsp; حذف &nbsp;</a>
+        <a href="@Url.Action("EditSerats","Admin")" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i>&nbsp; ویرایش &nbsp;</a>
+        <a href="@Url.Action("AddSerats","Admin")" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp; اضافه &nbsp;</a>
+    </div>
+</div>
+
+@section scripts
+    {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="@Url.Content("~/Scripts/jquery-1.7.1.js")"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        $(function ()
+        {
+
+            $(".btn-danger").click(function (e)
+            {
+                e.preventDefault();
+                var gid = $(this).attr("gid");
+                swal({
+                    title: "هشدار",
+                    text: "آیا برای حذف اطمینان دارید؟",
+                    icon: "warning",
+                    buttons: ["خیر","بلی"],
+                })
+               .then((willDelete) => {
+                   if (willDelete) {
+                       $.ajax(
+                           {
+                               url: '@Url.Action("SubmitDeleteSerats", "Admin")',
+                               type: 'post',
+                               datatype: 'json',
+                               data: {CurrentId: gid},
+                               success: function (result)
+                               {
+                                   if (result.isDone)
+                                   {
+                                       swal({
+                                           title: "پیام",
+                                           text: result.Message,
+                                           icon: "success",
+                                           buttons: ["باشه"],
+                                       })
+                                       .then((willDelete) => {
+                                           window.location.reload();
+                                       });
+                                   } else
+                                   {
+                                       swal({
+                                           title: "پیام",
+                                           text: result.Message,
+                                           icon: "danger",
+                                           buttons: ["باشه"],
+                                       })
+                                       .then((willDelete) => {
+                                           window.location.reload();
+                                       });
+                                   }
+                               },
+                               error: function ()
+                               {
+                                   alert("error");
+                               }
+                           });
+    }
+});
+            });
+        });
+    </script>
+}
+@section styles
+    {
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
+}
+
+
+
+

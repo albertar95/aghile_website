@@ -1,0 +1,118 @@
+﻿@model SWProject.Models.DomainModel.Doubt
+
+@{
+    ViewBag.Title = "ایجاد سوال";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("SubmitAddQuestion", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", id = "addQuestionform" }))
+{
+    @Html.ValidationSummary()
+    @Html.HiddenFor(Model => Model.Id)
+    <div class="row">
+        <div class="col-md-12">
+            <div class="content-box-header">
+                <div class="panel-title" style="direction:rtl;text-align:right;float:right;">@ViewBag.Title</div>
+            </div>
+            <div class="content-box-large">
+                <div class="panel-body" style="min-height:525px;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="content-box-large">
+                                <div class="panel-body">
+                                    <fieldset>
+                                        <div class="form-group">
+                                            @Html.LabelFor(Model => Model.Title)
+                                            @Html.TextBoxFor(Model => Model.Title, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(Model => Model.Title)
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(Model => Model.Question)
+                                            @Html.TextAreaFor(Model => Model.Question, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(Model => Model.Question)
+                                        </div>
+                                        <div class="form-group">
+                                            <label style="margin-left:25px;">گالری عکس</label>
+                                            @*<a href="#" class="btn btn-warning" id="galleryManagement"><i class="glyphicon glyphicon-upload"></i>&nbsp; مدیریت گالری &nbsp;</a>*@
+                                            @Ajax.ActionLink("مدیریت گالری", "GalleryManagement", null, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "result", InsertionMode = InsertionMode.Replace, OnSuccess = "openPopup" }, new { @class = "btn btn-warning" })<br />
+
+                                            <div id="result" style="display:none;"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(Model => Model.Answer)
+                                            @Html.TextAreaFor(Model => Model.Answer, new { @class = "form-control", @id = "ckeditor_full" })
+                                            @Html.ValidationMessageFor(Model => Model.Answer)
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(Model => Model.Enable)
+                                            @Html.CheckBoxFor(Model => Model.Enable, new { @class = "checkbox", @checked = true })
+                                        </div>
+                                    </fieldset>
+                                    <div>
+                                        <input type="submit" class="btn btn-success btn-large" value="ثبت" id="addQuestion" style="font-size:18px;min-width:100px;" />
+                                        <a href="@Url.Action("Questions","Admin")" class="btn btn-default"><i class="glyphicon glyphicon-arrow-right"></i>&nbsp; بازگشت &nbsp;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts{
+    <script src="@Url.Content("~/Scripts/Ckfinder/ckfinder.js")"></script>
+    <script type="text/javascript">
+        $(function () {
+            var ckeditor = CKEDITOR.replace('ckeditor_full');
+            CKFinder.setupCKEditor(ckeditor);
+            CKEDITOR.on('dialogDefinition', function (ev) {
+
+                $("#cke_145_uiElement").click(function (e) {
+                });
+
+            });
+            $("#txtKeywords").keypress(function (event) {
+                if (event.keyCode == 13) {
+                    event.preventDefault();
+                }
+            }).tagsinput();
+            $("#result").dialog({
+                autoOpen: false,
+                title: 'مدیریت گالری',
+                width: 720,
+                height: 'auto',
+                modal: true
+            });
+        });
+        function openPopup() {
+            $("#result").dialog("open");
+        }
+    </script>
+
+
+    <script src="@Url.Content("~/Scripts/AjaxForm/jquery.form.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")"></script>
+    <script src="@Url.Content("~/Content/BackTemplate/vendors/ckeditor/ckeditor.js")"></script>
+    <script src="@Url.Content("~/Content/BackTemplate/vendors/ckeditor/adapters/jquery.js")"></script>
+    <script src="@Url.Content("~/Content/BackTemplate/bootstrap/js/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/Content/BackTemplate/js/custom.js")"></script>
+    <script src="@Url.Content("~/Content/BackTemplate/js/editors.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery-1.10.2.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery-ui.js")"></script>
+    <script src="@Url.Content("~/Scripts/TagsInput/bootstrap-tagsinput.min.js")"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@section styles
+    {
+
+    @*<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/BackTemplate/vendors/bootstrap-wysihtml5/src/bootstrap-wysihtml5.css")">*@
+    <link href="@Url.Content("~/Content/BackTemplate/bootstrap/css/bootstrap.min.css")" rel="stylesheet">
+<link href="@Url.Content("~/Scripts/jquery-ui.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Scripts/TagsInput/bootstrap-tagsinput.css")" rel="stylesheet" />
+}

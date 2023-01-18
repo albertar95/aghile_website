@@ -1,0 +1,23 @@
+﻿<nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
+    @{
+        List<SelectListItem> listItems = new List<SelectListItem>();
+        listItems.Add(new SelectListItem
+        {
+            Text = "خروج",
+            Value = "1"
+
+        });
+    }
+    @Html.DropDownList("userprofile", listItems, TempData["currentUser"].ToString() + "خوش آمدید", new { @class = "dropdown-menu animated fadeInUp" })
+    <ul class="nav navbar-nav">
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">ناحیه کاربری <b class="caret"></b></a>
+            <ul class="dropdown-menu animated fadeInUp">
+                <li><a href="profile.html">پروفایل</a></li>
+                <li><a href="login.html">خروج</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+

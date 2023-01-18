@@ -1,0 +1,25 @@
+﻿
+@model IEnumerable<SWProject.Models.DomainModel.File_DataFiles>
+
+
+@foreach (var fod in Model)
+{
+    <div class="col col-md-12" style="text-align:right;float:right;">
+        <div class="single-blog-post post-style-4 d-flex align-items-center mmedia">
+            <!-- Post Thumbnail -->
+            @*<div class="post-thumbnail">
+                    <img src="~/Content/FrontTemplate/img/textfile.jpg" style="height:150px !important;width:200px !important;" alt="">
+                </div>*@
+            <!-- Post Content -->
+            <div class="post-content">
+                <a href="#" class="headline">
+                    <h5>@fod.Caption</h5>
+                </a>
+                <!-- Post Meta -->
+                <div class="post-meta">
+                    @*<p><a href="#" class="post-author">@fod.User.Name</a> on <a href="#" class="post-date">@fod.TimeStamp</a></p>*@
+                </div>
+            </div>
+        </div>
+        </div>
+        }

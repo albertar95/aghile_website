@@ -1,0 +1,43 @@
+﻿@model IEnumerable<SWProject.Models.DomainModel.tmp_PagesStatLogs>
+
+@{
+    ViewBag.Title = "گزارش سایت";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-box-large box-with-header" style="text-align:right;min-height:525px;">
+    <div class="content-box-header">
+        <div class="panel-title" style="direction:rtl;text-align:right;float:right;">@ViewBag.Title</div>
+    </div>
+    <div class="content-box-large">
+
+        <div class="panel-body">
+            <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" style="text-align:center;">
+                <thead style="text-align:center;">
+                    <tr class="odd gradeX">
+                        <th class="center">ردیف</th>
+                        <th class="center">صفحه</th>
+                        <th class="center">جزییات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int i = 1;
+                    }
+                    @foreach (var item in Model.OrderByDescending(p => p.count))
+                    {
+                        <tr class="odd gradeX" id="@item.Id">
+                            <td class="center">@Convert.ToString(i++)</td>
+                            <td class="center">@item.Url</td>
+                            <td class="center">@item.count</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+</div>
+
+
