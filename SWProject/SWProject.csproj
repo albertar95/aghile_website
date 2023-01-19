@@ -966,14 +966,6 @@
     <Content Include="Content\FrontTemplate\videojs\video.min.js" />
     <Content Include="Controllers\Loggings.svc" />
     <Content Include="favicon.ico" />
-    <Content Include="Files\ErrorPages\404 page.png" />
-    <Content Include="Files\ErrorPages\404.html" />
-    <Content Include="Files\ErrorPages\405 page.jpg" />
-    <Content Include="Files\ErrorPages\405.html" />
-    <Content Include="Files\ErrorPages\500 page.png" />
-    <Content Include="Files\ErrorPages\500.html" />
-    <Content Include="Files\ErrorPages\503 page.png" />
-    <Content Include="Files\ErrorPages\503.html" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -994,9 +986,6 @@
     <Content Include="Scripts\AjaxForm\jquery.form.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="ApplicationInsights.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\FrontTemplate\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\FrontTemplate\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\FrontTemplate\fonts\fontawesome-webfont.woff" />
@@ -1281,12 +1270,6 @@
     <Folder Include="Content\BackTemplate\vendors\wizard\" />
     <Folder Include="Content\BackTemplate\vendors\wysiwyg\" />
     <Folder Include="Content\FrontTemplate\img\core-img\" />
-    <Folder Include="Files\books\" />
-    <Folder Include="Files\films\" />
-    <Folder Include="Files\Gallery\" />
-    <Folder Include="Files\Serat\" />
-    <Folder Include="Files\slider\" />
-    <Folder Include="Files\voices\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
